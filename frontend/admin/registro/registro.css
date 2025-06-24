@@ -11,19 +11,16 @@ body{
     align-items: center;
     height: 100vh;
     background-color: #F8F9FA;
-
-    /* Fondo del body: pantalla de registro 
-    background: linear-gradient(135deg, #133c4a, #0f2b31, #111e20, #2d3c3f, #343333, #4a4a4a);;  /*135deg, significa que va en diagonal (izquierda-superior a derecha-inferior)
-    background-size: 400% 400%;
-    animation: animacionPersonalizada  8s ease-in-out infinite; 
-    /*ease-in-out: empieza lento-acelera-frena
-    infinite: se repite infinitamente */
 }
 
 @keyframes animacionPersonalizada {
     0%   { background-position: 0% 50%; }
     50%  { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+}
+
+i{
+    font-size: 1.2rem;
 }
 
 .contenedor-registro{
@@ -38,7 +35,7 @@ body{
     gap: 1.2rem;
 
     border: 2px solid #D1D5DB;
-    border-radius: 10px;
+    border-radius: 1rem;
     padding: 25px 36px;
     background-color: #FFFFFF;
     color: #2E2E2E;
@@ -57,7 +54,7 @@ form{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
 }
 
 .ingresoRegistro{
@@ -80,3 +77,42 @@ form{
     border: 1px solid rgb(140, 140, 137);
 }
 
+.ingresoRegistro input::placeholder{
+    color: rgb(150, 147, 147);
+}
+
+#ocultar{
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0.25rem;
+    color: #6B7280;
+}
+
+#ocultar:hover{
+    color: #3A7CA5;
+}
+
+.contenedor-btnCrearCuenta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem;
+    width: 100%;
+}
+
+.btnCrearCuenta{
+    background-color: #3A7CA5; 
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease; /*Definimos la transicion de la propiedad background color de 0.3s, dandole una transicion suave con ease*/
+}
+
+.btnCrearCuenta:hover{
+    background-color: #2C5F82;
+}
