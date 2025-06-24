@@ -6,7 +6,7 @@ config();
 
 
 
-export default{
+export default {
 
     port: process.env.PORT,//puerto
     database:{ //database
