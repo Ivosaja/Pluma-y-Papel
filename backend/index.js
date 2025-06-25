@@ -1,49 +1,70 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// Importaciones necesarias para crear servidor express.js y realizar consultas a una base de datos //
 import express from "express";
 import environments from "./src/api/config/environments.js";
-import connections from "./src/api/database/db.js";
+import connection from "./src/api/database/db.js";
 import cors from "cors";
 
-const app = express();
+const app = express(); // Creacion de app en express.js
+const PORT = environments.port || 3005 ; // Se usa el port establecido a la izquierda de la condicion, si se encuentra ocupado, usa el de la derecha
 
-const PORT = environments.port || 3005 ; //verificamos que  el servidor puede correse y usar un puerto
+/////////////////
+// Middlewares //
+app.use(cors()); // => Es un middleware que nos permite realizar todas las solicitudes
 
 
-app.use(cors()); //es un middleware que nos permite todas las solicitudes//
-
-
+// Endpoint principal de prueba
 app.get("/",(req,res) =>{
-    res.send("Hola mundo")
+    res.send("Bienvenidos a nuestro aplicacion Pluma&Papel")
 })
 
 //Basicamente generamos el endpoin en donde se realiza un verbo de HTTP (POST,GET,PUT,DELETE,PATCH)
-        //ENDPOINT//
 
+// Endpoint para obtener todos los productos de la base de datos
 app.get("/getAllProducts", async(req,res)=>{
     try{
+        let sqlQuery = "SELECT * FROM productos";
+        const [rows] =  await connection.query(sqlQuery); //desestructuracion de los datos, quedandonos solo con las filas//
 
-        let sql = "SELECT * FROM productos";
-
-        const [rows] =  await connections.query(sql); //desestructuracion de los datos, quedandonos solo con las filas//
-
-                //coddigo de respuesta exitosa//
+                //codigo de respuesta exitosa//
         res.status(200).json({
-
             payload:rows,
-            message:rows.length===0 ? "No se encontraron productos":`Productos encontrados: ${rows.length}`})
+            message:rows.length===0 ? "No se encontraron productos" : `Se encontraron: ${rows.length} productos`})
+
     }catch(error){
-        console.log("Error al obtener Productos: ", error );
-
+        console.log("Error al obtener Productos: ", error);
         res.status(500).json({
-
-
             error:"Error desde el servidor"
-
         })
     }
-
 })
 
+// Endpoint para obtener un producto por ID de la base de datos
+app.get('/getProductById/:id', async(req, res) => {
+    try{
+        const {id} = req.params
+        const sqlQuery = `SELECT * FROM productos WHERE id_producto = ?`
+        const [rows] = await connection.query(sqlQuery, [id])
 
-app.listen(PORT,()=>{
-    console.log(`Servidor Corriendo en el puerto  http://localhost:${PORT}`);
+        if(rows.length === 0){
+            return res.status(404).json({
+                error: `Error. No se encontro el producto con ID: ${id}`
+            })
+        }
+        res.status(200).json({
+            payload: rows,
+            message: `Se encontro exitosamente el producto con ID: ${id}`
+        })
+
+    } catch(err){
+        console.log('Error interno del servidor. No se pudo encontrar el producto en la base de datos', err)
+        res.status(500).json({
+            error: "Error interno del servidor al buscar el producto"
+        })
+    }
+})
+
+// Escuchando en el puerto que guardamos en nuestra variable de entorno
+app.listen(PORT,() => {
+    console.log(`Servidor Corriendo en el puerto: http://localhost:${PORT}`);
 })
