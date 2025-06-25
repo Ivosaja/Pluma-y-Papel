@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login-Cliente Pluma & Papel</title>
+    <title>Pluma & Papel</title>
     <link rel="stylesheet" href="bienvenida.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="bienvenida.js" defer></script>
+
 </head>
 <body>
     <div id="contenedor-principal">
-        <img id="imagen-libros"src="../../../assets/img/loginCliente/pilaDeLibros.png" alt="pilaDeLibros">
-        <div id="contenedor-secundario">
-            <form>
-                <h1>Bienvenido a Pluma & Papel</h1>
-                <input id="ingreso-nombre">
-                <button type="submit">
-                    Iniciar Sesion
-                </button>
+        <div class="contenedor-imagenLibros">
+            <img class="imagen-libros"src="../../../assets/img/loginCliente/pilaDeLibros.png" alt="pilaDeLibros">
+        </div>
+        <div id="contenedor-formNombre">
+            <h1>Bienvenido a Pluma & Papel</h1>
+            <form class="form-ingresar">
+                <input id="ingreso-nombre" placeholder="Ingrese un nombre">
+                <button type="submit" id="btnIngresar">Ingresar</button>
             </form>
-            <img src="../../../assets/img/loginCliente/plumaPapelTintero.png" alt="plumaPapelTintero">
+            <div class="contenedor-formImagen">
+                <img src="../../../assets/img/loginCliente/plumaPapelTintero.png" alt="plumaPapelTintero" class="imagen-plumaPapel">
+            </div>
         </div>
     </div>
 
