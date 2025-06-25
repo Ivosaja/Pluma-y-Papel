@@ -107,4 +107,22 @@ body {
 }
 
 
+.boton-submit{
+    width: 45%;
+    margin: 5px;
+    height: 30px;
+    border-radius: 0.5rem;
+    border:none;
+    background-color: #3A7CA5;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 15px;
+    color:white;
+}
+
+.boton-submit:hover {
+    background-color:  #2C5F82; /*cambio de color en graduacion*/
+}
+
+
 
