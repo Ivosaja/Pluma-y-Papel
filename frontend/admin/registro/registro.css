@@ -130,21 +130,28 @@ form{
     }
 }
 
-@media (max-width:850px){
+@media (max-width:900px){
     .contenedor-registro{
         max-width: 80%;
     }
 }
 
-@media (max-width:650px){
+@media (max-width:750px){
     .contenedor-registro{
         max-width: 100%;
+    }
+    .ingresoRegistro input{
+        width: 100%;
     }
 }
 
 @media (max-width:500px){
     .ingresoRegistro input{
         width: 100%;
+    }
+    .contenedor-registro h1{
+        font-size: 2rem;
+        word-wrap: break-word;
     }
 }
 
