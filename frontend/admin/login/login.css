@@ -50,3 +50,15 @@ body {
     gap:1rem;
 }
 
+
+.ingreso{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    align-items: center;
+    width: 50%;
+}
+
+
+
+
