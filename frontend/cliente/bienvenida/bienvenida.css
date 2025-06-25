@@ -33,6 +33,7 @@ h1{
     justify-content: center;
     align-items: center;
     gap: 1.1rem;
+
 }
 
 .contenedor-imagenLibros{
@@ -54,9 +55,10 @@ h1{
 
 #contenedor-formNombre{
     width:35%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     gap: 1rem;
 }
 
@@ -105,10 +107,48 @@ h1{
 }
 
 .form-ingresar #btnIngresar:hover {
-  background-color: #4d583f; 
+    background-color: #4d583f; 
 }
 
 
 
+@media (max-width:1300px) {
+
+    h1{
+        font-size: 2.6rem;
+    }
+
+    .contenedor-formImagen .imagen-plumaPapel {
+        width: 50%;  /* Ajustar tamaño de la imagen secundaria */
+    }
+    
+}
 
 
+@media (max-width:900px){
+
+    #contenedor-principal{
+        flex-direction: column;
+        align-items: center;
+    }
+    #contenedor-formNombre{
+        width: 100%;
+        align-items: center;
+        height:100%;
+    }
+
+    .contenedor-imagenLibros{
+        display: none;
+    }
+    
+
+    .contenedor-formImagen{
+        justify-content: center;
+    }
+
+    h1{
+        word-wrap: break-word;
+        text-align: center;
+    }
+
+}
