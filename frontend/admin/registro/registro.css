@@ -33,7 +33,6 @@ i{
 .contenedor-registro{
     width:100%; /*seria el 100% de ese 50% utilizado en la siguiente linea*/
     max-width: 50%;
-    border: 1px solid white;
     display:flex;
     flex-direction: column;
     justify-content: center;
