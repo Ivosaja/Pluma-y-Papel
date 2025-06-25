@@ -48,7 +48,7 @@ i{
     font-weight: bold;
 }
 
-form{
+.form-registro{
     width: 100%;
     display: flex;
     flex-direction: column;
