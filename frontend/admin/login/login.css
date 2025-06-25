@@ -60,5 +60,25 @@ body {
 }
 
 
+.ingreso input{
+    padding: 10px;
+    font-size: 15px;
+    width: 100%;
+    color: #2E2E2E;
+    border:none;
+    outline: none;
+    border-bottom: 1px solid rgb(140, 140, 137);
+}
+
+.ingreso input::placeholder{
+    color: rgb(150, 147, 147);
+}
+
+.ingreso input:focus{
+    border-bottom: 1px solid rgb(140, 140, 137);
+    background-color: #F1F1F1;
+}
+
+
 
 
