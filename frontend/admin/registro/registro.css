@@ -88,7 +88,7 @@ form{
     background-color: #F1F1F1;
 }
 
-#ocultar{
+.ocultar{
     cursor: pointer;
     background: transparent;
     border: none;
@@ -96,7 +96,7 @@ form{
     color: #6B7280;
 }
 
-#ocultar:hover{
+.ocultar:hover{
     color: #3A7CA5;
 }
 
