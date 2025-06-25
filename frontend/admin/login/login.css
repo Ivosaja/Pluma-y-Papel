@@ -124,5 +124,20 @@ body {
     background-color:  #2C5F82; /*cambio de color en graduacion*/
 }
 
+.contenedor-registrarse{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap:1rem;
+    margin: 10px;
+}
 
+#vinculo{
+    text-decoration: none;
+    color: #3A7CA5;
+}
 
+#vinculo:hover{
+    text-decoration: underline;
+}
