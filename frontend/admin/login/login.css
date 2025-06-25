@@ -141,3 +141,51 @@ body {
 #vinculo:hover{
     text-decoration: underline;
 }
+
+
+
+
+/*media queries*/
+
+@media (max-width:1200px){
+    .contenedor-login{
+        max-width: 65%;
+    }
+}
+
+@media (max-width:900px){
+    .contenedor-login{
+        max-width: 80%;
+    }
+}
+
+@media (max-width:750px){
+    .contenedor-login{
+        max-width: 100%;
+    }
+    .ingreso input{
+        width: 100%;
+    }
+}
+
+@media (max-width:500px){
+    .ingreso input{
+        width: 100%;
+    }
+    .contenedor-login h1{
+        font-size: 2rem;
+        word-wrap: break-word;
+    }
+
+}
+
+@media (max-width:380px){
+    .ingreso{
+        width: 100%;
+    }
+
+}
+
+
+
+
