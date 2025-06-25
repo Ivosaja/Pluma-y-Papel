@@ -5,6 +5,40 @@
     font-family: sans-serif;
 }
 
+body {
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #133c4a, #0f2b31, #111e20, #2d3c3f, #343333, #4a4a4a);
+    background-size: 400% 400%;
+    animation: animacionPersonalizada  5s ease-in-out infinite; 
 
+}                 
+
+@keyframes animacionPersonalizada {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.contenedor-login{
+    width: 100%;
+    max-width: 50%;
+    min-height: 50vh;
+    border-radius: 10px;
+    padding: 25px 36px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:1rem
+}
+
+.contenedor-login h1{
+    text-align: center;
+    font-size: 40px;
+    color: #2E2E2E;
+}
 
