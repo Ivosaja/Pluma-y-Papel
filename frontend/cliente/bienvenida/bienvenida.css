@@ -1,15 +1,55 @@
 *{
-
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
 }
 
+
 body{
+    background-color:rgb(255, 244, 221) ;
+    width: 100vw;
     height: 100vh;
-    background-color: rgb(255, 244, 221) ;
+    border: 2px solid black;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
+
+#contenedor-principal{
+    display: flex;
+    width: 80%;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    gap: 30px;
+    padding: 20px;
+}
+
+
+.imagen-libros{
+    width: 40%;
+    max-width: 400px;
+    height: auto;
+}
+
+#contenedor-secundario{
+    width:50% ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+}
+
+h1{
+    font-size: 130px;
+}
+
+
+
+
+
+
 
 
