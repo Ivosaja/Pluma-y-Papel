@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <!--Utilizacion del framework boostrap para los iconos-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+    <script src="script.js" defer></script> <!--Para que primero carga todo el HTML y CSS y luego el CSS-->
+</head>
+<body>
+    <div class="contenedor-login">
+        <h1>Admin</h1>
+        <form id="form-login">
+            <div class="ingreso">
+                <input type="text" placeholder="NombreUsuario" name="username" autocomplete="username" required > 
+                <i class="bi bi-person"></i>
+            </div>
+            <div class="ingreso">
+                <input id="contraseña" type="password" placeholder="Contraseña" name="password" autocomplete="current-password" required> 
+                <button id="ocultar" type="button"> 
+                    <i class="bi bi-eye-slash-fill"></i>
+                </button>
+            </div>
+            <button type="submit" class="boton-submit">Login</button>
+            <div class="contenedor-registrarse">
+                <p>No tienes una cuenta?</p>
+                <a id="vinculo" href="registro.html">Registrate</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
