@@ -1,8 +1,8 @@
 let ListaPrueba = [
-    {id:1,nombre:"Abrochadora",precio:2500,categoria:"Utile",url_imagen:"../../../assets/img/productos/abrochadora.png"},
+    {id:1,nombre:"Abrochadora",precio:2500,categoria:"Utiles",url_imagen:"../../../assets/img/productos/abrochadora.png"},
     {id:2,nombre:"asesinatoOrientExpress",precio:3000,categoria:"Libro",url_imagen:"../../../assets/img/productos/asesinatoOrientExpress.png"},
-    {id:3,nombre:"Cartuchera",precio:500,categoria:"Utile",url_imagen:"../../../assets/img/productos/cartuchera.png"},
-    {id:4,nombre:"Clips",precio:250,categoria:"Utile",url_imagen:"../../../assets/img/productos/clips.png"},
+    {id:3,nombre:"Cartuchera",precio:500,categoria:"Utiles",url_imagen:"../../../assets/img/productos/cartucheraStandard.png"},
+    {id:4,nombre:"Clips",precio:250,categoria:"Utiles",url_imagen:"../../../assets/img/productos/clips.png"},
 ]
 
 

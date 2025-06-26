@@ -133,26 +133,67 @@
 
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: #fff6e5; /* Color crema suave */
-    color: #3d3d3d; /* Gris oscuro, casi marrón */
+    background-color: var(--color-fondo); 
     padding: 2rem;
 }
 
 #contenedor-selecion-categoria{
     display: flex;
     flex-direction: row;
-    width: 50%;
-    justify-content: space-around;
+    width: 40%; /*en media querie que ocupe un poco mas*/
+    justify-content: center;
     margin: 0 auto;
-    margin-top: 15px;
+    margin-top: 35px;
+    gap:5rem;
 }
 
 #filtrarLibros,#filtrarUtiles{
-    width:6.2rem;
+    width:  6.2rem;
     height: 4rem;
     border-radius: 12px;
     font-size: 1.5rem;
     text-align: center;
     background-color: var(--color-boton);
-    color: var(--color-amarillo-Personalizado);
+    color: var(--color-fondo);
 }
+
+#filtrarLibros:hover,
+#filtrarUtiles:hover {
+    background-color: var(--color-amarillo-Personalizado); 
+    color: var(--marronPersonalizado); 
+    cursor: pointer;
+    transform: scale(1.05); 
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+/*Seccion productos*/
+#contenedor-productos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:2rem;
+    padding: 2rem;
+    border: 2px solid black;
+    margin-top: 3rem;
+    border-radius: 12px;
+    background-color: #fef5da;
+}
+
+.tarjeta-producto{
+
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
