@@ -68,3 +68,19 @@ main{
     background-color: #4d583f;
 }
 
+.contenedor-listaProductos{
+    width: 100%;
+}
+
+.itemProducto{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border: 1px solid black;
+    padding: 0.5rem;
+
+}
+
+.itemProducto img{
+    width: 80px;
+}
