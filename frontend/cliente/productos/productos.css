@@ -209,7 +209,13 @@ main{
     font-family: 'Roboto Mono', monospace;
 }
 
-.tarjeta-producto button {
+
+#agregar-eliminar-producto{
+    display: flex;
+    gap:1rem;
+}
+
+#boton-agregar{
     background-color: var(--color-boton);
     color: white;
     border: none;
@@ -220,10 +226,50 @@ main{
     transition: all 0.3s ease;
     }
 
-.tarjeta-producto button:hover {
+#boton-agregar:hover {
     background-color: var(--color-amarillo-Personalizado);
     color: var(--marronPersonalizado);
 }
+
+#boton-eliminar{
+    text-decoration: none;
+    border: 2px solid yellow;
+    all: unset; /*le saca todo la decoracion que el anvegador le da*/
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+
+}
+
+
+#boton-eliminar i{
+
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem; 
+    color:	#843534 ;
+}
+
+
+#boton-eliminar:hover{
+    transform: scale(1.5);
+}
+
+
+#boton-eliminar i:hover{
+    color: #562424;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

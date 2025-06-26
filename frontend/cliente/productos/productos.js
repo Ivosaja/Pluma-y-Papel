@@ -24,7 +24,10 @@ function mostrarProductos(lista){
                                 <img class="imagen-Producto" src=${lista[i].url_imagen}>
                                 <h3>${lista[i].nombre}</h3>
                                 <p>Precio:$ ${lista[i].precio}</p>
-                                <button class="boton-carrito" onClick="agregarCarrito( ${lista[i].id})">Agregar a carrito</button>
+                                <div id="agregar-eliminar-producto">
+                                    <button id="boton-agregar" onClick="agregarCarrito( ${lista[i].id})">Agregar a carrito</button>
+                                    <button id="boton-eliminar"><i class="bi bi-trash3-fill"></i></button>
+                                </div>
                             </div>`                                                 
     };
 
