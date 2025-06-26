@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../../../assets/img/favicon/favicon.png" type="image/png">
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
     <main>
@@ -14,8 +15,10 @@
             <div class="contenedor-headerPanel">
                 <h1>Panel Admin</h1>
                 <div class="contenedor-registrarse">
-                    <p>No tienes una cuenta?</p>
-                    <a id="vinculo" href="../registro/registro.html">Registrate</a>
+                    <button type="button" id="btn-agregarAdmin">
+                        <i class="bi bi-person-fill-add"></i>
+                        <a id="vinculo" href="../registro/registro.html">Agregar admin</a>
+                    </button>
                 </div>
             </div>
             <div class="contenedor-tituloPanel">
@@ -34,9 +37,15 @@
                             <p><strong>Activo: </strong>True</p>
                         </div>
                         <div class="acciones">
-                            <i class="fas fa-pen iconModificar"></i>
-                            <i class="fas fa-trash iconEliminar"></i>
-                            <i class="fas fa-check iconActivar"></i>
+                            <button type="button">
+                                <i class="fas fa-pen iconModificar"></i>
+                            </button>
+                            <button type="button">
+                                <i class="fas fa-trash iconEliminar"></i>
+                            </button>
+                            <button type="button">
+                                <i class="fas fa-check iconActivar"></i>
+                            </button>
                         </div>
                     </li>
                     <li class="itemProducto">
@@ -49,9 +58,15 @@
                             <p><strong>Activo: </strong>True</p>
                         </div>
                         <div class="acciones">
-                            <i class="fas fa-pen iconModificar"></i>
-                            <i class="fas fa-trash iconEliminar"></i>
-                            <i class="fas fa-check iconActivar"></i>
+                            <button type="button">
+                                <i class="fas fa-pen iconModificar"></i>
+                            </button>
+                            <button type="button">
+                                <i class="fas fa-trash iconEliminar"></i>
+                            </button>
+                            <button type="button">
+                                <i class="fas fa-check iconActivar"></i>
+                            </button>
                         </div>
                     </li>
                     <li class="itemProducto">
@@ -64,84 +79,15 @@
                             <p><strong>Activo: </strong>True</p>
                         </div>
                         <div class="acciones">
-                            <i class="fas fa-pen iconModificar"></i>
-                            <i class="fas fa-trash iconEliminar"></i>
-                            <i class="fas fa-check iconActivar"></i>
-                        </div>
-                    </li>
-                    <li class="itemProducto">
-                        <div class="itemProductoInfo">
-                            <p><strong>ID: </strong>1</p>
-                            <img src="../../../assets/img/productos/abrochadora.png" alt="">
-                            <p><strong>Nombre: </strong>Abrochadora</p>
-                            <p><strong>Precio: </strong>$300</p>
-                            <p><strong>Categoria: </strong>Utiles</p>
-                            <p><strong>Activo: </strong>True</p>
-                        </div>
-                        <div class="acciones">
-                            <i class="fas fa-pen iconModificar"></i>
-                            <i class="fas fa-trash iconEliminar"></i>
-                            <i class="fas fa-check iconActivar"></i>
-                        </div>
-                    </li>
-                    <li class="itemProducto">
-                        <div class="itemProductoInfo">
-                            <p><strong>ID: </strong>1</p>
-                            <img src="../../../assets/img/productos/abrochadora.png" alt="">
-                            <p><strong>Nombre: </strong>Abrochadora</p>
-                            <p><strong>Precio: </strong>$300</p>
-                            <p><strong>Categoria: </strong>Utiles</p>
-                            <p><strong>Activo: </strong>True</p>
-                        </div>
-                        <div class="acciones">
-                            <i class="fas fa-pen iconModificar"></i>
-                            <i class="fas fa-trash iconEliminar"></i>
-                            <i class="fas fa-check iconActivar"></i>
-                        </div>
-                    </li>
-                    <li class="itemProducto">
-                        <div class="itemProductoInfo">
-                            <p><strong>ID: </strong>1</p>
-                            <img src="../../../assets/img/productos/abrochadora.png" alt="">
-                            <p><strong>Nombre: </strong>Abrochadora</p>
-                            <p><strong>Precio: </strong>$300</p>
-                            <p><strong>Categoria: </strong>Utiles</p>
-                            <p><strong>Activo: </strong>True</p>
-                        </div>
-                        <div class="acciones">
-                            <i class="fas fa-pen iconModificar"></i>
-                            <i class="fas fa-trash iconEliminar"></i>
-                            <i class="fas fa-check iconActivar"></i>
-                        </div>
-                    </li>
-                    <li class="itemProducto">
-                        <div class="itemProductoInfo">
-                            <p><strong>ID: </strong>1</p>
-                            <img src="../../../assets/img/productos/abrochadora.png" alt="">
-                            <p><strong>Nombre: </strong>Abrochadora</p>
-                            <p><strong>Precio: </strong>$300</p>
-                            <p><strong>Categoria: </strong>Utiles</p>
-                            <p><strong>Activo: </strong>True</p>
-                        </div>
-                        <div class="acciones">
-                            <i class="fas fa-pen iconModificar"></i>
-                            <i class="fas fa-trash iconEliminar"></i>
-                            <i class="fas fa-check iconActivar"></i>
-                        </div>
-                    </li>
-                    <li class="itemProducto">
-                        <div class="itemProductoInfo">
-                            <p><strong>ID: </strong>1</p>
-                            <img src="../../../assets/img/productos/abrochadora.png" alt="">
-                            <p><strong>Nombre: </strong>Abrochadora</p>
-                            <p><strong>Precio: </strong>$300</p>
-                            <p><strong>Categoria: </strong>Utiles</p>
-                            <p><strong>Activo: </strong>True</p>
-                        </div>
-                        <div class="acciones">
-                            <i class="fas fa-pen iconModificar"></i>
-                            <i class="fas fa-trash iconEliminar"></i>
-                            <i class="fas fa-check iconActivar"></i>
+                            <button type="button">
+                                <i class="fas fa-pen iconModificar"></i>
+                            </button>
+                            <button type="button">
+                                <i class="fas fa-trash iconEliminar"></i>
+                            </button>
+                            <button type="button">
+                                <i class="fas fa-check iconActivar"></i>
+                            </button>
                         </div>
                     </li>
                 </ul>
