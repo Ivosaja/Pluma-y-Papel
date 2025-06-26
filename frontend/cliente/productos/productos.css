@@ -185,6 +185,9 @@ main{
     transition: transform 0.2s ease;
     flex-basis: 300px;
     justify-content: space-between;
+
+    /* max-width: 450px;
+    overflow: hidden; */
 }
 
 
@@ -201,6 +204,10 @@ main{
     font-size: 1.25rem;
     color: var(--marronPersonalizado);
     text-align: center;
+    /* white-space: nowrap;       
+    overflow: hidden;          
+    text-overflow: ellipsis;   
+    width: 80%; */
 }
 
 .tarjeta-producto p {
