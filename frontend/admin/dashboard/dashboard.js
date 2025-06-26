@@ -14,6 +14,8 @@ async function obtenerTodosLosProductos(){
 function mostrarProductos(arrayProductos){
     let productos = '';
     let arrayRespuesta = arrayProductos.payload;
+    alert(arrayProductos.message);
+
     arrayRespuesta.forEach(producto => {
         productos += `
         <li class="itemProducto">
