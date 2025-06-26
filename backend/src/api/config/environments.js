@@ -8,7 +8,7 @@ config();
 
 export default {
 
-    port: process.env.PORT,//puerto
+    port: process.env.PORT || 3005,//puerto
     database:{ //database
         host:process.env.DB_HOST, //host
         name:process.env.DB_NAME, //name de la  database

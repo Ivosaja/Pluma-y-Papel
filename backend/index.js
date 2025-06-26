@@ -6,7 +6,7 @@ import connection from "./src/api/database/db.js";
 import cors from "cors";
 
 const app = express(); // Creacion de app en express.js
-const PORT = environments.port || 3005 ; // Se usa el port establecido a la izquierda de la condicion, si se encuentra ocupado, usa el de la derecha
+const PORT = environments.port; // Se usa el port establecido a la izquierda de la condicion, si se encuentra ocupado, usa el de la derecha
 
 /////////////////
 // Middlewares //
