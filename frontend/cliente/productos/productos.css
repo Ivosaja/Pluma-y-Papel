@@ -1,0 +1,139 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family:'Nunito';
+ 
+}
+
+#encabezado{
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 20px;
+    gap:10px;
+    width: 100%;
+    background-color: rgb(255,249,230);
+    border-bottom: 2px solid black;
+}
+
+#contenedor-tarjeta-usuario{
+    border: 2px solid black;
+    background-color: rgb(105,117,74);
+    width: 8%;
+    min-width: 100px;
+    max-width:150px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+#contenedor-tarjeta-usuario i{
+    font-size: 2rem;
+    color:rgb(252,183,76);
+
+}
+#contenedor-tarjeta-usuario p{
+    font-size: 1.5rem;
+    color: rgb(60,47,26);
+}
+
+#contenedor-logo-Titulo{
+    width: 35%;
+    display: flex;
+    align-items: center;
+    gap:30px;
+    height: 100%;
+}
+
+
+
+
+#contenedor-logo-Titulo img {
+    height: 4rem;           
+    width: 4rem;
+    border-radius: 100%; 
+    border: 2px solid black;         
+}
+#contenedor-logo-Titulo h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+
+#contenedor-boton-carrito{
+    width:6.5rem ;
+    max-width: 8rem;
+    height: 3.5rem;
+    border:2px solid black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15%;
+    background-color:rgb(105,117,74) ;
+}
+
+#contenedor-boton-carrito a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    text-decoration: none; 
+}
+
+#contenedor-boton-carrito i {
+    font-size: 2rem;
+    color: black;
+    color:rgb(60,47,26);
+}
+
+
+
+
+
+
+/*Media queries header */
+
+@media (max-width: 800px) {
+    #contenedor-logo-Titulo {
+        width: 60%;
+        gap: 20px;
+    }
+
+
+    #contenedor-logo-Titulo h1 {
+        font-size: 2rem;
+    }
+
+    #contenedor-tarjeta-usuario {
+        width: 12%;
+        padding: 6px;
+    }
+
+    #contenedor-tarjeta-usuario i {
+    font-size: 1.7rem;
+    }
+
+
+    #contenedor-tarjeta-usuario p {
+        font-size: 1.2rem;
+    }
+}
+
+
+
+
+
+
+body{
+    background-color:rgb(255,249,230);
+}
