@@ -54,9 +54,13 @@ contenedorProductos.innerHTML = cartaProducto;
 
 
 function filtrarUtiles(lista){
+
+
+    listaCopia = [...lista];
+
     filtradoUtiles.addEventListener("click",function(){
 
-        let filtrados = lista.filter(producto=>
+        let filtrados = listaCopia.filter(producto=>
             producto.categoria==="Utiles"
         )
         mostrarProductos(filtrados)
@@ -66,9 +70,12 @@ function filtrarUtiles(lista){
 
 function filtrarLibros(lista){
 
+
+    listaCopia = [...lista];
+
     filtradoLibros.addEventListener("click",function(){
 
-        let filtrados = lista.filter(producto=>
+        let filtrados = listaCopia.filter(producto=>
             producto.categoria==="Libros"
         )
     mostrarProductos(filtrados)
@@ -90,6 +97,7 @@ async function init() {
 
     filtrarUtiles(listaProductos);
     filtrarLibros(listaProductos);
+
 }
 
 
