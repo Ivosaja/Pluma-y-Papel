@@ -26,7 +26,7 @@ app.get("/getAllProducts", async(req,res)=>{
         let sqlQuery = "SELECT * FROM productos";
         const [rows] =  await connection.query(sqlQuery); //desestructuracion de los datos, quedandonos solo con las filas//
 
-                //codigo de respuesta exitosa//
+        // 200 -> codigo de respuesta exitosa//
         res.status(200).json({
             payload:rows,
             message:rows.length===0 ? "No se encontraron productos" : `Se encontraron: ${rows.length} productos`})
@@ -66,5 +66,5 @@ app.get('/getProductById/:id', async(req, res) => {
 
 // Escuchando en el puerto que guardamos en nuestra variable de entorno
 app.listen(PORT,() => {
-    console.log(`Servidor Corriendo en el puerto: http://localhost:${PORT}`);
+    console.log(`Servidor corriendo en el puerto: http://localhost:${PORT}`);
 })
