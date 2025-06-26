@@ -9,7 +9,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 
     background: linear-gradient(135deg, #133c4a, #0f2b31, #111e20, #2d3c3f, #343333, #4a4a4a);/*135deg, significa que va en diagonal (izquierda-superior a derecha-inferior)*/
     background-size: 400% 400%;
@@ -25,6 +25,7 @@ button{
     font-size: 0.9rem;
     cursor: pointer;
     font-weight: 200;
+    white-space: nowrap;
     transition: background-color 0.3s ease
 }
 
@@ -80,45 +81,79 @@ button{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
     padding: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.itemProducto:hover {
+    background-color: #f9f9f9;
+    transition: background-color 0.2s ease;
 }
 
 .itemProductoInfo{
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    flex: 1;
 }
 
 .itemProductoInfo img{
     width: 80px;
+    height: auto;
 }
 
-.itemProducto #btn-modificarProducto{
+.itemProductoInfo p{
+    margin: 0;
+}
+
+.itemProducto .btn-modificarProducto{
     background-color: #2980b9;
 }
 
-.itemProducto #btn-modificarProducto:hover{
+.itemProducto .btn-modificarProducto:hover{
     background-color: #21618c;
 }
 
-.itemProducto #btn-eliminarProducto{
+.itemProducto .btn-eliminarProducto{
     background-color:#e74c3c;
 }
 
-.itemProducto #btn-eliminarProducto:hover{
+.itemProducto .btn-eliminarProducto:hover{
     background-color:#c0392b;
 }
 
-.itemProducto #btn-activarProducto{
+.itemProducto .btn-activarProducto{
     background-color: #f39c12;
 }
 
-.itemProducto #btn-activarProducto:hover{
+.itemProducto .btn-activarProducto:hover{
     background-color: #d68910;
 }
 
 .acciones{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 1.2rem;
+}
+
+@media (max-width: 768px){
+    .contenedor-principal h1{
+        text-align: center;
+    }
+    .contenedor-tituloPanel{
+        flex-direction: column;
+        justify-content: center;
+    }
+    .itemProducto{
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .itemProducto .itemProductoInfo{
+        flex-direction: column;
+        justify-content:center;
+    }
+
 }
