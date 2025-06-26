@@ -10,7 +10,7 @@ main{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-
+    
     background: linear-gradient(135deg, #133c4a, #0f2b31, #111e20, #2d3c3f, #343333, #4a4a4a);/*135deg, significa que va en diagonal (izquierda-superior a derecha-inferior)*/
     background-size: 400% 400%;
     animation: animacionPersonalizada  5s ease-in-out infinite; 
@@ -37,12 +37,13 @@ button{
 
 .contenedor-principal{
     width: 100%;
-    max-width: 80%;
-    min-height: 70vh;
+    max-width: 65%;
+    height: 85vh;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
-
+    overflow-y: scroll;
+    
     background-color: #FFFFFF;
     border: 2px solid #D1D5DB;
     border-radius: 1rem;
@@ -107,28 +108,28 @@ button{
     margin: 0;
 }
 
-.itemProducto .btn-modificarProducto{
-    background-color: #2980b9;
+.itemProducto .iconModificar{
+    color: #5a6d7b;
 }
 
-.itemProducto .btn-modificarProducto:hover{
-    background-color: #21618c;
+.itemProducto .iconModificar:hover{
+    color: #3c4b57;
 }
 
-.itemProducto .btn-eliminarProducto{
-    background-color:#e74c3c;
+.itemProducto .iconEliminar{
+    color:#e74c3c;
 }
 
-.itemProducto .btn-eliminarProducto:hover{
-    background-color:#c0392b;
+.itemProducto .iconEliminar:hover{
+    color:#c0392b;
 }
 
-.itemProducto .btn-activarProducto{
-    background-color: #f39c12;
+.itemProducto .iconActivar{
+    color: #f39c12;
 }
 
-.itemProducto .btn-activarProducto:hover{
-    background-color: #d68910;
+.itemProducto .iconActivar:hover{
+    color: #d68910;
 }
 
 .acciones{
@@ -136,9 +137,15 @@ button{
     align-items: center;
     flex-wrap: wrap;
     gap: 1.2rem;
+    padding: 1rem;
 }
 
-@media (max-width: 768px){
+.acciones i{
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+@media (max-width: 1100px){
     .contenedor-principal h1{
         text-align: center;
     }
@@ -148,12 +155,13 @@ button{
     }
     .itemProducto{
         flex-direction: column;
-        align-items: start;
+        align-items: center;
+        gap: 1.2rem;
     }
 
     .itemProducto .itemProductoInfo{
         flex-direction: column;
-        justify-content:center;
+        align-items:center;
     }
 
 }
