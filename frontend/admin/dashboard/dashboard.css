@@ -15,7 +15,18 @@ main{
     background-size: 400% 400%;
     animation: animacionPersonalizada  5s ease-in-out infinite; 
 
-}                 
+}  
+
+button{
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-weight: 200;
+    transition: background-color 0.3s ease
+}
 
 @keyframes animacionPersonalizada {
     0%   { background-position: 0% 50%; }
@@ -54,14 +65,7 @@ main{
 }
 
 .contenedor-tituloPanel #btn-agregarProducto{
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 12px;
-    color: #FFFFFF;
     background-color:#5a724e;
-    font-size: 0.9rem;
-    cursor: pointer;
-    font-weight: 200;
     transition: background-color 0.3s ease
 }
 .contenedor-tituloPanel #btn-agregarProducto:hover{
@@ -74,13 +78,47 @@ main{
 
 .itemProducto{
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    gap: 1.5rem;
-    border: 1px solid black;
     padding: 0.5rem;
-
 }
 
-.itemProducto img{
+.itemProductoInfo{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.itemProductoInfo img{
     width: 80px;
+}
+
+.itemProducto #btn-modificarProducto{
+    background-color: #2980b9;
+}
+
+.itemProducto #btn-modificarProducto:hover{
+    background-color: #21618c;
+}
+
+.itemProducto #btn-eliminarProducto{
+    background-color:#e74c3c;
+}
+
+.itemProducto #btn-eliminarProducto:hover{
+    background-color:#c0392b;
+}
+
+.itemProducto #btn-activarProducto{
+    background-color: #f39c12;
+}
+
+.itemProducto #btn-activarProducto:hover{
+    background-color: #d68910;
+}
+
+.acciones{
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
 }
