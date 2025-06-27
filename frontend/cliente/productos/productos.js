@@ -52,9 +52,14 @@ function mostrarProductos(lista){
 ///////////////////////////////////////////////////////////////////
 
 function mostrarCantidadProductosCarrito(){
-    const cantElementos = document.createElement('p')
-    cantElementos.textContent = carrito.length
-    contenedorBtnCarrito.appendChild(cantElementos)
+
+    contenedorBtnCarrito.innerHTML = `
+        <a href="../carrito/carrito.html" class="btn-carrito">
+            <i class="bi bi-cart2"></i>
+        </a>
+        <span id="contador-carrito">${carrito.length}</span>
+    `;
+    
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -81,11 +86,10 @@ function obtenerSesionStorage(){
 function filtrarUtiles(lista){
 
 
-    listaCopia = [...lista]; 
 
     filtradoUtiles.addEventListener("click",function(){
 
-        let filtrados = listaCopia.filter(producto=>
+        let filtrados = lista.filter(producto=>
             producto.categoria==="Utiles"
         )
         mostrarProductos(filtrados)
@@ -96,11 +100,11 @@ function filtrarUtiles(lista){
 function filtrarLibros(lista){
 
 
-    listaCopia = [...lista];
+    
 
     filtradoLibros.addEventListener("click",function(){
 
-        let filtrados = listaCopia.filter(producto=>
+        let filtrados = lista.filter(producto=>
             producto.categoria==="Libros"
         )
     mostrarProductos(filtrados)
