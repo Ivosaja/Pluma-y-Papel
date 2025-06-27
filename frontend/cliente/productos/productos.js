@@ -35,8 +35,8 @@ function mostrarProductos(lista){
                     <h3>${lista[i].nombre}</h3>
                     <p>Precio: $${lista[i].precio}</p>
                     <div id="agregar-eliminar-producto">
-                        <button id="boton-agregar" onclick="agregarCarrito(${lista[i].id_producto})">Agregar a carrito</button>
-                        <button id="boton-eliminar" onclick="borrarCarrito(${lista[i].id_producto})"><i class="bi bi-trash3-fill"></i></button>
+                        <button id="boton-agregar" onclick="agregarAlCarrito(${lista[i].id_producto})">Agregar a carrito</button>
+                        <button id="boton-eliminar" onclick="eliminarDelCarrito(${lista[i].id_producto})"><i class="bi bi-trash3-fill"></i></button>
                     </div>
                 </div>
                 `                                              
@@ -95,17 +95,34 @@ function filtrarLibros(lista){
 
 ///////////////////////////////////////////////////////////////////
 
-function agregarCarrito(idProducto){
-    const producto = listaProductos.find(producto => producto.id_producto === idProducto);
-    carrito.push(producto)
+function agregarAlCarrito(idProducto){
+    const productoAgregar = listaProductos.find(producto => producto.id_producto === idProducto);
+    carrito.push(productoAgregar)
     sessionStorage.setItem("carrito", JSON.stringify(carrito)) // guardo en session storage el carrito
     console.log(carrito)
 }
 
 ///////////////////////////////////////////////////////////////////
 
+function eliminarDelCarrito(idProducto){
+    const indiceProductoCarrito = carrito.findIndex(producto => producto.id_producto === idProducto) // Encuentro el indice del producto a eliminar del carrito
+    if(indiceProductoCarrito === -1){ // Verifico que si no encontro el indice del producto
+        alert("ERROR. Ese producto no se encuentra en su carrito")
+        return
+    }
+    carrito.splice(indiceProductoCarrito,1) // Desde el indice del producto que encontre, borro 1 elemento (osea el producto que encontre por su ID)
+    sessionStorage.setItem("carrito", JSON.stringify(carrito))
+}
+
+
+///////////////////////////////////////////////////////////////////
 
 async function init() {
+    // Me traigo lo del session storage si hay algo y lo parseo a Objeto JS, sino, significa que no hay ningun producto en el carrito,
+    // pq nunca se creo ese item del session storage
+    if(sessionStorage.getItem("carrito")){
+        carrito = JSON.parse(sessionStorage.getItem("carrito"))
+    }
     // Espero a que se obtengan los productos y los retorne la funcion
     listaProductos = await obtenerProductos();
     // Muestro los productos
