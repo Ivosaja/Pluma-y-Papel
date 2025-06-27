@@ -9,6 +9,9 @@ let filtradoLibros= document.getElementById("filtrarLibros")
 
 let listaProductos = [];
 
+
+let contenedorUsuario = document.getElementById("contenedor-tarjeta-usuario");
+
 ////////////////////////////////////////////////////////////
 
 async function obtenerProductos() {
@@ -50,13 +53,29 @@ contenedorProductos.innerHTML = cartaProducto;
 }
 
 
+function obtenerSesionStorage(){
+
+
+    let nombre = sessionStorage.getItem("nombreUsuario");
+
+
+    let nuevo = `
+    <i class="bi bi-person-circle"></i>
+    <p>${nombre.toLowerCase()}</p>`;
+
+    contenedorUsuario.innerHTML = nuevo;
+
+    
+}
+
+
 ///////////////////////////////////////////////////////////////////
 
 
 function filtrarUtiles(lista){
 
 
-    listaCopia = [...lista];
+    listaCopia = [...lista]; 
 
     filtradoUtiles.addEventListener("click",function(){
 
@@ -98,8 +117,9 @@ async function init() {
     filtrarUtiles(listaProductos);
     filtrarLibros(listaProductos);
 
-}
+    obtenerSesionStorage();
 
+}
 
 init();
 

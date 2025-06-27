@@ -27,19 +27,22 @@
 #contenedor-tarjeta-usuario{
     border: 2px solid black;
     background-color: var(--color-boton);
-    width: 8%;
-    min-width: 100px;
-    max-width:150px;
-    padding: 10px;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
+    max-width: 7rem;
+    max-height: 7rem;
+    
 
 
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
 }
+
+
+
 #contenedor-tarjeta-usuario i{
     font-size: 2rem;
     color:var(--color-amarillo-Personalizado);
@@ -48,6 +51,10 @@
 #contenedor-tarjeta-usuario p{
     font-size: 1.5rem;
     color: var(--marronPersonalizado);
+    white-space: normal;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #contenedor-logo-Titulo{
@@ -173,6 +180,12 @@ main{
 
 }
 
+/* le coloco una altura y ancho fijo ya que sino se provoca un desfasamiento respecto a las otras tarjeta producto*/
+#contenedor-productos img{
+    width: 6.5rem;
+    height: 6.5rem;
+}
+
 .tarjeta-producto{
     background-color: var(--color-fondo);
     border-radius: 12px;
@@ -197,7 +210,7 @@ main{
 
 .tarjeta-producto img {
     width: 6.5rem; 
-
+    height: 6.5rem;
 }
 
 .tarjeta-producto h3 {

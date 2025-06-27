@@ -13,6 +13,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 
@@ -113,6 +114,15 @@ h1{
 
 .form-ingresar #btnIngresar:hover {
     background-color: #4d583f; 
+}
+
+
+
+footer{
+    text-align: center;
+    align-items: center;
+    color: #333;
+    padding: 1rem;
 }
 
 
