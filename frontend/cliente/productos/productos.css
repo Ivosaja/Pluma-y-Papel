@@ -9,11 +9,11 @@
     --color-fondo: rgb(255,249,230);
     --color-boton:  rgb(105,117,74);
     --color-amarillo-Personalizado:rgb(252,183,76);
+    --color-amarillo2-Personalizado: rgb(230, 189, 129);
     --marronPersonalizado:rgb(60,47,26);
 }
 
 #encabezado{
-
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -21,7 +21,7 @@
     gap:10px;
     width: 100%;
     background-color: var(--color-fondo);
-    border-bottom: 2px solid black;
+    /*border-bottom: 2px solid rgb(248, 187, 95);*/
 }
 
 #contenedor-tarjeta-usuario{
@@ -35,12 +35,9 @@
     max-width: 7rem;
     max-height: 7rem;
     
-
-
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
 }
-
 
 
 #contenedor-tarjeta-usuario i{
@@ -56,6 +53,37 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+/*
+#contenedor-tarjeta-usuario{
+    border: none;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 7rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#contenedor-tarjeta-usuario:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+#contenedor-tarjeta-usuario i {
+    font-size: 2.5rem;
+    color: var(--color-amarillo-Personalizado);
+}
+
+#contenedor-tarjeta-usuario p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--marronPersonalizado);
+    text-align: center;
+}
+*/
 
 #contenedor-logo-Titulo{
     width: 40%;
@@ -74,7 +102,7 @@
     border: 2px solid black;         
 }
 #contenedor-logo-Titulo h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: bold;
 }
 
@@ -150,29 +178,30 @@ main{
 }
 
 #filtrarLibros,#filtrarUtiles{
+    border: none;
     padding: 0.75rem 2rem;
     border-radius: 12px;
     font-size: 1.2rem;
     text-align: center;
+    cursor: pointer;
     background-color: var(--color-boton);
     color: var(--color-fondo);
+    transition: background-color 0.3s ease;
 }
 
 #filtrarLibros:hover,
 #filtrarUtiles:hover {
     background-color: var(--color-amarillo-Personalizado); 
     color: var(--marronPersonalizado); 
-    cursor: pointer;
-    transform: scale(1.05); 
-    transition: all 0.3s ease-in-out;
 }
-
 
 
 /*Seccion productos*/
 
-
 #contenedor-productos{
+    width: 100%;
+    max-width: 85%;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -180,7 +209,6 @@ main{
     padding: 2rem;
     border-radius: 12px;
     background-color: #fef5da;
-
 }
 
 /* le coloco una altura y ancho fijo ya que sino se provoca un desfasamiento respecto a las otras tarjeta producto*/
@@ -192,7 +220,7 @@ main{
 .tarjeta-producto{
     background-color: var(--color-fondo);
     border-radius: 12px;
-    border: 1px solid var(--color-amarillo-Personalizado) ;
+    border: 2px solid var(--color-amarillo2-Personalizado) ;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -201,8 +229,7 @@ main{
     transition: transform 0.2s ease;
     flex-basis: 300px;
     justify-content: space-between;
-
-
+    flex-grow: 1; /* Preguntar a lucas si le gusta*/
 }
 
 
@@ -251,34 +278,22 @@ main{
 
 #boton-eliminar{
     text-decoration: none;
-    border: 2px solid yellow;
     all: unset; /*le saca todo la decoracion que el anvegador le da*/
     cursor: pointer;
-    transition: transform 0.2s ease;
-
-
 }
 
-
 #boton-eliminar i{
-
+    
     width: 100%;
     height: 100%;
     font-size: 1.5rem; 
-    color:	#843534 ;
+    color:	#ac3331 ;
+    transition: color 0.2s ease;
 }
-
-
-#boton-eliminar:hover{
-    transform: scale(1.5);
-}
-
 
 #boton-eliminar i:hover{
-    color: #562424;
+    color: #5e1e1e;
 }
-
-
 
 
 footer{
@@ -287,8 +302,6 @@ footer{
     color: #333;
     padding: 1rem;
 }
-
-
 
 
 

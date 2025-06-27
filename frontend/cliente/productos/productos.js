@@ -37,7 +37,7 @@ function mostrarProductos(lista){
                             <div class="tarjeta-producto">
                                 <img class="imagen-Producto" src=${lista[i].url_imagen}>
                                 <h3>${lista[i].nombre}</h3>
-                                <p>Precio:$ ${lista[i].precio}</p>
+                                <p>Precio: $${lista[i].precio}</p>
                                 <div id="agregar-eliminar-producto">
                                     <button id="boton-agregar" onClick="agregarCarrito( ${lista[i].id})">Agregar a carrito</button>
                                     <button id="boton-eliminar"><i class="bi bi-trash3-fill"></i></button>
@@ -65,28 +65,18 @@ function mostrarCantidadProductosCarrito(){
 ///////////////////////////////////////////////////////////////////
 
 function obtenerSesionStorage(){
-
-
     let nombre = sessionStorage.getItem("nombreUsuario");
-
-
     let nuevo = `
     <i class="bi bi-person-circle"></i>
     <p>${nombre.toLowerCase()}</p>`;
 
     contenedorUsuario.innerHTML = nuevo;
-
-    
 }
-
 
 ///////////////////////////////////////////////////////////////////
 
 
 function filtrarUtiles(lista){
-
-
-
     filtradoUtiles.addEventListener("click",function(){
 
         let filtrados = lista.filter(producto=>
@@ -98,10 +88,6 @@ function filtrarUtiles(lista){
 }
 
 function filtrarLibros(lista){
-
-
-    
-
     filtradoLibros.addEventListener("click",function(){
 
         let filtrados = lista.filter(producto=>
@@ -112,8 +98,6 @@ function filtrarLibros(lista){
     })
 
 }
-
-
 
 ///////////////////////////////////////////////////////////////////
 
