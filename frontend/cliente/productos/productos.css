@@ -60,12 +60,11 @@
 #contenedor-logo-Titulo{
     width: 40%;
     display: flex;
+    justify-content: center;
     align-items: center;
     gap:30px;
     height: 100%;
 }
-
-
 
 
 #contenedor-logo-Titulo img {
