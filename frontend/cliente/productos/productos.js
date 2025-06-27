@@ -2,15 +2,12 @@
 //variable globales
 
 let contenedorProductos = document.getElementById("contenedor-productos");
-
 let filtradoUtiles = document.getElementById("filtrarUtiles")
-
 let filtradoLibros= document.getElementById("filtrarLibros")
-
 let listaProductos = [];
-
-
 let contenedorUsuario = document.getElementById("contenedor-tarjeta-usuario");
+const contenedorBtnCarrito = document.getElementById('contenedor-boton-carrito')
+let carrito = [] // TODO -> aqui irian los productos que el usuario agrega al carrito
 
 ////////////////////////////////////////////////////////////
 
@@ -47,11 +44,20 @@ function mostrarProductos(lista){
                                 </div>
                             </div>`                                                 
     };
-
-contenedorProductos.innerHTML = cartaProducto; 
+    contenedorProductos.innerHTML = cartaProducto; 
+    mostrarCantidadProductosCarrito()
 
 }
 
+///////////////////////////////////////////////////////////////////
+
+function mostrarCantidadProductosCarrito(){
+    const cantElementos = document.createElement('p')
+    cantElementos.textContent = carrito.length
+    contenedorBtnCarrito.appendChild(cantElementos)
+}
+
+///////////////////////////////////////////////////////////////////
 
 function obtenerSesionStorage(){
 

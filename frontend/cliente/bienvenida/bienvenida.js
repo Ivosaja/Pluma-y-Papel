@@ -4,6 +4,9 @@ const input =  document.getElementById("ingreso-nombre");
 function guardarNombreUsuario(){
     form.addEventListener("submit",(event) =>{
         event.preventDefault(); //prevenimos que se envie por defecto el form
+        // TODO -> Validacion de nombre de usuario
+        validarNombreUsuario()
+        
         window.location.href="../productos/productos.html" // cambiamos la localizacion de la ventana a otra cuando se haga click en el boton de submit
         
         console.log(input.value);
@@ -11,6 +14,13 @@ function guardarNombreUsuario(){
         sessionStorage.setItem("nombreUsuario", input.value);
     
     })
+}
+
+function validarNombreUsuario(){
+    const inputValue = input.value
+    if(inputValue.length > 10){
+        input.style.border = "red"
+    }
 }
 
 guardarNombreUsuario()
