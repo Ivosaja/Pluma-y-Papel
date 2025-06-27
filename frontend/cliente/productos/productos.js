@@ -41,7 +41,7 @@ function mostrarProductos(lista){
                 </div>
                 `                                              
     };
-    contenedorProductos.innerHTML = cartaProducto; 
+    contenedorProductos.innerHTML = cartaProducto;
     mostrarCantidadProductosCarrito()
 }
 
@@ -97,9 +97,13 @@ function filtrarLibros(lista){
 
 function agregarAlCarrito(idProducto){
     const productoAgregar = listaProductos.find(producto => producto.id_producto === idProducto);
+    if(carrito.some(producto => producto.id_producto === idProducto)){ // aqui, el some verifica si ya hay algun producto en el carrito que coincida con el producto que se quiere agregar.
+        alert("ERROR. Este producto ya se encuentra en el carrito")
+        return
+    }
     carrito.push(productoAgregar)
     sessionStorage.setItem("carrito", JSON.stringify(carrito)) // guardo en session storage el carrito
-    console.log(carrito)
+    mostrarCantidadProductosCarrito()
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -112,6 +116,7 @@ function eliminarDelCarrito(idProducto){
     }
     carrito.splice(indiceProductoCarrito,1) // Desde el indice del producto que encontre, borro 1 elemento (osea el producto que encontre por su ID)
     sessionStorage.setItem("carrito", JSON.stringify(carrito))
+    mostrarCantidadProductosCarrito()
 }
 
 
