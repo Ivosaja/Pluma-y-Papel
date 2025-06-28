@@ -110,7 +110,7 @@ function agregarAlCarrito(idProducto){
     // Hago una copia del producto a agregar y le agrego una propiedad llamada cantidad establecida en 1. Asi no modificamos el array de productos original
     const copiaProductoAgregar = {...productoAgregar, cantidad: 1}
 
-    carrito.push(productoAgregar)
+    carrito.push(copiaProductoAgregar)
     sessionStorage.setItem("carrito", JSON.stringify(carrito)) // guardo en session storage el carrito
     mostrarCantidadProductosCarrito()
 }
