@@ -41,14 +41,17 @@ function mostrarCarrito(lista){
     
     lista.forEach((producto, indice) => {
         productoCarrito += `
+        <li class="item-carrito">
             <div class="informacion">
                 <button type="button" onclick="eliminar(${indice})">
                     <i class="fas fa-times"></i>
                 </button>
                 <img src="${producto.url_imagen}" alt="imagen">
-                <p><strong>Nombre: </strong>${producto.nombre}</p>
-                <p><strong>Precio: </strong>$${producto.precio}</p>
-                <p><strong>Categoria: </strong>${producto.categoria}</p>
+                <div class="detalle">
+                    <p><strong>Nombre: </strong>${producto.nombre}</p>
+                    <p><strong>Precio: </strong>$${producto.precio}</p>
+                    <p><strong>Categoria: </strong>${producto.categoria}</p>
+                </div>    
             </div>
             <div class="acciones">
                 <button type="button" onclick="sumarProducto(${producto.id_producto})">
@@ -60,6 +63,7 @@ function mostrarCarrito(lista){
                     <i class="bi bi-dash"></i>
                 </button>
             </div>
+        </li>
         `
         precioTotal += producto.precio * producto.cantidad;
     });
