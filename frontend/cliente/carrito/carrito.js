@@ -13,6 +13,9 @@ let itemsCarrito = document.getElementById("items-carrito");
 let botonVaciarCarrito = document.getElementById("vaciar-carrito");
 
 
+let contenedorTotalCarrito = document.getElementById("total-carrito");
+
+
 
 
 
@@ -109,14 +112,11 @@ function eliminar(indice){
 
     listaCarrito.splice(indice,1);
 
-    sessionStorage.setItem("carrito", listaCarrito);
+    sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
 
     mostrarCarrito(listaCarrito);
 
 }
-
-
-
 
 
 function vaciarCarrito(){
@@ -131,7 +131,7 @@ function vaciarCarrito(){
             listaCarrito = [];
         mostrarCarrito(listaCarrito);
 
-        sessionStorage.setItem("carrito", listaCarrito);
+        sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
 
         }
     })
