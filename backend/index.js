@@ -11,6 +11,7 @@ const PORT = environments.port; // Se usa el port establecido a la izquierda de 
 /////////////////
 // Middlewares //
 app.use(cors()); // => Es un middleware que nos permite realizar todas las solicitudes
+app.use(express.json()) // => Es un middleware que le especifica que va a venir JSON en los request.body
 
 
 // Endpoint principal de prueba
@@ -86,18 +87,15 @@ app.get('/getProductById/:id', async(req, res) => {
     }
 })
 
+
 //Endpoint para agregar un nuevo producto a la base de datos
-app.post('/postProduct', async(req, res) => {
+app.post('/postProduct', async (req, res) => {
     try{
-
-        let categoria = req.body.categoria//cuerpo de la peticion en  donde se envia la info (es un JSON-->se detalla la informacion a postear(un nuevo producto))
-        console.log(categoria);
+        const {nombre, categoria, precio, url_imagen} = req.body//cuerpo de la peticion en  donde se envia la info (es un JSON-->se detalla la informacion a postear(un nuevo producto))
         
-        let sql = `
-        INSERT INTO productos (nombre,categoria,precio,url_imagen) VALUES (${nombre},
-        ${categoria},${precio},${url_imagen})`;
+        const sql = `INSERT INTO productos (nombre,categoria,precio,url_imagen) VALUES (?,?,?,?)`;
 
-        let  mensaje = await connection.query(sql); //guardamos en una varaible la promesa//
+        let mensaje = await connection.query(sql, [nombre,categoria,precio,url_imagen]); //guardamos en una varaible la promesa//
                 //el conexion ya es LA CONEXION
                 //.query ejecuta una consulta
                 //si o si el await para que se resulva la promesa primero 
@@ -108,19 +106,12 @@ app.post('/postProduct', async(req, res) => {
                 //siginifca que la peteicion del cliente fue exisdtosa y resulto en el creacion de un nuevo recurso en el servidor//
 
     }catch(error){
-
         res.status(500).json({
             message:error
         });
         console.log(error);
-
-
     }
-
-
 })
-
-
 
 
 
