@@ -13,7 +13,9 @@ let itemsCarrito = document.getElementById("items-carrito");
 let botonVaciarCarrito = document.getElementById("vaciar-carrito");
 
 
-let contenedorTotalCarrito = document.getElementById("total-carrito");
+
+
+let contenedorTotal= document.getElementById("total-carrito");
 
 
 
@@ -34,12 +36,14 @@ function obtenerNombreUsuarioSesionStorage(){
 function mostrarCarrito(lista){
     let productoCarrito = "";
     let precioTotal = 0;
+
+    let textoTotal = "";
     
     lista.forEach((producto, indice) => {
         productoCarrito += `
             <div class="informacion">
                 <button type="button" onclick="eliminar(${indice})">
-                    <i class="bi bi-x"></i>
+                    <i class="fas fa-times"></i>
                 </button>
                 <img src="${producto.url_imagen}" alt="imagen">
                 <p><strong>Nombre: </strong>${producto.nombre}</p>
@@ -57,14 +61,16 @@ function mostrarCarrito(lista){
                 </button>
             </div>
         `
-        precioTotal += producto.Precio * producto.cantidad;
+        precioTotal += producto.precio * producto.cantidad;
     });
 
-    productoCarrito += `
-    <li>
-        <p>--------------------------</p>
-        <p id="precioTotal">Total: $${precioTotal}</p>
-    </li>`;
+
+
+    textoTotal+= `
+        <p id="precioTotal">Total: $${precioTotal}</p>`;
+
+
+    contenedorTotal.innerHTML = textoTotal;
 
     itemsCarrito.innerHTML = productoCarrito;
 }
@@ -73,14 +79,9 @@ function mostrarCarrito(lista){
 
 function sumarProducto(id){
 
-    for(let i = 0;i<listaCarrito.length;i++){
+    let productoAgregar = listaCarrito.find(producto=> producto.id_producto === id);
 
-
-        if(listaCarrito[i].id_producto===id){
-
-            listaCarrito[i].cantidad += 1;
-        }
-    }
+    productoAgregar.cantidad += 1;
     
     mostrarCarrito(listaCarrito);
 
