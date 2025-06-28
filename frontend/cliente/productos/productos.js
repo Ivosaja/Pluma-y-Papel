@@ -29,7 +29,7 @@ function mostrarProductos(lista){
     let cartaProducto = "";
     console.log(lista)
     if(!lista || lista.length === 0){
-        cartaProducto = `<p> No se encontraron productos disponibles. Intente mas tarde</p>`
+        cartaProducto = `<p class="contenedor-productos-texto"> No se encontraron productos disponibles. Intente mas tarde</p>`
     }
     else{
         for(let i = 0; i<lista.length; i++){

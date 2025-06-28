@@ -63,6 +63,7 @@
 #contenedor-logo-Titulo{
     width: 40%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap:30px;
@@ -135,35 +136,77 @@ body {
 main{
     padding: 2rem;
     display: flex;
-    flex-direction: column;
     gap: 2rem;
 }
 
-#contenedor-selecion-categoria{
+aside{
+    width: 20%;
+    position: sticky;
+    top: 0.7rem;
+    height: fit-content; /*Le dice al aside che de altura usa lo que ocupe tu contenido, no pongas nada fijo*/
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+}
+
+
+#contenedor-selecion-categoria{
+    padding: 0.8rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin: 0 auto;
-    margin-top: 35px;
-    gap:5rem;
+    gap: 1.2rem;
+    border-bottom: 1px solid #969696;
 }
 
 #filtrarLibros,#filtrarUtiles{
+    width: 100%;
     border: none;
     padding: 0.75rem 2rem;
     border-radius: 12px;
     font-size: 1.2rem;
     text-align: center;
     cursor: pointer;
+    color: #FFFFFF;
     background-color: var(--color-boton);
-    color: var(--color-fondo);
     transition: background-color 0.3s ease;
 }
 
 #filtrarLibros:hover,
 #filtrarUtiles:hover {
     background-color: var(--color-amarillo-Personalizado); 
-    color: var(--marronPersonalizado); 
+    color: #FFFFFF; 
+}
+
+#contenedor-panel-admin{
+    padding: 0.8rem 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#panelAdmin{
+    width: 100%;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: #333;
+    color: var(--color-fondo);
+    transition: background-color 0.3s ease;
+}
+
+#panelAdmin:hover{
+    background-color: #585757;
+    color: #FFFFFF; 
 }
 
 
@@ -171,7 +214,7 @@ main{
 
 #contenedor-productos{
     width: 100%;
-    max-width: 85%;
+    max-width: 80%;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -186,6 +229,10 @@ main{
 #contenedor-productos img{
     width: 6.5rem;
     height: 6.5rem;
+}
+
+.contenedor-productos-texto{
+    font-size: 1.5rem;
 }
 
 .tarjeta-producto{

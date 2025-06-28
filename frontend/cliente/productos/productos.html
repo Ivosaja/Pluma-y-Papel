@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="productos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 
     <script src="productos.js" defer></script>
 </head>
@@ -23,10 +25,25 @@
         <div id="contenedor-boton-carrito"></div>
     </header>
     <main>
-        <div id="contenedor-selecion-categoria">
-            <button id="filtrarLibros">Libros</button>
-            <button id="filtrarUtiles">Utiles</button>
-        </div>
+        <aside>
+            <div id="contenedor-selecion-categoria">
+                <button id="filtrarLibros">
+                    <i class="fas fa-book-open"></i>
+                    Libros
+                </button>
+                <button id="filtrarUtiles">
+                    <i class="fas fa-ruler"></i>
+                    Utiles
+                </button>
+            </div>
+            <div id="contenedor-panel-admin">
+                <button id="panelAdmin">
+                    <i class="fas fa-cog"></i>
+                    Panel Admin
+                </button>
+            </div>
+        </aside>
+
         <div id="contenedor-productos">
         </div>
     </main>
