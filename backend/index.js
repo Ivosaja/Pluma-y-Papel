@@ -39,6 +39,28 @@ app.get("/getAllProducts", async(req,res)=>{
     }
 })
 
+
+//Endpoint para obtener todos los productos activos para el cliente
+app.get("/getAllActiveProducts", async(req,res)=>{
+    try{
+        let sqlQuery = "SELECT * FROM productos WHERE activo=1";
+        const [rows] =  await connection.query(sqlQuery); //desestructuracion de los datos, quedandonos solo con las filas//
+
+        // 200 -> codigo de respuesta exitosa//
+        res.status(200).json({
+            payload:rows,
+            message:rows.length===0 ? "No se encontraron productos" : `Se encontraron: ${rows.length} productos`})
+
+    }catch(error){
+        console.log("Error al obtener Productos: ", error);
+        res.status(500).json({
+            error:"Error desde el servidor"
+        })
+    }
+})
+
+
+
 // Endpoint para obtener un producto por ID de la base de datos
 app.get('/getProductById/:id', async(req, res) => {
     try{

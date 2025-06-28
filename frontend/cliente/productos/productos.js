@@ -14,7 +14,7 @@ let carrito = []
 async function obtenerProductos() {
     try{
 
-        let respuesta = await fetch("http://localhost:1001/getAllProducts");
+        let respuesta = await fetch("http://localhost:1001/getAllActiveProducts");
         let data = await respuesta.json();
         return data.payload;
 
