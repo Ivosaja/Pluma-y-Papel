@@ -112,6 +112,38 @@ app.post('/postProduct', async (req, res) => {
     }
 })
 
+// Endpoint para borrar un producto de la base de datos
+app.delete('/deleteProduct/:id', async (req, res) => {
+    try{
+        const {id} = req.params
+        if(isNaN(id)){
+            return res.status(400).json({
+                message: "Debe ingresar un ID valido"
+            }) 
+        }
+
+        const sqlQuery = 'DELETE FROM productos WHERE id_producto = ?'
+        const [result] = await connection.query(sqlQuery, [id]) // Obtengo el elemento 0 de el result de la query
+        
+        if(result.affectedRows === 0){
+            return res.status(404).json({
+                message: `Error. No se encontro el producto con ID: ${id} para borrarlo de la base de datos`
+            })
+        }
+
+        res.status(200).json({
+            message: `Se elimino correctamente el producto con ID: ${id} de la base de datos`,
+            payload: result
+        })
+
+
+    } catch (err){
+        res.status(500).json({
+            message: "Error interno del servidor al borrar de la base de datos",
+            error: err
+        })
+    }
+})
 
 
 // Escuchando en el puerto que guardamos en nuestra variable de entorno
