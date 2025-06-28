@@ -40,7 +40,7 @@ function mostrarProductos(lista){
                         <p>Precio: $${lista[i].precio}</p>
                         <div id="agregar-eliminar-producto">
                             <button id="boton-agregar" onclick="agregarAlCarrito(${lista[i].id_producto})">Agregar a carrito</button>
-                            <button id="boton-eliminar" onclick="eliminarDelCarrito(${lista[i].id_producto})"><i class="bi bi-trash3-fill"></i></button>
+                            <button id="boton-eliminar" onclick="eliminarDelCarrito(${lista[i].id_producto})"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </div>
                     `                                              

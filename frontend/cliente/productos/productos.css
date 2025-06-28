@@ -276,6 +276,7 @@ aside{
 
 #agregar-eliminar-producto{
     display: flex;
+    align-items: center;
     gap:1rem;
 }
 
