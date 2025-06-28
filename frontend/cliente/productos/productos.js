@@ -19,7 +19,8 @@ async function obtenerProductos() {
         return data.payload;
 
     }catch(error){
-        console.error("Error al obtener los producstos ",error);
+        console.error("Error al obtener los productos ",error)
+        return [] // retorno lista vacia por si en caso de que falla el fetch, se le asigne a la lista de productos un array vacio y no undefined.
     }
 }
 
@@ -28,7 +29,7 @@ async function obtenerProductos() {
 function mostrarProductos(lista){ 
     let cartaProducto = "";
     console.log(lista)
-    if(!lista || lista.length === 0){
+    if(lista.length === 0){
         cartaProducto = `<p class="contenedor-productos-texto"> No se encontraron productos disponibles. Intente mas tarde</p>`
     }
     else{
