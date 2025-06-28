@@ -138,7 +138,7 @@ main{
     padding: 2rem;
     display: flex;
     gap: 2rem;
-    min-height: 100vh;
+    min-height: 100vh; /*Para que minimamente ocupe de alture el 100 viewport height*/
 }
 
 aside{
@@ -171,6 +171,7 @@ aside{
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 0.6rem;
     border: none;
     padding: 0.75rem 2rem;
@@ -187,14 +188,6 @@ aside{
 #filtrarUtiles:hover {
     background-color: var(--color-amarillo-Personalizado); 
     color: #FFFFFF; 
-}
-
-#cantUtiles{
-
-}
-
-#cantLibros{
-
 }
 
 #contenedor-panel-admin{
@@ -281,7 +274,7 @@ aside{
 
 .tarjeta-producto p {
     font-size: 1.1rem;
-    color: var(--color-texto);
+    color: #333;
     font-family: 'Roboto Mono', monospace;
 }
 
