@@ -11,10 +11,10 @@ const PORT = environments.port; // Se usa el port establecido a la izquierda de 
 /////////////////
 // Middlewares //
 app.use(cors()); // => Es un middleware que nos permite realizar todas las solicitudes
-app.use(express.json()) // => Es un middleware que le especifica que va a venir JSON en los request.body
+app.use(express.json()) // => Es un middleware que le especifica (al servirdor) que va a venir JSON en los request.body
 
 
-// Endpoint principal de prueba
+// Endpoint principal de prueba<
 app.get("/",(req,res) =>{
     res.send("Bienvenidos a nuestro aplicacion Pluma&Papel")
 })
@@ -91,19 +91,18 @@ app.get('/getProductById/:id', async(req, res) => {
 //Endpoint para agregar un nuevo producto a la base de datos
 app.post('/postProduct', async (req, res) => {
     try{
-        const {nombre, categoria, precio, url_imagen} = req.body//cuerpo de la peticion en  donde se envia la info (es un JSON-->se detalla la informacion a postear(un nuevo producto))
+        const {nombre, categoria, precio, url_imagen} = req.body/*cuerpo de la peticion en  donde se 
+        envia la info (es un JSON-->se detalla la informacion a postear(un nuevo producto))*/
         
-        const sql = `INSERT INTO productos (nombre,categoria,precio,url_imagen) VALUES (?,?,?,?)`;
+        const sql = `INSERT INTO productos (nombre,categoria,precio,url_imagen) VALUES (?,?,?,?)`; //Placeholder--> campos vacios
 
-        let mensaje = await connection.query(sql, [nombre,categoria,precio,url_imagen]); //guardamos en una varaible la promesa//
+        let mensaje = await connection.query(sql, [nombre,categoria,precio,url_imagen]); //aca le pasamos los datos en ordern como irian en las columnas
                 //el conexion ya es LA CONEXION
                 //.query ejecuta una consulta
                 //si o si el await para que se resulva la promesa primero 
 
-        console.log(mensaje);
-
         res.status(201).send("Se estabecio la conexion exitosamente y se ejecuto la consulta sql");
-                //siginifca que la peteicion del cliente fue exisdtosa y resulto en el creacion de un nuevo recurso en el servidor//
+                //siginifca que la peticion del cliente fue exisdtosa y resulto en el creacion de un nuevo recurso en el servidor//
 
     }catch(error){
         res.status(500).json({
