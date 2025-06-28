@@ -130,6 +130,10 @@ html{
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-family: 'Segoe UI', sans-serif;
     background-color: var(--color-fondo); 
 }
@@ -328,7 +332,30 @@ footer{
     padding: 1rem;
 }
 
+/* Estilado de modales */
+#modal{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    position: fixed;
+    top: 20px;
+    /*left: 50%*/
+    background-color: #f0f0f0;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    z-index: 1000;
+    /*transform: translateY(-50%);/*Mueve el modal un 50% menos de lo que mide su ancho asi lo centra bien*/
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
 
+}
+
+.modal-contenido{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
 
 
 /*Media queries header */

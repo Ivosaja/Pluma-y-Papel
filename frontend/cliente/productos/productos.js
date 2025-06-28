@@ -125,7 +125,7 @@ function filtrarLibros(lista){
 function agregarAlCarrito(idProducto){
     const productoAgregar = listaProductos.find(producto => producto.id_producto === idProducto);
     if(carrito.some(producto => producto.id_producto === idProducto)){ // aqui, el some verifica si ya hay algun producto en el carrito que coincida con el producto que se quiere agregar.
-        alert("ERROR. Este producto ya se encuentra en el carrito")
+        
         return
     }
 
@@ -135,6 +135,7 @@ function agregarAlCarrito(idProducto){
     carrito.push(copiaProductoAgregar)
     sessionStorage.setItem("carrito", JSON.stringify(carrito)) // guardo en session storage el carrito
     mostrarCantidadProductosCarrito()
+    mostrarModal("agregado", "Se agrego correctamente el producto al carrito")
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -148,6 +149,30 @@ function eliminarDelCarrito(idProducto){
     carrito.splice(indiceProductoCarrito,1) // Desde el indice del producto que encontre, borro 1 elemento (osea el producto que encontre por su ID)
     sessionStorage.setItem("carrito", JSON.stringify(carrito))
     mostrarCantidadProductosCarrito()
+    mostrarModal("eliminado", "Se elimino completamente el producto del carrito")
+}
+
+///////////////////////////////////////////////////////////////////
+
+function mostrarModal(tipoModal, mensaje){
+    const modal = document.getElementById('modal')
+    const modalMensaje = document.querySelector('.modal-contenido-texto')
+    const modalIcono = document.querySelector('.modal-contenido-icono')
+    
+    if(tipoModal === "agregado"){
+        modalIcono.innerHTML = `<i class="bi bi-check-circle-fill"></i>`
+        modalIcono.style.color = "green"
+    } else if(tipoModal === "eliminado"){
+        modalIcono.innerHTML = `<i class="bi bi-trash-fill"></i>`
+        modalIcono.style.color = "red"
+    }
+
+    modalMensaje.textContent = mensaje
+    modal.style.display = "flex"
+
+    setTimeout(() => {
+        modal.style.display = "none"
+    }, 3000)
 }
 
 
