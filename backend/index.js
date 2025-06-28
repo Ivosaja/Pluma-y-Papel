@@ -18,7 +18,7 @@ app.get("/",(req,res) =>{
     res.send("Bienvenidos a nuestro aplicacion Pluma&Papel")
 })
 
-//Basicamente generamos el endpoin en donde se realiza un verbo de HTTP (POST,GET,PUT,DELETE,PATCH)
+//Basicamente generamos el endpoint en donde se realiza un verbo de HTTP (POST,GET,PUT,DELETE,PATCH)
 
 // Endpoint para obtener todos los productos de la base de datos
 app.get("/getAllProducts", async(req,res)=>{
@@ -85,6 +85,44 @@ app.get('/getProductById/:id', async(req, res) => {
         })
     }
 })
+
+//Endpoint para agregar un nuevo producto a la base de datos
+app.post('/postProduct', async(req, res) => {
+    try{
+
+        let categoria = req.body.categoria//cuerpo de la peticion en  donde se envia la info (es un JSON-->se detalla la informacion a postear(un nuevo producto))
+        console.log(categoria);
+        
+        let sql = `
+        INSERT INTO productos (nombre,categoria,precio,url_imagen) VALUES (${nombre},
+        ${categoria},${precio},${url_imagen})`;
+
+        let  mensaje = await connection.query(sql); //guardamos en una varaible la promesa//
+                //el conexion ya es LA CONEXION
+                //.query ejecuta una consulta
+                //si o si el await para que se resulva la promesa primero 
+
+        console.log(mensaje);
+
+        res.status(201).send("Se estabecio la conexion exitosamente y se ejecuto la consulta sql");
+                //siginifca que la peteicion del cliente fue exisdtosa y resulto en el creacion de un nuevo recurso en el servidor//
+
+    }catch(error){
+
+        res.status(500).json({
+            message:error
+        });
+        console.log(error);
+
+
+    }
+
+
+})
+
+
+
+
 
 // Escuchando en el puerto que guardamos en nuestra variable de entorno
 app.listen(PORT,() => {
