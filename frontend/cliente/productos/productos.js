@@ -48,6 +48,7 @@ function mostrarProductos(lista){
     }
     contenedorProductos.innerHTML = cartaProducto;
     mostrarCantidadLibros()
+    mostrarCantidadUtiles()
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -85,7 +86,12 @@ function mostrarCantidadLibros(){
 }
 
 function mostrarCantidadUtiles(){
-
+    const utiles = listaProductos.filter(producto => producto.categoria === "Utiles")
+    filtradoUtiles.innerHTML = `
+        <i class="fas fa-ruler"></i>
+        Utiles
+        <span id="cantUtiles">${utiles.length}</span>
+    `
 }
 
 
