@@ -93,22 +93,35 @@ app.post('/postProduct', async (req, res) => {
     try{
         const {nombre, categoria, precio, url_imagen} = req.body/*cuerpo de la peticion en  donde se 
         envia la info (es un JSON-->se detalla la informacion a postear(un nuevo producto))*/
+
+        if(!nombre || !categoria || !precio || !url_imagen){
+            return res.status(400).json({
+                message:"Se deben completar todos los campos, ninguna debe quedar vacio o nulo"
+            })
+
+
+        }
         
-        const sql = `INSERT INTO productos (nombre,categoria,precio,url_imagen) VALUES (?,?,?,?)`; //Placeholder--> campos vacios
+        const sql = "INSERT INTO productos (nombre,categoria,precio,url_imagen) VALUES (?,?,?,?)"; //Placeholder--> campos vacios
 
         let mensaje = await connection.query(sql, [nombre,categoria,precio,url_imagen]); //aca le pasamos los datos en ordern como irian en las columnas
                 //el conexion ya es LA CONEXION
                 //.query ejecuta una consulta
                 //si o si el await para que se resulva la promesa primero 
 
-        res.status(201).send("Se estabecio la conexion exitosamente y se ejecuto la consulta sql");
-                //siginifca que la peticion del cliente fue exisdtosa y resulto en el creacion de un nuevo recurso en el servidor//
+        res.status(201).json({
+            message: `Se inserto correctamente el producto denominado ${nombre} a la base de datos`,
+            payload: mensaje
+
+
+        }) //siginifca que la peticion del cliente fue exisdtosa y resulto en el creacion de un nuevo recurso en el servidor//
 
     }catch(error){
         res.status(500).json({
-            message:error
+            message:"Error al intento de insertar el producto a la base de datos",
+
+            error:error
         });
-        console.log(error);
     }
 })
 
