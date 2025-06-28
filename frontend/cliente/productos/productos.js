@@ -81,6 +81,7 @@ function filtrarUtiles(lista){
             producto.categoria==="Utiles"
         )
         mostrarProductos(filtrados)
+        window.scrollTo(0,0)
     })
 
 }
@@ -91,8 +92,8 @@ function filtrarLibros(lista){
         let filtrados = lista.filter(producto=>
             producto.categoria==="Libros"
         )
-    mostrarProductos(filtrados)
-
+        mostrarProductos(filtrados)
+        window.scrollTo(0,0)
     })
 
 }
@@ -147,7 +148,6 @@ async function init() {
 
     filtrarUtiles(listaProductos);
     filtrarLibros(listaProductos);
-
 
 }
 
