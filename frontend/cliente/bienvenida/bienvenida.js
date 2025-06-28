@@ -16,7 +16,7 @@ function guardarNombreUsuario(){
 
 function validarNombreUsuario(){
     const inputValue = input.value.trim();
-    if(inputValue.length > 10){
+    if(inputValue.length > 10 || inputValue.length <2 || inputValue.length === 0){
         input.style.border = "2px solid #e57373"
         return false;
     }

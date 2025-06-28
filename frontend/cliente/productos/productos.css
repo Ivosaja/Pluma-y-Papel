@@ -21,39 +21,10 @@
     gap:10px;
     width: 100%;
     background-color: var(--color-fondo);
-    /*border-bottom: 2px solid rgb(248, 187, 95);*/
-}
-
-#contenedor-tarjeta-usuario{
-    border: 2px solid black;
-    background-color: var(--color-boton);
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    max-width: 7rem;
-    max-height: 7rem;
-    
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+    border-bottom: 5px double var(--color-amarillo2-Personalizado);
 }
 
 
-#contenedor-tarjeta-usuario i{
-    font-size: 2rem;
-    color:var(--color-amarillo-Personalizado);
-
-}
-#contenedor-tarjeta-usuario p{
-    font-size: 1.5rem;
-    color: var(--marronPersonalizado);
-    white-space: normal;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-/*
 #contenedor-tarjeta-usuario{
     border: none;
     padding: 1rem;
@@ -82,8 +53,12 @@
     font-weight: 500;
     color: var(--marronPersonalizado);
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
 }
-*/
+
 
 #contenedor-logo-Titulo{
     width: 40%;
@@ -110,21 +85,19 @@
 #contenedor-boton-carrito{
     width: 5rem;
     padding: 1rem;
-    border:2px solid black;
+    border:none;
     display: flex;
     justify-content: center;
     align-items: end;
-    border-radius: 15%;
     gap: 0.1rem;
-    background-color:var(--color-boton);
-
-    transition: all 0.3s ease; 
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #contenedor-boton-carrito span{
     font-size: 1rem;
     color: var(--marronPersonalizado);
-    
 }
 
 #contenedor-boton-carrito a {
@@ -133,20 +106,18 @@
 
 #contenedor-boton-carrito i {
     font-size: 2rem;
-    color:var(--marronPersonalizado);
+    color:var(--color-amarillo-Personalizado);
 }
 
 
 #contenedor-boton-carrito:hover{
-    background-color: var(--color-amarillo-Personalizado);
-    border-color: var(--color-amarillo-Personalizado);
-    transform: scale(1.1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 
 }
 
 #contenedor-boton-carrito:hover i,
 #contenedor-boton-carrito:hover span {
-    color: white;
     transform: scale(1.1);
 }
 
@@ -229,7 +200,7 @@ main{
     transition: transform 0.2s ease;
     flex-basis: 300px;
     justify-content: space-between;
-    flex-grow: 1; /* Preguntar a lucas si le gusta*/
+
 }
 
 
@@ -325,7 +296,7 @@ footer{
 
 
     #contenedor-boton-carrito{
-        width: 3rem;
+        width: 4.5rem;
     }
 
     #contenedor-boton-carrito span{
@@ -333,7 +304,7 @@ footer{
     }
 
     #contenedor-boton-carrito i{
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
 
 
@@ -348,6 +319,12 @@ footer{
     }
     #contenedor-tarjeta-usuario p{
         font-size: 1rem;
+
+    }
+
+
+    #contenedor-selecion-categoria{
+        gap:2.8rem;
 
     }
 
@@ -367,6 +344,12 @@ footer{
 
     #contenedor-logo-Titulo h1{
         font-size: 1.5rem;
+    }
+
+    #contenedor-boton-carrito{
+        display: flex;
+        align-items: center ;
+        flex-direction: column;
     }
 
 

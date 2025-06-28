@@ -7,7 +7,7 @@ let filtradoLibros= document.getElementById("filtrarLibros")
 let listaProductos = [];
 let contenedorUsuario = document.getElementById("contenedor-tarjeta-usuario");
 const contenedorBtnCarrito = document.getElementById('contenedor-boton-carrito')
-let carrito = [] // TODO -> aqui irian los productos que el usuario agrega al carrito
+let carrito = []
 
 ////////////////////////////////////////////////////////////
 
@@ -62,7 +62,7 @@ function obtenerNombreUsuarioSesionStorage(){
     let nombre = sessionStorage.getItem("nombreUsuario");
     let nuevo = `
     <i class="bi bi-person-circle"></i>
-    <p>${nombre.toLowerCase()}</p>`;
+    <p>${nombre}</p>`;
 
     contenedorUsuario.innerHTML = nuevo;
 }
