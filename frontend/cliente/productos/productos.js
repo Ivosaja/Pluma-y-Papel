@@ -106,6 +106,10 @@ function agregarAlCarrito(idProducto){
         alert("ERROR. Este producto ya se encuentra en el carrito")
         return
     }
+
+    // Hago una copia del producto a agregar y le agrego una propiedad llamada cantidad establecida en 1. Asi no modificamos el array de productos original
+    const copiaProductoAgregar = {...productoAgregar, cantidad: 1}
+
     carrito.push(productoAgregar)
     sessionStorage.setItem("carrito", JSON.stringify(carrito)) // guardo en session storage el carrito
     mostrarCantidadProductosCarrito()
