@@ -1,0 +1,119 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family:'Nunito';
+}
+
+:root {
+    --color-fondo: rgb(255,249,230);
+    --color-boton:  rgb(105,117,74);
+    --color-amarillo-Personalizado:rgb(252,183,76);
+    --color-amarillo2-Personalizado: rgb(230, 189, 129);
+    --marronPersonalizado:rgb(60,47,26);
+}
+
+#encabezado{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 20px;
+    gap:10px;
+    width: 100%;
+    background-color: var(--color-fondo);
+    border-bottom: 5px double var(--color-amarillo2-Personalizado);
+}
+
+
+#contenedor-tarjeta-usuario{
+    border: none;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 7rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#contenedor-tarjeta-usuario:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+#contenedor-tarjeta-usuario i {
+    font-size: 2.5rem;
+    color: var(--color-amarillo-Personalizado);
+}
+
+#contenedor-tarjeta-usuario p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--marronPersonalizado);
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+
+#contenedor-logo-Titulo{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:30px;
+    height: 100%;
+}
+
+
+#contenedor-logo-Titulo img {
+    height: 4rem;           
+    width: 4rem;
+    border-radius: 100%; 
+    border: 2px solid black;         
+}
+#contenedor-logo-Titulo h1 {
+    font-size: 3.2rem;
+    font-weight: 400;
+}
+
+
+
+#contenedor-boton-volver{
+    width: 5rem;
+    padding: 1rem;
+    border:none;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 0.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+#contenedor-boton-volver a {
+    text-decoration: none; 
+}
+
+#contenedor-boton-volver i {
+    font-size: 2rem;
+    color:var(--color-amarillo-Personalizado);
+}
+
+
+#contenedor-boton-volver:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+
+}
+
+#contenedor-boton-volver:hover i,
+#contenedor-boton-volver:hover span {
+    transform: scale(1.1);
+}
