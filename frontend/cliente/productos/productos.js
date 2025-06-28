@@ -47,6 +47,7 @@ function mostrarProductos(lista){
         };
     }
     contenedorProductos.innerHTML = cartaProducto;
+    mostrarCantidadLibros()
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -72,6 +73,20 @@ function obtenerNombreUsuarioSesionStorage(){
 }
 
 ///////////////////////////////////////////////////////////////////
+
+
+function mostrarCantidadLibros(){
+    const libros = listaProductos.filter(producto => producto.categoria === "Libros");
+    filtradoLibros.innerHTML = `
+        <i class="fas fa-book-open"></i>
+        Libros
+        <span id="cantLibros">${libros.length}</span>
+    `
+}
+
+function mostrarCantidadUtiles(){
+
+}
 
 
 function filtrarUtiles(lista){
