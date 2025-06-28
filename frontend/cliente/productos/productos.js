@@ -19,7 +19,6 @@ async function obtenerProductos() {
         return data.payload;
 
     }catch(error){
-
         console.error("Error al obtener los producstos ",error);
     }
 }
@@ -28,21 +27,26 @@ async function obtenerProductos() {
 
 function mostrarProductos(lista){ 
     let cartaProducto = "";
-    for(let i = 0; i<lista.length; i++){
-            cartaProducto += `
-                <div class="tarjeta-producto">
-                    <img class="imagen-Producto" src=${lista[i].url_imagen}>
-                    <h3>${lista[i].nombre}</h3>
-                    <p>Precio: $${lista[i].precio}</p>
-                    <div id="agregar-eliminar-producto">
-                        <button id="boton-agregar" onclick="agregarAlCarrito(${lista[i].id_producto})">Agregar a carrito</button>
-                        <button id="boton-eliminar" onclick="eliminarDelCarrito(${lista[i].id_producto})"><i class="bi bi-trash3-fill"></i></button>
+    console.log(lista)
+    if(!lista || lista.length === 0){
+        cartaProducto = `<p> No se encontraron productos disponibles. Intente mas tarde</p>`
+    }
+    else{
+        for(let i = 0; i<lista.length; i++){
+                cartaProducto += `
+                    <div class="tarjeta-producto">
+                        <img class="imagen-Producto" src=${lista[i].url_imagen}>
+                        <h3>${lista[i].nombre}</h3>
+                        <p>Precio: $${lista[i].precio}</p>
+                        <div id="agregar-eliminar-producto">
+                            <button id="boton-agregar" onclick="agregarAlCarrito(${lista[i].id_producto})">Agregar a carrito</button>
+                            <button id="boton-eliminar" onclick="eliminarDelCarrito(${lista[i].id_producto})"><i class="bi bi-trash3-fill"></i></button>
+                        </div>
                     </div>
-                </div>
-                `                                              
-    };
+                    `                                              
+        };
+    }
     contenedorProductos.innerHTML = cartaProducto;
-    mostrarCantidadProductosCarrito()
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -123,11 +127,19 @@ function eliminarDelCarrito(idProducto){
 ///////////////////////////////////////////////////////////////////
 
 async function init() {
+    // Pongo un mensaje en contenedor de productos para que se vea algo mientras se realiza el fetch que puede tardar unos segundos (porque usa async/await)
+    contenedorProductos.innerHTML = `<p>Cargando productos...</p>`
+    
     // Me traigo lo del session storage si hay algo y lo parseo a Objeto JS, sino, significa que no hay ningun producto en el carrito,
     // pq nunca se creo ese item del session storage
     if(sessionStorage.getItem("carrito")){
         carrito = JSON.parse(sessionStorage.getItem("carrito"))
     }
+    
+    // Muestro el nombre de usuario que ingreso el cliente en la pagina de bienvenida y muestro el carrito con la cantidad de productos que tiene
+    obtenerNombreUsuarioSesionStorage();
+    mostrarCantidadProductosCarrito()
+    
     // Espero a que se obtengan los productos y los retorne la funcion
     listaProductos = await obtenerProductos();
     // Muestro los productos
@@ -136,7 +148,6 @@ async function init() {
     filtrarUtiles(listaProductos);
     filtrarLibros(listaProductos);
 
-    obtenerNombreUsuarioSesionStorage();
 
 }
 
