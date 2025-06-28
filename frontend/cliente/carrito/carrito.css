@@ -117,3 +117,49 @@
 #contenedor-boton-volver:hover span {
     transform: scale(1.1);
 }
+
+
+
+/*Responsive*/
+
+
+@media (max-width: 800px) {
+    #contenedor-logo-Titulo {
+        width: 80%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap:5px;
+    }
+
+
+    #contenedor-logo-Titulo h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+
+    #contenedor-boton-Volver{
+        width: 4.5rem;
+    }
+
+
+    #contenedor-boton-carrito i{
+        font-size: 1rem;
+    }
+
+
+    #contenedor-tarjeta-usuario{
+        width: 4rem;
+
+    }
+
+    #contenedor-tarjeta-usuario i{
+        font-size: 1.5rem;
+
+    }
+    #contenedor-tarjeta-usuario p{
+        font-size: 1rem;
+
+    }
+}
