@@ -1,7 +1,6 @@
 
 //variable globales
 let modalTimeoutId = null // aca guardamos el timeout actual
-
 let contenedorProductos = document.getElementById("contenedor-productos");
 let filtradoUtiles = document.getElementById("filtrarUtiles")
 let filtradoLibros= document.getElementById("filtrarLibros")
@@ -9,6 +8,8 @@ let listaProductos = [];
 let contenedorUsuario = document.getElementById("contenedor-tarjeta-usuario");
 const contenedorBtnCarrito = document.getElementById('contenedor-boton-carrito')
 let carrito = []
+
+let btnPanelAdmin = document.getElementById("panelAdmin");
 
 ////////////////////////////////////////////////////////////
 
@@ -69,7 +70,10 @@ function mostrarCantidadProductosCarrito(){
 function obtenerNombreUsuarioSesionStorage(){
     let nombre = sessionStorage.getItem("nombreUsuario");
     let nuevo = `
-    <i class="bi bi-person-circle"></i>
+
+    
+        <i class="bi bi-person-circle"></i>
+
     <p>${nombre}</p>`;
 
     contenedorUsuario.innerHTML = nuevo;
@@ -186,6 +190,30 @@ function mostrarModal(tipoModal, mensaje){
 }
 
 
+function volverInicio() {
+    contenedorUsuario.addEventListener("click", function(){
+
+        window.location.href= "../bienvenida/index.html";
+
+        sessionStorage.clear();
+
+    })
+
+    
+}
+
+
+function redireccionarPanelAdmin(){
+
+    btnPanelAdmin.addEventListener("click", function(){
+
+
+        window.location.href = "../../admin/dashboard/dashboard.html";
+    })
+
+}
+
+
 ///////////////////////////////////////////////////////////////////
 
 async function init() {
@@ -210,6 +238,10 @@ async function init() {
 
     filtrarUtiles(listaProductos);
     filtrarLibros(listaProductos);
+
+    volverInicio();
+
+    redireccionarPanelAdmin();
 
 }
 
