@@ -54,14 +54,14 @@ function mostrarCarrito(lista){
                 </div>    
             </div>
             <div class="acciones">
-                <button id="sumarProducto" type="button" onclick="sumarProducto(${producto.id_producto})">
-                    <i class="bi bi-plus"></i>
-                </button>
-                <p><strong>${producto.cantidad}</strong></p>
-
                 <button id="restarProducto" type="button" onclick="restarProducto(${producto.id_producto})">
                     <i class="bi bi-dash"></i>
                 </button>
+                <p><strong>${producto.cantidad}</strong></p>
+                <button id="sumarProducto" type="button" onclick="sumarProducto(${producto.id_producto})">
+                    <i class="bi bi-plus"></i>
+                </button>
+
             </div>
         </li>
         `
