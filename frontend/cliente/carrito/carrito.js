@@ -12,6 +12,8 @@ let botonVaciarCarrito = document.getElementById("vaciar-carrito");
 
 let contenedorTotal= document.getElementById("contenedor-Total-Comprar");
 
+let modalVaciarCarrito = document.getElementById('modal-vaciar-carrito');
+
 
 
 
@@ -132,19 +134,105 @@ function eliminar(indice){
 
 function vaciarCarrito(){
 
-
     botonVaciarCarrito.addEventListener("click",function(){
 
-        let respuesta = confirm("Desea vaciar el carrito?");
+        if(listaCarrito.length===0){
 
-        if(respuesta){
-            listaCarrito = [];
-            mostrarCarrito(listaCarrito);
-            sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
+            aplicarModal("noPreguntar");
+        }
+        else{
+            aplicarModal("preguntaVaciar");
         }
     })
 }
 
+
+
+function aplicarModal(modalTipo){
+    let contenido = "";
+
+    if(modalTipo==="preguntaVaciar"){
+
+        contenido = `
+            <p>Desea vaciar el carrito?</p>
+
+            <div id="botones-modal">
+                <button id="btn-Si">Si</button>
+                <button id="btn-No">No</button>
+            </div>
+            `
+
+        modalVaciarCarrito.innerHTML = contenido;
+
+        mostrarModal();
+
+        /*basciametne es necesario esto ya que sino el usaurio Clietne poddria interacionar con todas las cosas de la pagina
+            sin confirmar su eleccion */
+
+        document.getElementById('encabezado').classList.add('bloquear-interacciones');
+        document.getElementById('principal').classList.add('bloquear-interacciones');
+
+        modalBtnNo();
+        modalBtnSi();
+
+    }
+    else if(modalTipo === "noPreguntar"){
+
+        contenido = 
+                `
+                <i class="fas fa-times"></i>
+                <p>No se puede vaciar el carrito ya que no hay ningun producto agregado</p>
+                `
+        modalVaciarCarrito.innerHTML = contenido;
+
+        mostrarModal();
+
+        setTimeout(esconderModal, 3000);
+    }
+
+}
+
+
+function esconderModal(){
+
+    modalVaciarCarrito.style.display = "none";
+    //aca removes la clase aplciada que no permite selecionar otra cosa que no sea el modal
+
+    document.getElementById('encabezado').classList.remove('bloquear-interacciones');
+    document.getElementById('principal').classList.remove('bloquear-interacciones');
+}
+
+function mostrarModal(){
+
+    modalVaciarCarrito.style.display = "flex";
+}
+
+
+function modalBtnSi(){
+
+    let btnSi = document.getElementById("btn-Si");    
+    btnSi.addEventListener("click", function(){
+
+        listaCarrito = []
+        mostrarCarrito(listaCarrito);
+
+        sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
+
+        esconderModal();
+    })
+
+}
+
+function modalBtnNo(){
+    let btnNo = document.getElementById("btn-No");
+    btnNo.addEventListener("click", function(){
+    
+            esconderModal();
+        })
+}
+
+
+////FUNCION INICIADORA //////
 
 function init(){
 
