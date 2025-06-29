@@ -148,15 +148,18 @@ main{
     min-width: 10%;
     background-color: var(--color-boton);
     cursor: pointer;
+    font-size: 1.1rem;
+    border: none;
+    color: #fffce2; 
 }
 
-#vaciar-carrito p{
-    font-size: 1rem;
+#vaciar-carrito:hover{
+    background-color: #6b7a49; 
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
 
 
 #contenedor-productos{
-    border: 2px solid black;
     background-color: #fef5da;
     border-radius: 2rem;
     width: 100%;
@@ -214,11 +217,12 @@ main{
 
 .informacion button{
     background-color: #C25B5B;
-    border: 1px solid #999;
+    border: none;
     padding: 6px 10px;
     border-radius: 6px;
     cursor: pointer;
     color: white;
+
 }
 
 
@@ -238,15 +242,41 @@ main{
     font-weight: bold;
 }
 
-.acciones button{
+#sumarProducto,
+#restarProducto {
     cursor: pointer;
-    padding: 0.2rem;
-    background-color: #f0f0f0;
+    padding: 0.4rem 0.6rem;
     border-radius: 8px;
-    transition: all 0.3s ease;
-    color: #333 ;
     font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+#sumarProducto {
+    background-color: #6ab04c;
+}
+#restarProducto {
+    background-color: #eb4d4b;
+}
+
+#sumarProducto:hover {
+    background-color: #58a03c;
+    box-shadow: 0 0 6px rgba(106, 176, 76, 0.5);
+}
+
+#restarProducto:hover {
+    background-color: #c0392b;
+    box-shadow: 0 0 6px rgba(235, 77, 75, 0.5);
+}
+
+
+
+
+
 
 .acciones button:hover{
     background-color: #e0e0e0; 
@@ -260,14 +290,15 @@ main{
 
 
 
-#total-carrito{
-
+#contenedor-Total-Comprar{
     display: flex;
     padding: 1rem;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     width: 100%;
-    border-radius: 2rem;    
+    border-radius: 2rem;  
+    
+    gap: 6rem;
 }
 
 
@@ -285,13 +316,18 @@ main{
 #confirmar-compra button{
 
     cursor: pointer;
-    padding: 1.5rem;
+    padding: 1rem;
     background-color: var(--color-boton);
     border-radius: 12px;
     font-size: 1.2rem;
     border: none;
+    color: #fffce2; 
 }
 
+#confirmar-compra button:hover {
+    background-color: #6b7a49; 
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
 
 
 

@@ -15,7 +15,7 @@ let botonVaciarCarrito = document.getElementById("vaciar-carrito");
 
 
 
-let contenedorTotal= document.getElementById("total-carrito");
+let contenedorTotal= document.getElementById("contenedor-Total-Comprar");
 
 
 
@@ -54,12 +54,12 @@ function mostrarCarrito(lista){
                 </div>    
             </div>
             <div class="acciones">
-                <button type="button" onclick="sumarProducto(${producto.id_producto})">
+                <button id="sumarProducto" type="button" onclick="sumarProducto(${producto.id_producto})">
                     <i class="bi bi-plus"></i>
                 </button>
                 <p><strong>${producto.cantidad}</strong></p>
 
-                <button type="button" onclick="restarProducto(${producto.id_producto})">
+                <button id="restarProducto" type="button" onclick="restarProducto(${producto.id_producto})">
                     <i class="bi bi-dash"></i>
                 </button>
             </div>
