@@ -103,7 +103,6 @@ app.post('/postProduct', async (req, res) => {
                 message:"Se deben completar todos los campos, ninguna debe quedar vacio o nulo"
             })
 
-
         }
         
         const sql = "INSERT INTO productos (nombre,categoria,precio,url_imagen) VALUES (?,?,?,?)"; //Placeholder--> campos vacios
@@ -162,14 +161,29 @@ app.delete('/deleteProduct/:id', async (req, res) => {
     }
 })
 
+// Endpoint para actualizar/modificar producto de la base de datos (nombre, precio, categoria, imagen, estado -> solo desactivarlo)
+app.put('/modifyProduct/:id', async (req, res) => {
+
+})
+
+
+
+
+// Endpoint para activar producto de la base de datos
+app.put('/activateProduct/:id', async (req, res) => {
+
+})
+
 
 ///////////////////////////////
 // Endpoints para el cliente //
 
 // Endpoint para que el usuario realice una compra y se registre en la base de datos 
-app.post('/realizarCompra', async (req, res) => {
+app.post('/finalizePurchase', async (req, res) => {
     const {nombreUsuario, total} = req.body
     
+    console.log(nombreUsuario)
+    console.log(total)
     if(!nombreUsuario || !total){
         return res.status(400).json({
             error: "Error. Debe mandar algo valido en todos los campos"
@@ -177,10 +191,13 @@ app.post('/realizarCompra', async (req, res) => {
     }
 
     const sqlQuery = 'INSERT INTO ventas (nombre_usuario, fecha, total) VALUES (?,NOW(),?)'
-    const [result] = await connection.query(sql, [nombreUsuario, fecha, total])
-    
+    const [result] = await connection.query(sqlQuery, [nombreUsuario,total])
+    const idVenta = result.insertId
 
-
+    res.status(200).json({
+        message: `Se inserto la venta con ID: ${idVenta} exitosamente`,
+        payload: result
+    })
 
 })
 
