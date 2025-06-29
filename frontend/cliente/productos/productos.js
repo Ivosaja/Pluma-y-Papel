@@ -125,7 +125,7 @@ function filtrarLibros(lista){
 function agregarAlCarrito(idProducto){
     const productoAgregar = listaProductos.find(producto => producto.id_producto === idProducto);
     if(carrito.some(producto => producto.id_producto === idProducto)){ // aqui, el some verifica si ya hay algun producto en el carrito que coincida con el producto que se quiere agregar.
-        
+        mostrarModal("yaAgregado", "Este producto ya se encuentra en el carrito. Agregue mas cantidades en la sección de carrito")
         return
     }
 
@@ -143,9 +143,10 @@ function agregarAlCarrito(idProducto){
 function eliminarDelCarrito(idProducto){
     const indiceProductoCarrito = carrito.findIndex(producto => producto.id_producto === idProducto) // Encuentro el indice del producto a eliminar del carrito
     if(indiceProductoCarrito === -1){ // Verifico que si no encontro el indice del producto
-        alert("ERROR. Ese producto no se encuentra en su carrito")
+        mostrarModal("noAgregado", "Este producto no se encuentra en el carrito. Agreguelo primero")
         return
     }
+    
     carrito.splice(indiceProductoCarrito,1) // Desde el indice del producto que encontre, borro 1 elemento (osea el producto que encontre por su ID)
     sessionStorage.setItem("carrito", JSON.stringify(carrito))
     mostrarCantidadProductosCarrito()
@@ -164,6 +165,9 @@ function mostrarModal(tipoModal, mensaje){
         modalIcono.style.color = "green"
     } else if(tipoModal === "eliminado"){
         modalIcono.innerHTML = `<i class="bi bi-trash-fill"></i>`
+        modalIcono.style.color = "red"
+    } else if(tipoModal === "noAgregado" || tipoModal === "yaAgregado"){
+        modalIcono.innerHTML = `<i class="fas fa-times"></i>`
         modalIcono.style.color = "red"
     }
 
