@@ -69,9 +69,23 @@ function mostrarCarrito(lista){
     });
 
 
+    if(productoCarrito.length>0){
 
-    textoTotal+= `
-        <p id="precioTotal">Total: $${precioTotal}</p>`;
+        textoTotal+= `
+        <div id="total">
+            <p id="TextoTotal">Total:</p>
+            <p id="precioTotal">$${precioTotal}</p>
+        </div>    
+        <div id="confirmar-compra">
+            <button>Comprar</button>
+        </div>    `;
+
+    }
+    else{
+        textoTotal+= `
+        <p id="TextoTotal">No se agregaron productos</p>`;
+    }
+    
 
 
     contenedorTotal.innerHTML = textoTotal;
