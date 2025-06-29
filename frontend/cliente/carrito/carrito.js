@@ -62,30 +62,29 @@ function mostrarCarrito(lista){
         `
         precioTotal += producto.precio * producto.cantidad;
     });
-
-
+    
+    
+    // Chequear esto
     if(productoCarrito.length>0){
-
+        
         textoTotal+= `
         <div id="total">
-            <p id="TextoTotal">Total:</p>
-            <p id="precioTotal">$${precioTotal}</p>
+        <p id="TextoTotal">Total:</p>
+        <p id="precioTotal">$${precioTotal}</p>
         </div>    
         <div id="confirmar-compra">
-            <button>Comprar</button>
+        <button>Comprar</button>
         </div>    `;
-
+        
     }
     else{
         textoTotal+= `
         <p id="TextoTotal">No se agregaron productos</p>`;
     }
     
-
-
     contenedorTotal.innerHTML = textoTotal;
-
     itemsCarrito.innerHTML = productoCarrito;
+    sessionStorage.setItem("totalCarrito", precioTotal)
 }
 
 
@@ -105,20 +104,14 @@ function restarProducto(id){
 
     let productoRestar = listaCarrito.find(producto => producto.id_producto === id);
 
-
     let indice = listaCarrito.findIndex(producto=> producto.id_producto === id);
 
     productoRestar.cantidad -= 1;
-
-
-    
-
 
     if(productoRestar.cantidad === 0){
 
         eliminar(indice);
     }
-
 
     mostrarCarrito(listaCarrito);
 
@@ -145,12 +138,9 @@ function vaciarCarrito(){
         let respuesta = confirm("Desea vaciar el carrito?");
 
         if(respuesta){
-
             listaCarrito = [];
-        mostrarCarrito(listaCarrito);
-
-        sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
-
+            mostrarCarrito(listaCarrito);
+            sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
         }
     })
 }
@@ -160,25 +150,16 @@ function init(){
 
     if(sessionStorage.getItem('carrito')){
 
-        console.log("goaasldsaldaslds")
         listaCarrito = JSON.parse(sessionStorage.getItem("carrito"));
-
         console.log(listaCarrito);
-
     }
-
 
     mostrarCarrito(listaCarrito);
 
-
     obtenerNombreUsuarioSesionStorage();
-
 
     vaciarCarrito();
 
 }
-
-
-
 
 init();
