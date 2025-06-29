@@ -21,6 +21,10 @@ app.get("/",(req,res) =>{
 
 //Basicamente generamos el endpoint en donde se realiza un verbo de HTTP (POST,GET,PUT,DELETE,PATCH)
 
+
+/////////////////////////////
+// Endpoints para el admin //
+
 // Endpoint para obtener todos los productos de la base de datos
 app.get("/getAllProducts", async(req,res)=>{
     try{
@@ -156,6 +160,28 @@ app.delete('/deleteProduct/:id', async (req, res) => {
             error: err
         })
     }
+})
+
+
+///////////////////////////////
+// Endpoints para el cliente //
+
+// Endpoint para que el usuario realice una compra y se registre en la base de datos 
+app.post('/realizarCompra', async (req, res) => {
+    const {nombreUsuario, total} = req.body
+    
+    if(!nombreUsuario || !total){
+        return res.status(400).json({
+            error: "Error. Debe mandar algo valido en todos los campos"
+        })
+    }
+
+    const sqlQuery = 'INSERT INTO ventas (nombre_usuario, fecha, total) VALUES (?,NOW(),?)'
+    const [result] = await connection.query(sql, [nombreUsuario, fecha, total])
+    
+
+
+
 })
 
 
