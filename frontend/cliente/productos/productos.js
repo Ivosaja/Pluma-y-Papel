@@ -1,5 +1,6 @@
 
 //variable globales
+let modalTimeoutId = null // aca guardamos el timeout actual
 
 let contenedorProductos = document.getElementById("contenedor-productos");
 let filtradoUtiles = document.getElementById("filtrarUtiles")
@@ -146,7 +147,7 @@ function eliminarDelCarrito(idProducto){
         mostrarModal("noAgregado", "Este producto no se encuentra en el carrito. Agreguelo primero")
         return
     }
-    
+
     carrito.splice(indiceProductoCarrito,1) // Desde el indice del producto que encontre, borro 1 elemento (osea el producto que encontre por su ID)
     sessionStorage.setItem("carrito", JSON.stringify(carrito))
     mostrarCantidadProductosCarrito()
@@ -171,11 +172,16 @@ function mostrarModal(tipoModal, mensaje){
         modalIcono.style.color = "red"
     }
 
+    if(modalTimeoutId != null){
+        clearTimeout(modalTimeoutId) // borra el id del timeout pasado por parametro (el actual)
+    }
+
     modalMensaje.textContent = mensaje
     modal.style.display = "flex"
 
-    setTimeout(() => {
-        modal.style.display = "none"
+    modalTimeoutId = setTimeout(() => {
+        modal.style.display = "none",
+        modalTimeoutId = null // volvemos a borrar el id del timeout una vez pasados los 2 segundos
     }, 3000)
 }
 
@@ -184,7 +190,7 @@ function mostrarModal(tipoModal, mensaje){
 
 async function init() {
     // Pongo un mensaje en contenedor de productos para que se vea algo mientras se realiza el fetch que puede tardar unos segundos (porque usa async/await)
-    contenedorProductos.innerHTML = `<p>Cargando productos...</p>`
+    contenedorProductos.innerHTML = `<p class="contenedor-productos-texto">Cargando productos...</p>`
     
     // Me traigo lo del session storage si hay algo y lo parseo a Objeto JS, sino, significa que no hay ningun producto en el carrito,
     // pq nunca se creo ese item del session storage
