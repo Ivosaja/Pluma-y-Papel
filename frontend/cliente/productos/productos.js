@@ -173,13 +173,13 @@ function mostrarModal(tipoModal, mensaje){
     }
 
     if(modalTimeoutId != null){
-        clearTimeout(modalTimeoutId) // borra el id del timeout pasado por parametro (el actual)
+        clearTimeout(modalTimeoutId) // borra el id del timeout pasado por parametro (el actual) si no es null
     }
 
     modalMensaje.textContent = mensaje
     modal.style.display = "flex"
 
-    modalTimeoutId = setTimeout(() => {
+    modalTimeoutId = setTimeout(() => { // guardo el id de este setTimeout
         modal.style.display = "none",
         modalTimeoutId = null // volvemos a borrar el id del timeout una vez pasados los 2 segundos
     }, 3000)

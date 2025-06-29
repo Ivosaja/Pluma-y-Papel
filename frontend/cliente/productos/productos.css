@@ -367,6 +367,10 @@ footer{
         position: static;
     }
 
+    #contenedor-productos{
+        flex-grow: 1;
+    }
+
     #contenedor-seleccion-categoria, #contenedor-panel-admin{
         width: 30%;
     }
