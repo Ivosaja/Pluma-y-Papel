@@ -173,7 +173,9 @@ function mostrarModal(tipoModal, mensaje){
         modalIcono.style.color = "red"
     } else if(tipoModal === "noAgregado" || tipoModal === "yaAgregado"){
         modalIcono.innerHTML = `<i class="fas fa-times"></i>`
-        modalIcono.style.color = "red"
+        modalIcono.style.color = "white"
+        modalIcono.style.backgroundColor = "#c0392b"
+        modalIcono.style.padding = "0.2rem"
     }
 
     if(modalTimeoutId != null){

@@ -350,10 +350,16 @@ footer{
 }
 
 
+#modal-vaciar-carrito i{
+    background-color: #c0392b;
+    color: white;
+    padding: 0.2rem;
+}
+
 
 #botones-modal button{
     padding: 0.4rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
     border: 1px solid grey;
     cursor: pointer;
 }
@@ -377,6 +383,10 @@ footer{
     pointer-events: none;
     user-select: none;
 }
+
+
+
+
 
 
 

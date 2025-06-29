@@ -185,6 +185,8 @@ function aplicarModal(modalTipo){
                 `
         modalVaciarCarrito.innerHTML = contenido;
 
+        modalVaciarCarrito.style.flexDirection = "row";
+
         mostrarModal();
 
         setTimeout(esconderModal, 3000);
