@@ -189,6 +189,7 @@ function mostrarModal(tipoModal, mensaje){
 ///////////////////////////////////////////////////////////////////
 
 async function init() {
+
     // Pongo un mensaje en contenedor de productos para que se vea algo mientras se realiza el fetch que puede tardar unos segundos (porque usa async/await)
     contenedorProductos.innerHTML = `<p class="contenedor-productos-texto">Cargando productos...</p>`
     

@@ -1,18 +1,13 @@
 
 let contenedorUsuario = document.getElementById("contenedor-tarjeta-usuario");
 
-
-let listaCarrito = JSON.parse(sessionStorage.getItem("carrito"));
+let listaCarrito = [];
 
 
 
 let itemsCarrito = document.getElementById("items-carrito");
 
-
-
 let botonVaciarCarrito = document.getElementById("vaciar-carrito");
-
-
 
 
 let contenedorTotal= document.getElementById("contenedor-Total-Comprar");
@@ -99,9 +94,9 @@ function sumarProducto(id){
 
     let productoAgregar = listaCarrito.find(producto=> producto.id_producto === id);
 
-    productoAgregar.cantidad += 1;
-    
+    productoAgregar.cantidad += 1;    
     mostrarCarrito(listaCarrito);
+    sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
 
 }
 
@@ -116,6 +111,8 @@ function restarProducto(id){
     productoRestar.cantidad -= 1;
 
 
+    
+
 
     if(productoRestar.cantidad === 0){
 
@@ -124,6 +121,8 @@ function restarProducto(id){
 
 
     mostrarCarrito(listaCarrito);
+
+    sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
 }
 
 
@@ -158,6 +157,15 @@ function vaciarCarrito(){
 
 
 function init(){
+
+    if(sessionStorage.getItem('carrito')){
+
+        console.log("goaasldsaldaslds")
+        listaCarrito = JSON.parse(sessionStorage.getItem("carrito"));
+
+        console.log(listaCarrito);
+
+    }
 
 
     mostrarCarrito(listaCarrito);
