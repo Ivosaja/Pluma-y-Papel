@@ -1,19 +1,20 @@
+///VARIABLES GLOBLES///
+
 
 let contenedorUsuario = document.getElementById("contenedor-tarjeta-usuario");
 
 let listaCarrito = [];
 
-
-
 let itemsCarrito = document.getElementById("items-carrito");
 
 let botonVaciarCarrito = document.getElementById("vaciar-carrito");
-
 
 let contenedorTotal= document.getElementById("contenedor-Total-Comprar");
 
 let modalVaciarCarrito = document.getElementById('modal-vaciar-carrito');
 
+
+let modalConfirmarCompra = document.getElementById('modal-confirmar-compra');
 
 
 
@@ -75,7 +76,7 @@ function mostrarCarrito(lista){
         <p id="precioTotal">$${precioTotal}</p>
         </div>    
         <div id="confirmar-compra">
-        <button>Comprar</button>
+            <button id="boton-comprar">Comprar</button>
         </div>    `;
         
     }
@@ -138,17 +139,17 @@ function vaciarCarrito(){
 
         if(listaCarrito.length===0){
 
-            aplicarModal("noPreguntar");
+            aplicarModalVaciarCarrito("noPreguntar");
         }
         else{
-            aplicarModal("preguntaVaciar");
+            aplicarModalVaciarCarrito("preguntaVaciar");
         }
     })
 }
 
 
 
-function aplicarModal(modalTipo){
+function aplicarModalVaciarCarrito(modalTipo){
     let contenido = "";
 
     if(modalTipo==="preguntaVaciar"){
@@ -164,14 +165,7 @@ function aplicarModal(modalTipo){
 
         modalVaciarCarrito.innerHTML = contenido;
 
-        mostrarModal();
-
-        /*basciametne es necesario esto ya que sino el usaurio Clietne poddria interacionar con todas las cosas de la pagina
-            sin confirmar su eleccion */
-
-        document.getElementById('encabezado').classList.add('bloquear-interacciones');
-        document.getElementById('principal').classList.add('bloquear-interacciones');
-
+        mostrarModal(modalVaciarCarrito);
         modalBtnNo();
         modalBtnSi();
 
@@ -187,28 +181,38 @@ function aplicarModal(modalTipo){
 
         modalVaciarCarrito.style.flexDirection = "row";
 
-        mostrarModal();
+        mostrarModal(modalVaciarCarrito);
 
-        setTimeout(esconderModal, 3000);
+        setTimeout(() => {
+                esconderModal(modalVaciarCarrito);
+                }, 3000);
     }
 
 }
 
+//////////////////////////////////////////////////////////////////////////
 
-function esconderModal(){
+function esconderModal(modal){
 
-    modalVaciarCarrito.style.display = "none";
+    modal.style.display = "none";
     //aca removes la clase aplciada que no permite selecionar otra cosa que no sea el modal
 
     document.getElementById('encabezado').classList.remove('bloquear-interacciones');
     document.getElementById('principal').classList.remove('bloquear-interacciones');
 }
 
-function mostrarModal(){
+//////////////////////////////////////////////////////////////////////////
 
-    modalVaciarCarrito.style.display = "flex";
+function mostrarModal(modal){
+    modal.style.display = "flex";
+
+    /*basciametne es necesario esto ya que sino el usaurio Clietne poddria interacionar con todas las cosas de la pagina
+            sin confirmar su eleccion */
+    document.getElementById('encabezado').classList.add('bloquear-interacciones');
+    document.getElementById('principal').classList.add('bloquear-interacciones');
 }
 
+//////////////////////////////////////////////////////////////////////////
 
 function modalBtnSi(){
 
@@ -220,18 +224,114 @@ function modalBtnSi(){
 
         sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
 
-        esconderModal();
+        esconderModal(modalVaciarCarrito);
     })
 
 }
+
+//////////////////////////////////////////////////////////////////////////
 
 function modalBtnNo(){
     let btnNo = document.getElementById("btn-No");
     btnNo.addEventListener("click", function(){
     
-            esconderModal();
+            esconderModal(modalVaciarCarrito);
         })
 }
+
+
+//////////////////////////////////////////////////////////////////////////
+
+
+function clickearBotonComprar(){
+
+    let btnComprar = document.getElementById("boton-comprar");
+
+    btnComprar.addEventListener("click", function(){
+
+
+        console.log("dfsdhfsdfh");
+
+        aplicarModalComprar()
+
+    })
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+function aplicarModalComprar(){
+
+    let contenido = 
+    `
+    <p>Desea confirmar la compra?</p>
+    <div id="contenedor-confirmar-rechazar">
+
+        <button id="confirmar">Confirmar</button>
+        <button id="rechazar">Rechazar</button>
+    </div>    
+    `
+    modalConfirmarCompra.innerHTML = contenido;
+
+    mostrarModal(modalConfirmarCompra);
+
+
+    confirmar();
+
+    rechazar();
+
+
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+
+
+function confirmar(){
+    let btnConfirmar = document.getElementById("confirmar");
+
+
+    btnConfirmar.addEventListener("click", function(){
+    
+        esconderModal(modalConfirmarCompra);
+
+        let contenido = 
+            `
+                <i class="bi bi-check-circle-fill"></i>
+                <p>Su compra ha confirmado correctamente</p>
+            `
+        modalConfirmarCompra.innerHTML = contenido;
+
+        mostrarModal(modalConfirmarCompra);
+
+        setTimeout(() => 
+            {
+                esconderModal(modalConfirmarCompra);
+            }, 3000);
+
+        
+
+    })
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+
+function rechazar(){
+    let btnRechazar = document.getElementById("rechazar");
+
+    btnRechazar.addEventListener("click", function(){
+
+
+        esconderModal(modalConfirmarCompra);
+
+    })
+
+
+}
+
+
+
+
 
 
 ////FUNCION INICIADORA //////
@@ -249,6 +349,9 @@ function init(){
     obtenerNombreUsuarioSesionStorage();
 
     vaciarCarrito();
+
+    clickearBotonComprar();
+
 
 }
 

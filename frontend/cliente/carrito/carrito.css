@@ -298,7 +298,7 @@ body{
 }
 
 
-#confirmar-compra button{
+#boton-comprar{
 
     cursor: pointer;
     padding: 1rem;
@@ -309,7 +309,7 @@ body{
     color: #fffce2; 
 }
 
-#confirmar-compra button:hover {
+#boton-comprar:hover {
     background-color: #6b7a49; 
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
@@ -362,17 +362,18 @@ footer{
     font-size: 1.2rem;
     border: 1px solid grey;
     cursor: pointer;
+    border:none;
 }
 
 
-#btn-Si:hover {
+#btn-Si:hover, #confirmar:hover{
     background-color: #58a03c;
     box-shadow: 0 0 6px rgba(106, 176, 76, 0.5);
     color:white;
 }
 
 
-#btn-No:hover {
+#btn-No:hover, #rechazar:hover {
     background-color: #c0392b;
     box-shadow: 0 0 6px rgba(235, 77, 75, 0.5);
     color:white;
@@ -384,6 +385,40 @@ footer{
     user-select: none;
 }
 
+
+#modal-confirmar-compra{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    position: fixed;
+    top: 20px;
+    left: 50%; 
+    background-color: #f0f0f0;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    z-index: 1000;
+    transform: translateX(-50%); 
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    font-size: 1.8rem;
+}
+
+#modal-confirmar-compra i {
+    color: #58a03c;
+}
+
+#contenedor-confirmar-rechazar{
+    display: flex;
+    gap: 2rem;
+}
+
+
+#contenedor-confirmar-rechazar button{
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+}
 
 
 
