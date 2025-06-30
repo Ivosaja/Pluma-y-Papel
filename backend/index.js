@@ -33,18 +33,16 @@ app.get("/getAllProducts", async(req,res)=>{
 
         // 200 -> codigo de respuesta exitosa//
         res.status(200).json({
-            payload:rows,
-            message:rows.length===0 ? "No se encontraron productos" : `Se encontraron: ${rows.length} productos`})
+            payload: rows,
+            message: rows.length===0 ? "No se encontraron productos" : `Se encontraron: ${rows.length} productos`})
 
-    }catch(error){
-        console.log("Error al obtener Productos: ", error);
+    }catch(err){
         res.status(500).json({
-            error:"Error desde el servidor"
+            message: "Error interno del servidor al obtener todos los productos de la base de datos", 
+            error: err
         })
     }
 })
-
-
 
 
 
@@ -61,14 +59,14 @@ app.get('/getProductById/:id', async(req, res) => {
             })
         }
         res.status(200).json({
-            payload: rows,
-            message: `Se encontro exitosamente el producto con ID: ${id}`
+            message: `Se encontro exitosamente el producto con ID: ${id}`,
+            payload: rows
         })
         
     } catch(err){
-        console.log('Error interno del servidor. No se pudo encontrar el producto en la base de datos', err)
         res.status(500).json({
-            error: "Error interno del servidor al buscar el producto"
+            message: "Error interno del servidor al buscar el producto en la base de datos",
+            error: err
         })
     }
 })
@@ -82,30 +80,32 @@ app.post('/postProduct', async (req, res) => {
         
         if(!nombre || !categoria || !precio || !url_imagen){
             return res.status(400).json({
-                message:"Se deben completar todos los campos, ninguna debe quedar vacio o nulo"
+                error: "Error. Se deben completar todos los campos, ninguno debe quedar vacio o nulo"
             })
             
         }
         
         const sql = "INSERT INTO productos (nombre,categoria,precio,url_imagen) VALUES (?,?,?,?)"; //Placeholder--> campos vacios
         
-        let mensaje = await connection.query(sql, [nombre,categoria,precio,url_imagen]); //aca le pasamos los datos en ordern como irian en las columnas
+        let [result] = await connection.query(sql, [nombre,categoria,precio,url_imagen]); //aca le pasamos los datos en ordern como irian en las columnas
         //el conexion ya es LA CONEXION
         //.query ejecuta una consulta
         //si o si el await para que se resulva la promesa primero 
         
+        // TODO => Pensar si es necesario validar si affectedRows === 0
+
         res.status(201).json({
             message: `Se inserto correctamente el producto denominado ${nombre} a la base de datos`,
-            payload: mensaje
-            
+            insertId: result.insertId,
+            payload: result
+        
             
         }) //siginifca que la peticion del cliente fue exisdtosa y resulto en el creacion de un nuevo recurso en el servidor//
         
-    }catch(error){
+    }catch(err){
         res.status(500).json({
             message:"Error al intento de insertar el producto a la base de datos",
-            
-            error:error
+            error:err
         });
     }
 })
@@ -116,39 +116,84 @@ app.delete('/deleteProduct/:id', async (req, res) => {
         const {id} = req.params
         if(isNaN(id)){ // TODO => chequear esto de isNaN()
             return res.status(400).json({
-                message: "Debe ingresar un ID valido"
+                error: "Debe ingresar un ID valido"
             }) 
         }
         
-        const sqlQuery = 'DELETE FROM productos WHERE id_producto = ?'
+        const sqlQuery = 'UPDATE productos SET activo = 0 WHERE id_producto = ?'
         const [result] = await connection.query(sqlQuery, [id]) // Obtengo el elemento 0 de el result de la query
         
         if(result.affectedRows === 0){
             return res.status(404).json({
-                message: `Error. No se encontro el producto con ID: ${id} para borrarlo de la base de datos`
+                error: `Error. No se encontro el producto con ID: ${id} para darlo de baja de la base de datos`
+            })
+        }
+
+        if(result.changedRows === 0){
+            return res.status(200).json({
+                message: "El producto se encontro, pero no se le dio baja logica ya que ya estaba dado de baja"
             })
         }
         
         res.status(200).json({
-            message: `Se elimino correctamente el producto con ID: ${id} de la base de datos`,
+            message: `Se dio de baja correctamente el producto con ID: ${id} de la base de datos`,
             payload: result
         })
         
         
     } catch (err){
         res.status(500).json({
-            message: "Error interno del servidor al borrar de la base de datos",
+            message: "Error interno del servidor al dar de baja logica en la base de datos",
             error: err
         })
     }
 })
 
-// Endpoint para actualizar/modificar producto de la base de datos (nombre, precio, categoria, imagen, estado -> solo desactivarlo)
+// Endpoint para actualizar/modificar producto de la base de datos (nombre, categoria, precio, imagen)
 app.put('/modifyProduct/:id', async (req, res) => {
+    try{
+        const id = Number(req.params.id)
+        if(isNaN(id) || id <= 0){
+            return res.status(400).json({
+                error: "Debe ingresar un ID valido"
+            })
+        }
     
+        const {nombre, categoria, precio, url_imagen} = req.body
+        if(!nombre || !categoria || !precio || !url_imagen){
+            return res.status(400).json({
+                error: "Debe ingresar los campos correctamente"
+            })
+        }
+    
+        const sqlQuery = 'UPDATE productos SET nombre = ?, categoria = ?, precio = ?, url_imagen = ? WHERE id_producto = ?'
+        const [result] = await connection.query(sqlQuery, [nombre, categoria, precio, url_imagen, id])
+
+        if(result.affectedRows === 0){
+            return res.status(404).json({
+                error: `Error. No se encontro el producto con ID: ${id} para actualizarlo en la base de datos`
+            })
+        }
+
+        if(result.changedRows === 0){
+            return res.status(200).json({
+                message: "El producto se encontro, pero ya se encontraba activado" 
+            })
+        }
+
+        res.status(200).json({
+            message: `Se modifico el producto con ID: ${id} correctamente`,
+            payload: result
+        })
+
+    } catch (err){
+        res.status(500).json({
+            message: "Error interno del servidor al actualizar un producto",
+            error: err
+        })
+    }
+  
 })
-
-
 
 
 // Endpoint para activar producto de la base de datos
@@ -157,7 +202,7 @@ app.put('/activateProduct/:id', async (req, res) => {
         let id = Number(req.params.id); 
         if(isNaN(id) || id<=0){ 
             return res.status(400).json({
-                message: "Debe ingresar un ID valido"
+                error: "Debe ingresar un ID valido"
             }) 
         }
         
@@ -166,7 +211,13 @@ app.put('/activateProduct/:id', async (req, res) => {
         
         if(result.affectedRows === 0){
             return res.status(404).json({
-                message: `Error. No se encontro el producto con ID: ${id} para activar de la base de datos`
+                error: `Error. No se encontro el producto con ID: ${id} para activarlo en la base de datos`
+            })
+        }
+
+        if(result.changedRows === 0){
+            return res.status(200).json({
+                message: "El producto se encontro, pero ya se encontraba activado"
             })
         }
         
@@ -177,7 +228,7 @@ app.put('/activateProduct/:id', async (req, res) => {
 
     } catch (err){
         res.status(500).json({
-            message: "Error interno del servidor al borrar de la base de datos",
+            message: "Error interno del servidor al activar un producto en la base de datos",
             error: err
         })
     }
@@ -210,7 +261,7 @@ app.post('/finalizePurchase', async (req, res) => {
 
         if(!nombreUsuario || !total || !Array.isArray(carrito) || !carrito || carrito.length === 0){
             return res.status(400).json({
-                error: "Error. Debe mandar algo valido en todos los campos"
+                error: "Error. Debe ingresar los campos correctamente"
             })
         }
         
@@ -236,7 +287,7 @@ app.post('/finalizePurchase', async (req, res) => {
         }
         
         await conn.commit() // si todo salio bien, espera a que se guarden todos los cambios de forma permanente en la BD
-        res.status(200).json({
+        res.status(201).json({
             message: `Se inserto la venta con ID: ${idVenta} exitosamente junto con sus detalles en la tabla detalle_venta`,
             payload: resultVenta
         })
@@ -256,18 +307,19 @@ app.post('/finalizePurchase', async (req, res) => {
 //Endpoint para obtener todos los productos activos para el cliente
 app.get("/getAllActiveProducts", async(req,res)=>{
     try{
-        let sqlQuery = "SELECT * FROM productos WHERE activo=1";
+        let sqlQuery = "SELECT * FROM productos WHERE activo = 1";
         const [rows] =  await connection.query(sqlQuery); //desestructuracion de los datos, quedandonos solo con las filas//
 
         // 200 -> codigo de respuesta exitosa//
         res.status(200).json({
-            payload:rows,
-            message:rows.length===0 ? "No se encontraron productos" : `Se encontraron: ${rows.length} productos`})
+            message: rows.length===0 ? "No se encontraron productos" : `Se encontraron: ${rows.length} productos`,
+            payload: rows
+        })
 
-    }catch(error){
-        console.log("Error al obtener Productos: ", error);
+    }catch(err){
         res.status(500).json({
-            error:"Error desde el servidor"
+            message: "Error interno desde el servidor al obtener todos los productos activos de la base de datos",
+            error: err
         })
     }
 })
