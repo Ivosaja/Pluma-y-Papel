@@ -58,11 +58,20 @@ function mostrarProductos(lista){
 
 function mostrarCantidadProductosCarrito(){
     contenedorBtnCarrito.innerHTML = `
-        <a href="../carrito/carrito.html" class="btn-carrito">
-            <i class="bi bi-cart2"></i>
-        </a>
+        <i class="bi bi-cart2"></i>
         <span id="contador-carrito">${carrito.length}</span>
     `;
+}
+
+
+function redireccionarCarrito(){
+
+
+    contenedorBtnCarrito.addEventListener("click", function(){
+
+        window.location.href = "../carrito/carrito.html";
+
+    })
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -168,14 +177,13 @@ function mostrarModal(tipoModal, mensaje){
     if(tipoModal === "agregado"){
         modalIcono.innerHTML = `<i class="bi bi-check-circle-fill"></i>`
         modalIcono.style.color = "green"
+        modalIcono.style.backgroundColor = "transparente"
     } else if(tipoModal === "eliminado"){
         modalIcono.innerHTML = `<i class="bi bi-trash-fill"></i>`
         modalIcono.style.color = "red"
     } else if(tipoModal === "noAgregado" || tipoModal === "yaAgregado"){
         modalIcono.innerHTML = `<i class="fas fa-times"></i>`
-        modalIcono.style.color = "white"
-        modalIcono.style.backgroundColor = "#c0392b"
-        modalIcono.style.padding = "0.2rem"
+        modalIcono.style.color = "red"
     }
 
     if(modalTimeoutId != null){
@@ -204,11 +212,9 @@ function volverInicio() {
     
 }
 
-
 function redireccionarPanelAdmin(){
 
     btnPanelAdmin.addEventListener("click", function(){
-
 
         window.location.href = "../../admin/dashboard/dashboard.html";
     })
@@ -244,6 +250,8 @@ async function init() {
     volverInicio();
 
     redireccionarPanelAdmin();
+
+    redireccionarCarrito();
 
 }
 

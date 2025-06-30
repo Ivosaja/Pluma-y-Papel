@@ -36,6 +36,7 @@
     border-radius: 1rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
 }
 
 #contenedor-tarjeta-usuario:hover {
@@ -94,6 +95,7 @@
     border-radius: 1rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
 }
 
 #contenedor-boton-carrito span{

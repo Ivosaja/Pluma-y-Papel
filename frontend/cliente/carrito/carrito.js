@@ -1,25 +1,27 @@
 ///VARIABLES GLOBLES///
-
-
 let contenedorUsuario = document.getElementById("contenedor-tarjeta-usuario");
-
+let contenedorVolverProductos = document.getElementById("contenedor-boton-volver");
 let listaCarrito = [];
-
 let itemsCarrito = document.getElementById("items-carrito");
-
 let botonVaciarCarrito = document.getElementById("vaciar-carrito");
-
 let contenedorTotal= document.getElementById("contenedor-Total-Comprar");
-
 let modalVaciarCarrito = document.getElementById('modal-vaciar-carrito');
-
-
 let modalConfirmarCompra = document.getElementById('modal-confirmar-compra');
-
+//////////////////////////////////////////////////////////////////////////
 
 
 
 console.log(listaCarrito);
+
+
+function volverAProductos(){
+
+    contenedorVolverProductos.addEventListener("click", function(){
+
+        window.location.href = "../productos/productos.html";
+    })
+
+}
 
 function obtenerNombreUsuarioSesionStorage(){
     let nombre = sessionStorage.getItem("nombreUsuario");
@@ -166,6 +168,7 @@ function aplicarModalVaciarCarrito(modalTipo){
         modalVaciarCarrito.innerHTML = contenido;
 
         mostrarModal(modalVaciarCarrito);
+        opacidad("realizar");
         modalBtnNo();
         modalBtnSi();
 
@@ -199,6 +202,8 @@ function esconderModal(modal){
 
     document.getElementById('encabezado').classList.remove('bloquear-interacciones');
     document.getElementById('principal').classList.remove('bloquear-interacciones');
+
+    
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -210,6 +215,7 @@ function mostrarModal(modal){
             sin confirmar su eleccion */
     document.getElementById('encabezado').classList.add('bloquear-interacciones');
     document.getElementById('principal').classList.add('bloquear-interacciones');
+
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -225,6 +231,7 @@ function modalBtnSi(){
         sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
 
         esconderModal(modalVaciarCarrito);
+        opacidad("ocultar");
     })
 
 }
@@ -236,6 +243,7 @@ function modalBtnNo(){
     btnNo.addEventListener("click", function(){
     
             esconderModal(modalVaciarCarrito);
+            opacidad("ocultar");
         })
 }
 
@@ -249,16 +257,13 @@ function clickearBotonComprar(){
 
     btnComprar.addEventListener("click", function(){
 
-
         console.log("dfsdhfsdfh");
 
         aplicarModalComprar()
 
     })
 }
-
 //////////////////////////////////////////////////////////////////////////
-
 function aplicarModalComprar(){
 
     let contenido = 
@@ -273,13 +278,10 @@ function aplicarModalComprar(){
     modalConfirmarCompra.innerHTML = contenido;
 
     mostrarModal(modalConfirmarCompra);
-
+    opacidad("realizar");
 
     confirmar();
-
     rechazar();
-
-
 }
 
 
@@ -294,21 +296,24 @@ function confirmar(){
     
         esconderModal(modalConfirmarCompra);
 
+
         let contenido = 
             `
                 <i class="bi bi-check-circle-fill"></i>
-                <p>Su compra ha confirmado correctamente</p>
+                <p>Su compra se ha confirmado correctamente</p>
+
+                <div id="contenedor-Volver">
+                    <button id="volver">Volver</button>
+                </div>
             `
         modalConfirmarCompra.innerHTML = contenido;
-
+        
         mostrarModal(modalConfirmarCompra);
 
-        setTimeout(() => 
-            {
-                esconderModal(modalConfirmarCompra);
-            }, 3000);
+        volverInicio();
 
-        
+        // esconderModal(modalConfirmarCompra),
+        // opacidad("ocultar");
 
     })
 }
@@ -323,13 +328,38 @@ function rechazar(){
 
 
         esconderModal(modalConfirmarCompra);
+        opacidad("ocultar");
 
     })
 
-
 }
+//////////////////////////////////////////////////////////////////////////
+function opacidad(accion){
+    if(accion === "realizar")
+    {
+        document.getElementById('encabezado').classList.add('opacidad');
+        document.getElementById('principal').classList.add('opacidad');
+        
+    }
+    else{
+        document.getElementById('encabezado').classList.remove('opacidad');
+        document.getElementById('principal').classList.remove('opacidad');
+    }
+}
+//////////////////////////////////////////////////////////////////////////
+function volverInicio(){
+
+    let btnVolver = document.getElementById("volver");
+
+    btnVolver.addEventListener("click", function(){
 
 
+        window.location.href = "../bienvenida/index.html";
+
+        sessionStorage.clear();
+
+    })
+}
 
 
 
@@ -343,6 +373,8 @@ function init(){
         listaCarrito = JSON.parse(sessionStorage.getItem("carrito"));
         console.log(listaCarrito);
     }
+
+    volverAProductos();
 
     mostrarCarrito(listaCarrito);
 
