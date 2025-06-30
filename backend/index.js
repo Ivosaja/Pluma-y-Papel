@@ -132,7 +132,7 @@ app.post('/postProduct', async (req, res) => {
 app.delete('/deleteProduct/:id', async (req, res) => {
     try{
         const {id} = req.params
-        if(isNaN(id)){
+        if(isNaN(id)){ // TODO => chequear esto de isNaN()
             return res.status(400).json({
                 message: "Debe ingresar un ID valido"
             }) 
@@ -171,7 +171,7 @@ app.put('/modifyProduct/:id', async (req, res) => {
 
 // Endpoint para activar producto de la base de datos
 app.put('/activateProduct/:id', async (req, res) => {
-
+    
 })
 
 
@@ -180,25 +180,64 @@ app.put('/activateProduct/:id', async (req, res) => {
 
 // Endpoint para que el usuario realice una compra y se registre en la base de datos 
 app.post('/finalizePurchase', async (req, res) => {
-    const {nombreUsuario, total} = req.body
     
-    console.log(nombreUsuario)
-    console.log(total)
-    if(!nombreUsuario || !total){
-        return res.status(400).json({
-            error: "Error. Debe mandar algo valido en todos los campos"
+    // Obtengo una conexion de la pool de conexiones para poder hacer una transaccion sobre una conexion y no sobre el pool
+    const conn = await connection.getConnection()
+    
+    try{
+        await conn.beginTransaction() // Inicio una transaccion en la conexion obtenida en la cual se ejecutaran una serie de operaciones agrupadas, y o se ejecutan todas, o no se ejecuta ninguna -> esto es muy bueno porque no tengo despues problema de inconsistencia de datos en mis tablas si algo fallo en otro insert estrechamente relacionado con otra tabla, manteniendo una buena integridad de datos.
+
+        /*
+            |
+            |
+            V
+
+            a partir de aca abajo, todas las consultas que hago, no se guardan de forma permanente en la BD hasta que haga commit()
+        */
+
+        const {nombreUsuario, total, carrito} = req.body
+        
+        if(!nombreUsuario || !total || !Array.isArray(carrito) || !carrito || carrito.length === 0){
+            return res.status(400).json({
+                error: "Error. Debe mandar algo valido en todos los campos"
+            })
+        }
+
+        const sqlQueryVenta = 'INSERT INTO ventas (nombre_usuario, fecha, total) VALUES (?,NOW(),?)'
+        const [resultVenta] = await conn.query(sqlQueryVenta, [nombreUsuario,total])
+        const idVenta = resultVenta.insertId
+        
+
+        const sqlQueryDetalle = 'INSERT INTO detalle_venta (id_venta, id_producto, cantidad) VALUES (?,?,?)'
+        // Uso de for...of porque permite la utilizacion de await por cada elemento del array carrito a diferencia del forEach(), el cual no respeta el manejo de promesas
+        for(const producto of carrito){
+            
+            let {id_producto, cantidad} = producto
+            if(!id_producto || !cantidad || cantidad === 0){
+                await conn.rollback()
+                return res.status(400).json({
+                    error: "El producto debe tener el id y la cantidad validos obligatoriamente"
+                })
+            }
+
+            await conn.query(sqlQueryDetalle, [idVenta, id_producto, cantidad])
+        }
+
+        await conn.commit() // si todo salio bien, espera a que se guarden todos los cambios de forma permanente en la BD
+        res.status(200).json({
+            message: `Se inserto la venta con ID: ${idVenta} exitosamente junto con sus detalles en la tabla detalle_venta`,
+            payload: resultVenta
         })
+        
+    } catch (err){
+        await conn.rollback() // Si hay algo que no revierte todas las operaciones en caso de error 
+        res.status(500).json({
+            message: "Error interno del servidor al guardar venta en la base de datos",
+            error: err.message
+        })
+    } finally {
+        await conn.release(); // libero la conexion obtenida del pool para no saturar al mismo
     }
-
-    const sqlQuery = 'INSERT INTO ventas (nombre_usuario, fecha, total) VALUES (?,NOW(),?)'
-    const [result] = await connection.query(sqlQuery, [nombreUsuario,total])
-    const idVenta = result.insertId
-
-    res.status(200).json({
-        message: `Se inserto la venta con ID: ${idVenta} exitosamente`,
-        payload: result
-    })
-
 })
 
 
