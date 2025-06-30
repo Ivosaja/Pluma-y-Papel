@@ -426,11 +426,20 @@ footer{
 
 
 #volver{
-
-    padding: 3rem;
-
+    background-color: var(--color-boton);
+    padding: 1rem;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
 }
 
+
+#volver:hover {
+    background-color: #556142; 
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
 
 /*media queries*/
 @media (max-width: 850px){

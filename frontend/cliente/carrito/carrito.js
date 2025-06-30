@@ -9,11 +9,6 @@ let modalVaciarCarrito = document.getElementById('modal-vaciar-carrito');
 let modalConfirmarCompra = document.getElementById('modal-confirmar-compra');
 //////////////////////////////////////////////////////////////////////////
 
-
-
-console.log(listaCarrito);
-
-
 function volverAProductos(){
 
     contenedorVolverProductos.addEventListener("click", function(){
@@ -22,7 +17,7 @@ function volverAProductos(){
     })
 
 }
-
+//////////////////////////////////////////////////////////////////////////
 function obtenerNombreUsuarioSesionStorage(){
     let nombre = sessionStorage.getItem("nombreUsuario");
     let nuevo = `
@@ -31,7 +26,7 @@ function obtenerNombreUsuarioSesionStorage(){
 
     contenedorUsuario.innerHTML = nuevo;
 }
-
+//////////////////////////////////////////////////////////////////////////
 
 function mostrarCarrito(lista){
     let productoCarrito = "";
@@ -90,10 +85,13 @@ function mostrarCarrito(lista){
     contenedorTotal.innerHTML = textoTotal;
     itemsCarrito.innerHTML = productoCarrito;
     sessionStorage.setItem("totalCarrito", precioTotal)
+
+    clickearBotonComprar();
+
+
 }
 
-
-
+//////////////////////////////////////////////////////////////////////////
 function sumarProducto(id){
 
     let productoAgregar = listaCarrito.find(producto=> producto.id_producto === id);
@@ -104,7 +102,7 @@ function sumarProducto(id){
 
 }
 
-
+//////////////////////////////////////////////////////////////////////////
 function restarProducto(id){
 
     let productoRestar = listaCarrito.find(producto => producto.id_producto === id);
@@ -123,6 +121,7 @@ function restarProducto(id){
     sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
 }
 
+//////////////////////////////////////////////////////////////////////////
 
 function eliminar(indice){
 
@@ -134,7 +133,7 @@ function eliminar(indice){
 
 }
 
-
+//////////////////////////////////////////////////////////////////////////
 function vaciarCarrito(){
 
     botonVaciarCarrito.addEventListener("click",function(){
@@ -149,7 +148,7 @@ function vaciarCarrito(){
     })
 }
 
-
+//////////////////////////////////////////////////////////////////////////
 
 function aplicarModalVaciarCarrito(modalTipo){
     let contenido = "";
@@ -381,9 +380,6 @@ function init(){
     obtenerNombreUsuarioSesionStorage();
 
     vaciarCarrito();
-
-    clickearBotonComprar();
-
 
 }
 
