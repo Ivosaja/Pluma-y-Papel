@@ -222,15 +222,15 @@ function mostrarModal(modal){
 function modalBtnSi(){
 
     let btnSi = document.getElementById("btn-Si");    
+
     btnSi.addEventListener("click", function(){
 
         listaCarrito = []
         mostrarCarrito(listaCarrito);
 
-        sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
-
         esconderModal(modalVaciarCarrito);
         opacidad("ocultar");
+        sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
     })
 
 }
