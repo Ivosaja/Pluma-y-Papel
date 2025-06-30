@@ -236,7 +236,7 @@ app.post('/finalizePurchase', async (req, res) => {
             error: err.message
         })
     } finally {
-        await conn.release(); // libero la conexion obtenida del pool para no saturar al mismo
+        conn.release(); // libero la conexion obtenida del pool para no saturar al mismo
     }
 })
 
