@@ -373,7 +373,8 @@ async function subirVenta(){
             },
             body: JSON.stringify({
                 carrito: JSON.parse(sessionStorage.getItem("carrito")),
-                total: JSON.parse(sessionStorage.getItem("total"))
+                total: JSON.parse(sessionStorage.getItem("totalCarrito")),
+                nombreUsuario: JSON.parse(sessionStorage.getItem("nombreUsuario"))
             })
         })
 
