@@ -31,8 +31,6 @@ function obtenerNombreUsuarioSesionStorage(){
 function mostrarCarrito(lista){
     let productoCarrito = "";
     let precioTotal = 0;
-
-    let textoTotal = "";
     
     lista.forEach((producto, indice) => {
         productoCarrito += `
@@ -64,8 +62,21 @@ function mostrarCarrito(lista){
     });
     
     
-    // Chequear esto
-    if(productoCarrito.length>0){
+    mostrarTotal(precioTotal);
+
+    itemsCarrito.innerHTML = productoCarrito;
+
+    sessionStorage.setItem("totalCarrito", precioTotal)
+    
+    clickearBotonComprar();
+
+}
+
+
+function mostrarTotal(precioTotal){
+    let textoTotal = "";
+
+    if(listaCarrito.length>0){
         
         textoTotal+= `
         <div id="total">
@@ -83,11 +94,6 @@ function mostrarCarrito(lista){
     }
     
     contenedorTotal.innerHTML = textoTotal;
-    itemsCarrito.innerHTML = productoCarrito;
-    sessionStorage.setItem("totalCarrito", precioTotal)
-    
-    clickearBotonComprar();
-
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -374,6 +380,8 @@ function init(){
     mostrarCarrito(listaCarrito);
 
     obtenerNombreUsuarioSesionStorage();
+
+
 
 
 }
