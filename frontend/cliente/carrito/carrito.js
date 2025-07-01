@@ -298,8 +298,10 @@ function confirmar(){
     let btnConfirmar = document.getElementById("confirmar");
 
 
-    btnConfirmar.addEventListener("click", function(){
-    
+    btnConfirmar.addEventListener("click", async function(){
+
+        await subirVenta()
+
         esconderModal(modalConfirmarCompra);
 
         let contenido = 
@@ -361,6 +363,32 @@ function volverInicio(){
     })
 }
 
+//////////////////////////////////////////////////////////////////////////
+async function subirVenta(){
+    try{
+        let response = await fetch("http://localhost:1001/finalizePurchase", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json" 
+            },
+            body: JSON.stringify({
+                carrito: JSON.parse(sessionStorage.getItem("carrito")),
+                total: JSON.parse(sessionStorage.getItem("total"))
+            })
+        })
+
+        if(response.ok){
+            let result = await response.json()
+            alert(result.message)
+        } else{
+            let result = await response.json()
+            alert(result.message)
+        }
+
+    } catch(err){
+        alert("Error al mandar la solicitud:", err)
+    }
+}
 
 
 
