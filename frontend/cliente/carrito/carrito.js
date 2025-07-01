@@ -252,13 +252,16 @@ function clickearBotonComprar(){
 
     let btnComprar = document.getElementById("boton-comprar");
 
-    btnComprar.addEventListener("click", function(){
+    if(btnComprar){
+        btnComprar.addEventListener("click", function(){
+    
+            console.log("dfsdhfsdfh");
+    
+            aplicarModalComprar()
+    
+        })
+    }
 
-        console.log("dfsdhfsdfh");
-
-        aplicarModalComprar()
-
-    })
 }
 //////////////////////////////////////////////////////////////////////////
 function aplicarModalComprar(){
@@ -293,7 +296,6 @@ function confirmar(){
     
         esconderModal(modalConfirmarCompra);
 
-
         let contenido = 
             `
                 <i class="bi bi-check-circle-fill"></i>
@@ -308,9 +310,6 @@ function confirmar(){
         mostrarModal(modalConfirmarCompra);
 
         volverInicio();
-
-        // esconderModal(modalConfirmarCompra),
-        // opacidad("ocultar");
 
     })
 }
