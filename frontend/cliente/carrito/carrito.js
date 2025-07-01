@@ -365,6 +365,7 @@ function volverInicio(){
 
 //////////////////////////////////////////////////////////////////////////
 async function subirVenta(){
+    // TODO => ver de retornar algun booleano y en la funcion de confirmar, que verifique si el resultado del await subirVenta() es true o false, y en cada caso, muestra un modal diferente
     try{
         let response = await fetch("http://localhost:1001/finalizePurchase", {
             method: 'POST',
