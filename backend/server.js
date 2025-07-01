@@ -257,9 +257,10 @@ app.post('/finalizePurchase', async (req, res) => {
         
         a partir de aca abajo, todas las consultas que hago, no se guardan de forma permanente en la BD hasta que haga commit()
         */
-        const {nombreUsuario, total, carrito} = req.body
+        const {nombreUsuario,total, carrito} = req.body
+        //const total = parseInt(req.body.total)
 
-        if(!nombreUsuario || !total || !Array.isArray(carrito) || !carrito || carrito.length === 0){
+        if(!nombreUsuario || !total || isNaN(total) || !Array.isArray(carrito) || carrito.length === 0){
             return res.status(400).json({
                 error: "Error. Debe ingresar los campos correctamente"
             })
