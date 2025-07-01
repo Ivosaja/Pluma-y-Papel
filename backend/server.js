@@ -22,6 +22,12 @@ app.get("/",(req,res) =>{
 //Basicamente generamos el endpoint en donde se realiza un verbo de HTTP (POST,GET,PUT,DELETE,PATCH)
 
 
+
+// TODO GENERAL => Chequear si modificar que en vez de pasarle al usuario en la respuesta tambien la propiedad error con su respectivo error, o si solo consologeo el error y listo
+
+
+
+
 /////////////////////////////
 // Endpoints para el admin //
 
