@@ -74,7 +74,7 @@ function mostrarCarrito(lista){
         </div>    
         <div id="confirmar-compra">
             <button id="boton-comprar">Comprar</button>
-        </div>    `;
+        </div> `;
         
     }
     else{
@@ -85,9 +85,8 @@ function mostrarCarrito(lista){
     contenedorTotal.innerHTML = textoTotal;
     itemsCarrito.innerHTML = productoCarrito;
     sessionStorage.setItem("totalCarrito", precioTotal)
-
+    
     clickearBotonComprar();
-
 
 }
 
@@ -139,7 +138,6 @@ function vaciarCarrito(){
     botonVaciarCarrito.addEventListener("click",function(){
 
         if(listaCarrito.length===0){
-
             aplicarModalVaciarCarrito("noPreguntar");
         }
         else{
@@ -186,8 +184,8 @@ function aplicarModalVaciarCarrito(modalTipo){
         mostrarModal(modalVaciarCarrito);
 
         setTimeout(() => {
-                esconderModal(modalVaciarCarrito);
-                }, 3000);
+            esconderModal(modalVaciarCarrito);
+        }, 3000);
     }
 
 }
@@ -202,7 +200,6 @@ function esconderModal(modal){
     document.getElementById('encabezado').classList.remove('bloquear-interacciones');
     document.getElementById('principal').classList.remove('bloquear-interacciones');
 
-    
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -226,6 +223,7 @@ function modalBtnSi(){
     btnSi.addEventListener("click", function(){
 
         listaCarrito = []
+        console.log(listaCarrito)
         mostrarCarrito(listaCarrito);
 
         esconderModal(modalVaciarCarrito);
@@ -240,10 +238,10 @@ function modalBtnSi(){
 function modalBtnNo(){
     let btnNo = document.getElementById("btn-No");
     btnNo.addEventListener("click", function(){
-    
-            esconderModal(modalVaciarCarrito);
-            opacidad("ocultar");
-        })
+
+        esconderModal(modalVaciarCarrito);
+        opacidad("ocultar");
+    })
 }
 
 
@@ -325,7 +323,6 @@ function rechazar(){
 
     btnRechazar.addEventListener("click", function(){
 
-
         esconderModal(modalConfirmarCompra);
         opacidad("ocultar");
 
@@ -352,7 +349,6 @@ function volverInicio(){
 
     btnVolver.addEventListener("click", function(){
 
-
         window.location.href = "../bienvenida/index.html";
 
         sessionStorage.clear();
@@ -374,12 +370,12 @@ function init(){
     }
 
     volverAProductos();
+    vaciarCarrito();
 
     mostrarCarrito(listaCarrito);
 
     obtenerNombreUsuarioSesionStorage();
 
-    vaciarCarrito();
 
 }
 
