@@ -9,6 +9,9 @@ const router = Router();
 
 router.get("/getAllProducts");
 
+//Endpoint para obtener todos los productos activos para el cliente
+router.get("/getAllActiveProducts");
+
 // Endpoint para obtener un producto por ID de la base de datos
 
 router.get("/getProductById/:id");
@@ -28,6 +31,9 @@ router.put("/modifyProduct/:id");
 //Endpoint para activar producto de la base de datos
 
 router.put("/activateProduct/:id")
+
+
+
 
 
 export default router;

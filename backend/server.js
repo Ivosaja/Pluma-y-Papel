@@ -2,9 +2,8 @@
 // Importaciones necesarias para crear servidor express.js y realizar consultas a una base de datos //
 import express from "express";
 import environments from "./src/api/config/environments.js";
-import connection from "./src/api/database/db.js";
 import cors from "cors";
-import { productRoutes } from "./src/api/routes/indexRoutes.js";
+import { productRoutes, salesRoutes } from "./src/api/routes/indexRoutes.js";
 
 const app = express(); // Creacion de app en express.js
 const PORT = environments.port; // Se usa el port establecido a la izquierda de la condicion, si se encuentra ocupado, usa el de la derecha
@@ -20,8 +19,6 @@ app.get("/api/",(req,res) =>{
     res.send("Bienvenidos a nuestro aplicacion Pluma&Papel")
 })
 
-//Basicamente generamos el endpoint en donde se realiza un verbo de HTTP (POST,GET,PUT,DELETE,PATCH)
-
 
 /////////////////////////////
 // Endpoints para el admin //
@@ -29,222 +26,14 @@ app.get("/api/",(req,res) =>{
 app.use("/api/products", productRoutes)
 
 
-// Endpoint para borrar un producto de la base de datos
-app.delete('/api/products', async (req, res) => {
-    try{
-        const {id} = req.params
-        if(isNaN(id)){ // TODO => chequear esto de isNaN()
-            return res.status(400).json({
-                message: "Debe ingresar un ID valido"
-            }) 
-        }
-        
-        const sqlQuery = 'UPDATE productos SET activo = 0 WHERE id_producto = ?'
-        const [result] = await connection.query(sqlQuery, [id]) // Obtengo el elemento 0 de el result de la query
-        
-        if(result.affectedRows === 0){
-            return res.status(404).json({
-                message: `Error. No se encontro el producto con ID: ${id} para darlo de baja de la base de datos`
-            })
-        }
-
-        if(result.changedRows === 0){
-            return res.status(200).json({
-                message: "El producto se encontro, pero no se le dio baja logica ya que ya estaba dado de baja"
-            })
-        }
-        
-        res.status(200).json({
-            message: `Se dio de baja correctamente el producto con ID: ${id} de la base de datos`,
-            payload: result
-        })
-        
-        
-    } catch (err){
-        console.error(err)
-        res.status(500).json({
-            message: "Error interno del servidor al dar de baja logica en la base de datos"
-        })
-    }
-})
-
-// Endpoint para actualizar/modificar producto de la base de datos (nombre, categoria, precio, imagen)
-app.put('/api/products', async (req, res) => {
-    try{
-        const id = Number(req.params.id)
-        if(isNaN(id) || id <= 0){
-            return res.status(400).json({
-                message: "Debe ingresar un ID valido"
-            })
-        }
-    
-        const {nombre, categoria, precio, url_imagen} = req.body
-        if(!nombre || !categoria || !precio || !url_imagen){
-            return res.status(400).json({
-                message: "Debe ingresar los campos correctamente"
-            })
-        }
-    
-        const sqlQuery = 'UPDATE productos SET nombre = ?, categoria = ?, precio = ?, url_imagen = ? WHERE id_producto = ?'
-        const [result] = await connection.query(sqlQuery, [nombre, categoria, precio, url_imagen, id])
-
-        if(result.affectedRows === 0){
-            return res.status(404).json({
-                message: `Error. No se encontro el producto con ID: ${id} para actualizarlo en la base de datos`
-            })
-        }
-
-        if(result.changedRows === 0){
-            return res.status(200).json({
-                message: "El producto se encontro, pero no se hicieron cambios (ya tenia los mismos datos)" 
-            })
-        }
-
-        res.status(200).json({
-            message: `Se modifico el producto con ID: ${id} correctamente`,
-            payload: result
-        })
-
-    } catch (err){
-        console.error(err)
-        res.status(500).json({
-            message: "Error interno del servidor al actualizar un producto"
-        })
-    }
-})
-
-
-// Endpoint para activar producto de la base de datos
-app.put('/api/products', async (req, res) => {
-    try{
-        let id = Number(req.params.id); 
-        if(isNaN(id) || id <= 0){ 
-            return res.status(400).json({
-                message: "Debe ingresar un ID valido"
-            }) 
-        }
-        
-        const sqlQuery = 'UPDATE productos SET activo = 1 WHERE id_producto = ?'
-        const [result] = await connection.query(sqlQuery, [id]) 
-        
-        if(result.affectedRows === 0){
-            return res.status(404).json({
-                message: `Error. No se encontro el producto con ID: ${id} para activarlo en la base de datos`
-            })
-        }
-
-        if(result.changedRows === 0){
-            return res.status(200).json({
-                message: "El producto se encontro, pero ya se encontraba activado"
-            })
-        }
-        
-        res.status(200).json({
-            message: `Se activo correctamente el producto con ID: ${id} de la base de datos`,
-            payload: result
-        })
-
-    } catch (err){
-        console.error(err)
-        res.status(500).json({
-            message: "Error interno del servidor al activar un producto en la base de datos"
-        })
-    }
-})
-
 
 ///////////////////////////////
 // Endpoints para el cliente //
 
-// Endpoint para que el usuario realice una compra y se registre en la base de datos 
-app.post('/api/sales', async (req, res) => {
-    
-    // Obtengo una conexion de la pool de conexiones para poder hacer una transaccion sobre una conexion y no sobre el pool
-    const conn = await connection.getConnection()
-    
-    try{
-        await conn.beginTransaction() /* Inicio una transaccion en la conexion obtenida en la cual se ejecutaran una serie de 
-        operaciones agrupadas, y o se ejecutan todas, o no se ejecuta ninguna -> esto es muy bueno porque no tengo despues problema 
-        de inconsistencia de datos en mis tablas si algo fallo en otro insert estrechamente relacionado con otra tabla, 
-        manteniendo una buena integridad de datos.*/
-        
-        /*
-        |
-        |
-        V
-        
-        a partir de aca abajo, todas las consultas que hago, no se guardan de forma permanente en la BD hasta que haga commit()
-        */
-        const {nombreUsuario,total, carrito} = req.body
-        //const total = parseInt(req.body.total)
-
-        if(!nombreUsuario || !total || isNaN(total) || !Array.isArray(carrito) || carrito.length === 0){
-            return res.status(400).json({
-                message: "Error. Debe ingresar los campos correctamente"
-            })
-        }
-        
-        const sqlQueryVenta = 'INSERT INTO ventas (nombre_usuario, fecha, total) VALUES (?,NOW(),?)'
-        const [resultVenta] = await conn.query(sqlQueryVenta, [nombreUsuario,total]) //queres lo que nos devuelve en la posicion cero
-        const idVenta = resultVenta.insertId //obtenemos el id de la venta 
-        
-        
-        const sqlQueryDetalle = 'INSERT INTO detalle_venta (id_venta, id_producto, cantidad) VALUES (?,?,?)'
-        // Uso de for...of porque permite la utilizacion de await por cada elemento del array carrito a diferencia del forEach(), el cual no respeta el manejo de promesas
-        for(const producto of carrito){
-            
-            let {id_producto, cantidad} = producto
-
-            if(!id_producto || !cantidad || cantidad === 0){
-                await conn.rollback() 
-                return res.status(400).json({
-                    message: "El producto debe tener el id y la cantidad validos obligatoriamente"
-                })
-            }
-            
-            await conn.query(sqlQueryDetalle, [idVenta, id_producto, cantidad])
-        }
-        
-        await conn.commit() // si todo salio bien, espera a que se guarden todos los cambios de forma permanente en la BD
-        res.status(201).json({
-            message: `Se inserto la venta con ID: ${idVenta} exitosamente junto con sus detalles en la tabla detalle_venta`,
-            payload: resultVenta
-        })
-        
-    } catch (err){
-        await conn.rollback() // Si hay algo que no revierte todas las operaciones en caso de error 
-        console.error(err)
-        res.status(500).json({
-            message: "Error interno del servidor al guardar venta en la base de datos"
-        })
-    } finally {
-        conn.release(); // libero la conexion obtenida del pool para no saturar al mismo
-    }
-})
+app.use("/api/sales", salesRoutes)
 
 
-//Endpoint para obtener todos los productos activos para el cliente
-app.get("/api/products/getAllActiveProducts", async(req,res)=>{
-    try{
-        let sqlQuery = "SELECT * FROM productos WHERE activo = 1";
-        const [rows] =  await connection.query(sqlQuery); //desestructuracion de los datos, quedandonos solo con las filas//
 
-        // 200 -> codigo de respuesta exitosa//
-        res.status(200).json({
-            message: rows.length===0 ? "No se encontraron productos" : `Se encontraron: ${rows.length} productos`,
-            payload: rows
-        })
-
-    }catch(err){
-        console.error(err)
-        res.status(500).json({
-            message: "Error interno desde el servidor al obtener todos los productos activos de la base de datos"
-        })
-    }
-})
-
-
-// Escuchando en el puerto que guardamos en nuestra variable de entorno
 app.listen(PORT,() => {
     console.log(`Servidor corriendo en el puerto: http://localhost:${PORT}`);
 })
