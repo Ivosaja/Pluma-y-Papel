@@ -24,6 +24,11 @@ main{
     100% { background-position: 0% 50%; }
 }
 
+#volverDashboard{
+    font-size: 2rem;
+    cursor: pointer;
+}
+
 
 #contenedor-principal{
     width: 100%;
@@ -40,19 +45,53 @@ main{
     background-color: #FFFFFF;
     color: #2E2E2E;
     justify-content: center;
+    align-items: center;
+}
+
+#contenedor-principal h1{
+    text-align: center;
 }
 
 #contenedor-form{
-
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
-#form{
+#form-modificarProducto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 75%;
+    gap: 1rem;
+}
 
+#form-modificarProducto label{
+    font-size: 1rem;
+    color: #111e20;
+    font-weight: 600;
+}
+
+#form-modificarProducto input,
+#form-modificarProducto select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #fff;
 }
 
 
 footer{
     text-align: center;
     color: #aca6a6;
+}
+
+@media (max-width:550px){
+    #contenedor-principal{
+        max-width: 100%;
+    }
 }
