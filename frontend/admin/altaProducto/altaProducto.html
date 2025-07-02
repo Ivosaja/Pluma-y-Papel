@@ -14,39 +14,31 @@
     <main>
         <div id="contenedor-Principal">
             <h1>Agregar Producto</h1>
-            <div id="darAltaProducto">
-                <form id="altaproductoForm" autocomplete="off">
-                    <label for="nombreProd">Nombre</label>
+            <form id="altaProductoForm" autocomplete="off">
+                <div id="contenedorLabels">
+                    <label for="productoNombre">Nombre</label>
                     <input type="text" name="nombre" id="productoNombre" required>
-
-                    <label for="imagenProd">Imagen</label>
+    
+                    <label for="productoImagen">Imagen</label>
                     <input type="text" name="image" id="productoImagen" required>
-
-                    <label for="precioProd">Precio</label>
+    
+                    <label for="productoPrecio">Precio</label>
                     <input type="number" name="price" id="productoPrecio" required>
-
+    
                     <label for="categoriaProd">Categoria</label>
                     <select name="categoria" id="categoriaProd" required>
                         <option value="Libros">Libros</option>
                         <option value="Utiles">Utiles</option>
                     </select>
-
-                    <button type="submit">Crear Porducto</button>
-                </form>
-            </div>
+                </div>
+                <button type="submit" id="btnCrearProducto">Crear Producto</button>
+            </form>
         </div>
 
     </main>
 
-
-    
-
-
-
-
-
     <footer>
-        © Ivo Lionel Saja & Lucas Agustin Schurkens
+        © Pluma & Papel - Ivo Lionel Saja & Lucas Agustin Schurkens
     </footer>
 </body>
 </html>
