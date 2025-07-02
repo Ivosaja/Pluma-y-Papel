@@ -4,6 +4,7 @@ import express from "express";
 import environments from "./src/api/config/environments.js";
 import cors from "cors";
 import { productRoutes, salesRoutes } from "./src/api/routes/indexRoutes.js";
+import { loggerUrl } from "./src/api/middlewares/middlewares.js";
 
 const app = express(); // Creacion de app en express.js
 const PORT = environments.port; // Se usa el port establecido a la izquierda de la condicion, si se encuentra ocupado, usa el de la derecha
@@ -12,7 +13,7 @@ const PORT = environments.port; // Se usa el port establecido a la izquierda de 
 // Middlewares //
 app.use(cors()); // => Es un middleware que nos permite realizar todas las solicitudes
 app.use(express.json()) // => Es un middleware que le especifica (al servirdor) que va a venir JSON en los request.body
-
+app.use(loggerUrl)
 
 /////////////////////////////
 // Endpoints para el admin //

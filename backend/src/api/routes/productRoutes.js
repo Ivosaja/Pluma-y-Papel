@@ -1,4 +1,5 @@
 import {Router} from "express";
+import { validateId } from "../middlewares/middlewares";
 
 
 
@@ -14,7 +15,7 @@ router.get("/getAllActiveProducts");
 
 // Endpoint para obtener un producto por ID de la base de datos
 
-router.get("/getProductById/:id");
+router.get("/getProductById/:id", validateId);
 
 //Endpoint para agregar un nuevo producto a la base de datos
 
@@ -22,15 +23,15 @@ router.post("/postProduct");
 
 // Endpoint para realizar una baja logica de un producto de la base de datos
 
-router.delete("/deleteProduct/:id");
+router.delete("/deleteProduct/:id", validateId);
 
 // Endpoint para actualizar/modificar producto de la base de datos (nombre, categoria, precio, imagen)
 
-router.put("/modifyProduct/:id");
+router.put("/modifyProduct/:id", validateId);
 
 //Endpoint para activar producto de la base de datos
 
-router.put("/activateProduct/:id")
+router.put("/activateProduct/:id", validateId)
 
 
 

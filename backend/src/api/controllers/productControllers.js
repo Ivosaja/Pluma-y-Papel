@@ -1,5 +1,6 @@
 import connection from "../database/db.js";
 
+
 export const getAllProducts = async(req,res)=>{
     try{
         let sqlQuery = "SELECT * FROM productos";
