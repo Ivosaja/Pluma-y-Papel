@@ -54,11 +54,9 @@ function mostrarProductos(arrayProductos){
 
 // no sabia si hacerlas o no
 function modificarProducto(idProducto){
-    const btnModificarProducto = document.getElementById('btn-modificarProducto')
-    btnModificarProducto.addEventListener('click', () => {
-        window.location.href = '../modificarProducto/modificarProducto.html'
-        sessionStorage.setItem("idProducto", idProducto)
-    })
+    //console.log(idProducto)
+    window.location.href = '../modificarProducto/modificarProducto.html'
+    sessionStorage.setItem("idProducto", idProducto)
 }
 
 function eliminarProducto(idProducto){
@@ -84,7 +82,6 @@ async function init(){
     mostrarProductos(productos)
 
     agregarProducto()
-    modificarProducto()
 }
 
 init()
