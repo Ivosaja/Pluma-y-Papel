@@ -14,24 +14,16 @@ app.use(cors()); // => Es un middleware que nos permite realizar todas las solic
 app.use(express.json()) // => Es un middleware que le especifica (al servirdor) que va a venir JSON en los request.body
 
 
-// Endpoint principal de prueba<
-app.get("/api/",(req,res) =>{
-    res.send("Bienvenidos a nuestro aplicacion Pluma&Papel")
-})
-
-
 /////////////////////////////
 // Endpoints para el admin //
 
 app.use("/api/products", productRoutes)
 
 
-
 ///////////////////////////////
 // Endpoints para el cliente //
 
 app.use("/api/sales", salesRoutes)
-
 
 
 app.listen(PORT,() => {
