@@ -1,6 +1,6 @@
 import {Router} from "express";
-import { validateId } from "../middlewares/middlewares";
-import { activateProduct, deleteProduct, getAllActiveProducts, getAllProducts, getProductById, modifyProduct, postProduct } from "../controllers/productControllers";
+import { validateId } from "../middlewares/middlewares.js";
+import { activateProduct, deleteProduct, getAllActiveProducts, getAllProducts, getProductById, modifyProduct, postProduct } from "../controllers/productControllers.js";
 
 
 

@@ -1,12 +1,11 @@
 import connection from "../database/db.js";
+import { insertProduct, selectAllProducts, selectProductById } from "../models/productModels.js";
 
 
 export const getAllProducts = async(req,res)=>{
     try{
-        let sqlQuery = "SELECT * FROM productos";
-        const [rows] =  await connection.query(sqlQuery); //desestructuracion de los datos, quedandonos solo con las filas//
+        const [rows] =  await selectAllProducts(); 
 
-        // 200 -> codigo de respuesta exitosa//
         res.status(200).json({
             payload: rows,
             message: rows.length===0 ? "No se encontraron productos" : `Se encontraron: ${rows.length} productos`})
@@ -22,8 +21,8 @@ export const getAllProducts = async(req,res)=>{
 export const getProductById = async(req, res) => {
     try{
         const {id} = req.params
-        const sqlQuery = `SELECT * FROM productos WHERE id_producto = ?`
-        const [rows] = await connection.query(sqlQuery, [id])
+        
+        const [rows] = await selectProductById(id)
         
         if(rows.length === 0){
             return res.status(404).json({
@@ -45,30 +44,22 @@ export const getProductById = async(req, res) => {
 
 export const postProduct = async (req, res) => {
     try{
-        const {nombre, categoria, precio, url_imagen} = req.body/*cuerpo de la peticion en  donde se 
-        envia la info (es un JSON-->se detalla la informacion a postear(un nuevo producto))*/
+        const {nombre, categoria, precio, url_imagen} = req.body
         
         if(!nombre || !categoria || !precio || !url_imagen){
             return res.status(400).json({
                 message: "Error. Se deben completar todos los campos, ninguno debe quedar vacio o nulo"
             })
             
-        }
-        
-        const sql = "INSERT INTO productos (nombre,categoria,precio,url_imagen) VALUES (?,?,?,?)"; //Placeholder--> campos vacios
-        
-        let [result] = await connection.query(sql, [nombre,categoria,precio,url_imagen]); //aca le pasamos los datos en ordern como irian en las columnas
-        //el conexion ya es LA CONEXION
-        //.query ejecuta una consulta
-        //si o si el await para que se resulva la promesa primero 
+        }    
+        let [result] = await insertProduct(nombre, categoria, precio,url_imagen) 
 
         res.status(201).json({
             message: `Se inserto correctamente el producto con ID: ${result.insertId} denominado ${nombre} a la base de datos`,
             payload: result
         
             
-        }) //siginifca que la peticion del cliente fue exisdtosa y resulto en el creacion de un nuevo recurso en el servidor//
-        
+        }) 
     }catch(err){
         console.error(err)
         res.status(500).json({

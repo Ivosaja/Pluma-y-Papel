@@ -1,8 +1,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 // Importaciones necesarias para crear servidor express.js y realizar consultas a una base de datos //
 import express from "express";
-import environments from "./src/api/config/environments.js";
 import cors from "cors";
+import environments from "./src/api/config/environments.js";
 import { productRoutes, salesRoutes } from "./src/api/routes/indexRoutes.js";
 import { loggerUrl } from "./src/api/middlewares/middlewares.js";
 
