@@ -34,7 +34,7 @@ function mostrarProductos(arrayProductos){
                     <p><strong>Activo: </strong>${producto.activo === 1 ? true : false}</p>
                 </div>
                 <div class="acciones">
-                    <button type="button" onclick="modificarProducto(${producto.id_producto})">
+                    <button type="button" onclick="modificarProducto(${producto.id_producto})" id="btn-modificarProducto">
                         <i class="fas fa-pen iconModificar"></i>
                     </button>
                     <button type="button" onclick="eliminarProducto(${producto.id_producto})">
@@ -54,7 +54,11 @@ function mostrarProductos(arrayProductos){
 
 // no sabia si hacerlas o no
 function modificarProducto(idProducto){
-
+    const btnModificarProducto = document.getElementById('btn-modificarProducto')
+    btnModificarProducto.addEventListener('click', () => {
+        window.location.href = '../modificarProducto/modificarProducto.html'
+        sessionStorage.setItem("idProducto", idProducto)
+    })
 }
 
 function eliminarProducto(idProducto){
@@ -80,6 +84,7 @@ async function init(){
     mostrarProductos(productos)
 
     agregarProducto()
+    modificarProducto()
 }
 
 init()
