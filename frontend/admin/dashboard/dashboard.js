@@ -65,12 +65,21 @@ function activarProducto(idProducto){
     
 }
 
+function agregarProducto(){
+    const btnAgregarProducto = document.getElementById('btn-agregarProducto')
+    btnAgregarProducto.addEventListener('click', () => {
+        window.location.href = '../altaProducto/altaProducto.html'
+    })
+}
+
 
 async function init(){
     listaProductos.innerHTML = `<p>Cargando productos...</p>`
 
     let productos = await obtenerTodosLosProductos()
     mostrarProductos(productos)
+
+    agregarProducto()
 }
 
 init()
