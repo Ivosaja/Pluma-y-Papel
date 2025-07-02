@@ -37,7 +37,10 @@ function enviarFormualrio(){
 
                 alert("✅ Producto creado con éxito")
 
-                setTimeout(volverDashboard,5000);
+                setTimeout(()=>{
+
+                    window.location.href = "../dashboard/dashboard.html";
+                }, 3000)
             }
             else{
 
