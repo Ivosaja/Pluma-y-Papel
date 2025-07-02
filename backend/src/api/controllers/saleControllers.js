@@ -1,4 +1,5 @@
 import connection from "../database/db.js";
+import { insertSale, insertSaleDetail } from "../models/saleModel.js";
 
 
 export const finalizePurchase = async (req, res) => {
@@ -28,12 +29,10 @@ export const finalizePurchase = async (req, res) => {
             })
         }
         
-        const sqlQueryVenta = 'INSERT INTO ventas (nombre_usuario, fecha, total) VALUES (?,NOW(),?)'
-        const [resultVenta] = await conn.query(sqlQueryVenta, [nombreUsuario,total]) //queres lo que nos devuelve en la posicion cero
+        const [resultVenta] = await insertSale(conn, nombreUsuario, total) //queres lo que nos devuelve en la posicion cero
         const idVenta = resultVenta.insertId //obtenemos el id de la venta 
         
         
-        const sqlQueryDetalle = 'INSERT INTO detalle_venta (id_venta, id_producto, cantidad) VALUES (?,?,?)'
         // Uso de for...of porque permite la utilizacion de await por cada elemento del array carrito a diferencia del forEach(), el cual no respeta el manejo de promesas
         for(const producto of carrito){
             
@@ -46,7 +45,7 @@ export const finalizePurchase = async (req, res) => {
                 })
             }
             
-            await conn.query(sqlQueryDetalle, [idVenta, id_producto, cantidad])
+            await insertSaleDetail(conn, idVenta, id_producto, cantidad)
         }
         
         await conn.commit() // si todo salio bien, espera a que se guarden todos los cambios de forma permanente en la BD

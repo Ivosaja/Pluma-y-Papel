@@ -1,5 +1,5 @@
-import { deleteProduct, insertProduct, selectAllActiveProducts, selectAllProducts, selectProductById, updateProduct, updateProductActivo } from "../models/productModels.js";
-
+import { deleteProduct, insertProduct, selectAllActiveProducts, selectAllProducts, selectProductById, updateProduct, updateProductActivo } from "../models/productModel.js";
+//TODO=> chequear codigo documentado
 
 export const getAllProducts = async(req,res)=>{
     try{

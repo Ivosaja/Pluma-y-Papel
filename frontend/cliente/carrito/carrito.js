@@ -364,7 +364,7 @@ function volverInicio(){
 //////////////////////////////////////////////////////////////////////////
 async function subirVenta(){
     try{
-        let response = await fetch("http://localhost:1001/finalizePurchase", {
+        let response = await fetch("http://localhost:1001/api/sales/finalizePurchase", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json" 

@@ -2,7 +2,7 @@ const listaProductos = document.querySelector('.listaProductos')
 
 async function obtenerTodosLosProductos(){
     try{
-        let resultado = await fetch('http://localhost:1001/getAllProducts')
+        let resultado = await fetch('http://localhost:1001/api/products/getAllProducts')
         let data = await resultado.json();
         mostrarProductos(data)
 

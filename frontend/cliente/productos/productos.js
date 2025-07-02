@@ -16,7 +16,7 @@ let btnPanelAdmin = document.getElementById("panelAdmin");
 async function obtenerProductos() {
     try{
 
-        let respuesta = await fetch("http://localhost:1001/getAllActiveProducts");
+        let respuesta = await fetch("http://localhost:1001/api/products/getAllActiveProducts");
         let data = await respuesta.json();
         return data.payload;
 
