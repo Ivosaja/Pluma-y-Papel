@@ -401,7 +401,7 @@ footer{
     font-size: 1.8rem;
 }
 
-#modal-confirmar-compra i {
+#icono-Excelente {
     color: #58a03c;
 }
 
@@ -417,29 +417,20 @@ footer{
     cursor: pointer;
 }
 
-
-
 .opacidad{
     opacity: 0.5;
 }
 
-
-
-#volver{
-    background-color: var(--color-boton);
-    padding: 1rem;
-    color: white;
-    cursor: pointer;
-    border: none;
-    border-radius: 12px;
+#icono-Fallo{
+    color: red;
 }
 
-
-#volver:hover {
-    background-color: #556142; 
-    transform: scale(1.03);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+body.transicionBienvenida {
+    opacity: 0.2;
+    transition: opacity 1s ease-in-out;
+    background-color: var(--color-fondo);
 }
+
 
 /*media queries*/
 @media (max-width: 850px){

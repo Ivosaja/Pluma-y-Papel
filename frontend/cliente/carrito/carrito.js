@@ -297,27 +297,37 @@ function aplicarModalComprar(){
 function confirmar(){
     let btnConfirmar = document.getElementById("confirmar");
 
-
+    let contenido = "";
     btnConfirmar.addEventListener("click", async function(){
 
-        await subirVenta()
+        let retorno =  await subirVenta();
 
         esconderModal(modalConfirmarCompra);
-
-        let contenido = 
+        
+        if(retorno.estado){
+            contenido = 
             `
-                <i class="bi bi-check-circle-fill"></i>
+                <i class="bi bi-check-circle-fill" id="icono-Excelente"></i>
                 <p>Su compra se ha confirmado correctamente</p>
-
-                <div id="contenedor-Volver">
-                    <button id="volver">Volver</button>
-                </div>
+                <p>${retorno.mensaje}</p>
             `
+        }
+        else{
+            contenido = 
+            `
+                <i class="fas fa-times" id="icono-Fallo"></i>
+                <p>No se efectuo la compra</p>
+                <p>${retorno.mensaje}</p>
+            `
+            
+        
+        }
+
         modalConfirmarCompra.innerHTML = contenido;
         
         mostrarModal(modalConfirmarCompra);
 
-        volverInicio();
+        setTimeout(volverInicio, 2500);
 
     })
 }
@@ -352,20 +362,19 @@ function opacidad(accion){
 //////////////////////////////////////////////////////////////////////////
 function volverInicio(){
 
-    let btnVolver = document.getElementById("volver");
 
-    btnVolver.addEventListener("click", function(){
+    document.body.classList.add("transicionBienvenida");
 
-        window.location.href = "../bienvenida/index.html";
-
+    
+    setTimeout(() => {
         sessionStorage.clear();
+        window.location.href = "../bienvenida/index.html";
+    }, 800); 
 
-    })
 }
 
 //////////////////////////////////////////////////////////////////////////
 async function subirVenta(){
-    // TODO => ver de retornar algun booleano y en la funcion de confirmar, que verifique si el resultado del await subirVenta() es true o false, y en cada caso, muestra un modal diferente
     try{
         let response = await fetch("http://localhost:1001/finalizePurchase", {
             method: 'POST',
@@ -375,20 +384,21 @@ async function subirVenta(){
             body: JSON.stringify({
                 carrito: JSON.parse(sessionStorage.getItem("carrito")),
                 total: parseInt(sessionStorage.getItem("totalCarrito")),
-                nombreUsuario: sessionStorage.getItem("nombreUsuario")
+                nombreUsuario: JSON.parse(sessionStorage.getItem("nombreUsuario"))
             })
         })
 
         if(response.ok){
             let result = await response.json()
-            alert(result.message)
+            return {estado: true, mensaje: result.message};
         } else{
             let result = await response.json()
-            alert(result.message)
+            return {estado: false, mensaje: result.message};
         }
 
     } catch(err){
-        alert("Error al mandar la solicitud:", err)
+        console.error(err);
+        return {estado: false, mensaje: "Error al hacer la peticion"};
     }
 }
 
