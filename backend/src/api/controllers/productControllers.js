@@ -7,7 +7,7 @@ export const getAllProducts = async(req,res)=>{
 
         res.status(200).json({
             payload: rows,
-            message: rows.length===0 ? "No se encontraron productos" : `Se encontraron: ${rows.length} productos`})
+            message: rows.length===0 ? "No se encontraron productos en la BD" : `Se encontraron: ${rows.length} productos en la BD`})
 
     }catch(err){
         console.error(err)
