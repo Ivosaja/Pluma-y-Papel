@@ -1,5 +1,4 @@
-import connection from "../database/db.js";
-import { insertProduct, selectAllProducts, selectProductById } from "../models/productModels.js";
+import { deleteProduct, insertProduct, selectAllActiveProducts, selectAllProducts, selectProductById, updateProduct, updateProductActivo } from "../models/productModels.js";
 
 
 export const getAllProducts = async(req,res)=>{
@@ -70,17 +69,17 @@ export const postProduct = async (req, res) => {
 
 
 
-export const deleteProduct = async (req, res) => {
+export const removeProduct = async (req, res) => {
     try{
         const {id} = req.params
-        if(isNaN(id) || id<=0){ 
-            return res.status(400).json({
-                message: "Debe ingresar un ID valido"
-            }) 
-        }
+        // if(isNaN(id) || id<=0){ 
+        //     return res.status(400).json({
+        //         message: "Debe ingresar un ID valido"
+        //     }) 
+        // }
         
-        const sqlQuery = 'UPDATE productos SET activo = 0 WHERE id_producto = ?'
-        const [result] = await connection.query(sqlQuery, [id]) 
+        
+        const [result] = await deleteProduct(id) 
         
         if(result.affectedRows === 0){
             return res.status(404).json({
@@ -111,12 +110,12 @@ export const deleteProduct = async (req, res) => {
 
 export const modifyProduct = async (req, res) => {
     try{
-        const id = Number(req.params.id)
-        if(isNaN(id) || id <= 0){
-            return res.status(400).json({
-                message: "Debe ingresar un ID valido"
-            })
-        }
+        const {id} = req.params
+        // if(isNaN(id) || id <= 0){
+        //     return res.status(400).json({
+        //         message: "Debe ingresar un ID valido"
+        //     })
+        // }
     
         const {nombre, categoria, precio, url_imagen} = req.body
         if(!nombre || !categoria || !precio || !url_imagen){
@@ -125,8 +124,7 @@ export const modifyProduct = async (req, res) => {
             })
         }
     
-        const sqlQuery = 'UPDATE productos SET nombre = ?, categoria = ?, precio = ?, url_imagen = ? WHERE id_producto = ?'
-        const [result] = await connection.query(sqlQuery, [nombre, categoria, precio, url_imagen, id])
+        const [result] = await updateProduct(nombre, categoria, precio, url_imagen, id)
 
         if(result.affectedRows === 0){
             return res.status(404).json({
@@ -156,15 +154,15 @@ export const modifyProduct = async (req, res) => {
 
 export const activateProduct = async (req, res) => {
     try{
-        let id = Number(req.params.id); 
-        if(isNaN(id) || id <= 0){ 
-            return res.status(400).json({
-                message: "Debe ingresar un ID valido"
-            }) 
-        }
+        let {id} = req.params 
+        // if(isNaN(id) || id <= 0){ 
+        //     return res.status(400).json({
+        //         message: "Debe ingresar un ID valido"
+        //     }) 
+        // }
         
-        const sqlQuery = 'UPDATE productos SET activo = 1 WHERE id_producto = ?'
-        const [result] = await connection.query(sqlQuery, [id]) 
+        
+        const [result] = await updateProductActivo(id) 
         
         if(result.affectedRows === 0){
             return res.status(404).json({
@@ -195,8 +193,7 @@ export const activateProduct = async (req, res) => {
 export const getAllActiveProducts = async(req,res)=>{
 
     try{
-        let sqlQuery = "SELECT * FROM productos WHERE activo = 1";
-        const [rows] =  await connection.query(sqlQuery); 
+        const [rows] =  await selectAllActiveProducts()
 
         res.status(200).json({
             message: rows.length===0 ? "No se encontraron productos" : `Se encontraron: ${rows.length} productos`,

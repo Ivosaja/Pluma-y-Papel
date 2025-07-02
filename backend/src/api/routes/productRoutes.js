@@ -1,6 +1,6 @@
 import {Router} from "express";
 import { validateId } from "../middlewares/middlewares.js";
-import { activateProduct, deleteProduct, getAllActiveProducts, getAllProducts, getProductById, modifyProduct, postProduct } from "../controllers/productControllers.js";
+import { activateProduct, getAllActiveProducts, getAllProducts, getProductById, modifyProduct, postProduct, removeProduct } from "../controllers/productControllers.js";
 
 
 
@@ -24,7 +24,7 @@ router.post("/postProduct", postProduct);
 
 // Endpoint para realizar una baja logica de un producto de la base de datos
 
-router.delete("/deleteProduct/:id", validateId, deleteProduct);
+router.delete("/deleteProduct/:id", validateId, removeProduct);
 
 // Endpoint para actualizar/modificar producto de la base de datos (nombre, categoria, precio, imagen)
 
