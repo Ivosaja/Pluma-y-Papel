@@ -5,24 +5,24 @@ async function obtenerTodosLosProductos(){
         let resultado = await fetch('http://localhost:1001/api/products/getAllProducts')
         let data = await resultado.json();
         return data
-        //mostrarProductos(data)
 
     } catch(err){
-        console.error("Error al obtener todos los productos")
+        console.error("Error al obtener todos los productos", err)
         return []
     }
 }
 
 function mostrarProductos(arrayProductos){
     let productos = '';
-    console.log(arrayProductos)
+    //console.log(arrayProductos)
 
     if(arrayProductos.length === 0){
         productos = `<p>No se encontraron productos</p>`
+        alert("No se pudo hacer la peticion correctamente")
 
     } else{
-        let arrayRespuesta = arrayProductos.payload;
-        arrayRespuesta.forEach(producto => {
+        alert(arrayProductos.message)
+        arrayProductos.payload.forEach(producto => {
             productos += `
             <li class="itemProducto">
                 <div class="itemProductoInfo">
