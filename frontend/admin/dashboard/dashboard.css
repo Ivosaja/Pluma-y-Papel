@@ -5,17 +5,25 @@
     font-family: sans-serif;
 }
 
+body{
+    background: linear-gradient(135deg, #133c4a, #0f2b31, #111e20, #2d3c3f, #343333, #4a4a4a);/*135deg, significa que va en diagonal (izquierda-superior a derecha-inferior)*/
+    background-size: 400% 400%;
+    animation: animacionPersonalizada  5s ease-in-out infinite; 
+}
+
 main{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     
-    background: linear-gradient(135deg, #133c4a, #0f2b31, #111e20, #2d3c3f, #343333, #4a4a4a);/*135deg, significa que va en diagonal (izquierda-superior a derecha-inferior)*/
-    background-size: 400% 400%;
-    animation: animacionPersonalizada  5s ease-in-out infinite; 
-
 }  
+
+footer{
+    background-color: transparent;
+    text-align: center;
+    color: #aca6a6; 
+}
 
 button{
     border: none;
