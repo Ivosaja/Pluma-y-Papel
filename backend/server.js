@@ -15,7 +15,7 @@ app.use(express.json()) // => Es un middleware que le especifica (al servirdor) 
 
 
 // Endpoint principal de prueba<
-app.get("/",(req,res) =>{
+app.get("/api/",(req,res) =>{
     res.send("Bienvenidos a nuestro aplicacion Pluma&Papel")
 })
 
@@ -26,7 +26,7 @@ app.get("/",(req,res) =>{
 // Endpoints para el admin //
 
 // Endpoint para obtener todos los productos de la base de datos
-app.get("/getAllProducts", async(req,res)=>{
+app.get("/api/products", async(req,res)=>{
     try{
         let sqlQuery = "SELECT * FROM productos";
         const [rows] =  await connection.query(sqlQuery); //desestructuracion de los datos, quedandonos solo con las filas//
@@ -47,7 +47,7 @@ app.get("/getAllProducts", async(req,res)=>{
 
 
 // Endpoint para obtener un producto por ID de la base de datos
-app.get('/getProductById/:id', async(req, res) => {
+app.get('/api/products', async(req, res) => {
     try{
         const {id} = req.params
         const sqlQuery = `SELECT * FROM productos WHERE id_producto = ?`
@@ -73,7 +73,7 @@ app.get('/getProductById/:id', async(req, res) => {
 
 
 //Endpoint para agregar un nuevo producto a la base de datos
-app.post('/postProduct', async (req, res) => {
+app.post('/api/products', async (req, res) => {
     try{
         const {nombre, categoria, precio, url_imagen} = req.body/*cuerpo de la peticion en  donde se 
         envia la info (es un JSON-->se detalla la informacion a postear(un nuevo producto))*/
@@ -108,7 +108,7 @@ app.post('/postProduct', async (req, res) => {
 })
 
 // Endpoint para borrar un producto de la base de datos
-app.delete('/deleteProduct/:id', async (req, res) => {
+app.delete('/api/products', async (req, res) => {
     try{
         const {id} = req.params
         if(isNaN(id)){ // TODO => chequear esto de isNaN()
@@ -147,7 +147,7 @@ app.delete('/deleteProduct/:id', async (req, res) => {
 })
 
 // Endpoint para actualizar/modificar producto de la base de datos (nombre, categoria, precio, imagen)
-app.put('/modifyProduct/:id', async (req, res) => {
+app.put('/api/products', async (req, res) => {
     try{
         const id = Number(req.params.id)
         if(isNaN(id) || id <= 0){
@@ -189,12 +189,11 @@ app.put('/modifyProduct/:id', async (req, res) => {
             message: "Error interno del servidor al actualizar un producto"
         })
     }
-  
 })
 
 
 // Endpoint para activar producto de la base de datos
-app.put('/activateProduct/:id', async (req, res) => {
+app.put('/api/products', async (req, res) => {
     try{
         let id = Number(req.params.id); 
         if(isNaN(id) || id <= 0){ 
@@ -236,7 +235,7 @@ app.put('/activateProduct/:id', async (req, res) => {
 // Endpoints para el cliente //
 
 // Endpoint para que el usuario realice una compra y se registre en la base de datos 
-app.post('/finalizePurchase', async (req, res) => {
+app.post('/api/sales/finalizePurchase', async (req, res) => {
     
     // Obtengo una conexion de la pool de conexiones para poder hacer una transaccion sobre una conexion y no sobre el pool
     const conn = await connection.getConnection()
@@ -303,7 +302,7 @@ app.post('/finalizePurchase', async (req, res) => {
 
 
 //Endpoint para obtener todos los productos activos para el cliente
-app.get("/getAllActiveProducts", async(req,res)=>{
+app.get("/api/products/getAllActiveProducts", async(req,res)=>{
     try{
         let sqlQuery = "SELECT * FROM productos WHERE activo = 1";
         const [rows] =  await connection.query(sqlQuery); //desestructuracion de los datos, quedandonos solo con las filas//
