@@ -22,12 +22,6 @@ app.get("/",(req,res) =>{
 //Basicamente generamos el endpoint en donde se realiza un verbo de HTTP (POST,GET,PUT,DELETE,PATCH)
 
 
-
-// TODO GENERAL => Chequear si modificar que en vez de pasarle al usuario en la respuesta tambien la propiedad error con su respectivo error, o si solo consologeo el error y listo
-
-
-
-
 /////////////////////////////
 // Endpoints para el admin //
 
@@ -43,9 +37,9 @@ app.get("/getAllProducts", async(req,res)=>{
             message: rows.length===0 ? "No se encontraron productos" : `Se encontraron: ${rows.length} productos`})
 
     }catch(err){
+        console.error(err)
         res.status(500).json({
-            message: "Error interno del servidor al obtener todos los productos de la base de datos", 
-            error: err
+            message: "Error interno del servidor al obtener todos los productos de la base de datos"
         })
     }
 })
@@ -61,7 +55,7 @@ app.get('/getProductById/:id', async(req, res) => {
         
         if(rows.length === 0){
             return res.status(404).json({
-                error: `Error. No se encontro el producto con ID: ${id}`
+                message: `Error. No se encontro el producto con ID: ${id}`
             })
         }
         res.status(200).json({
@@ -70,9 +64,9 @@ app.get('/getProductById/:id', async(req, res) => {
         })
         
     } catch(err){
+        console.error(err)
         res.status(500).json({
-            message: "Error interno del servidor al buscar el producto en la base de datos",
-            error: err
+            message: "Error interno del servidor al buscar el producto en la base de datos"
         })
     }
 })
@@ -86,7 +80,7 @@ app.post('/postProduct', async (req, res) => {
         
         if(!nombre || !categoria || !precio || !url_imagen){
             return res.status(400).json({
-                error: "Error. Se deben completar todos los campos, ninguno debe quedar vacio o nulo"
+                message: "Error. Se deben completar todos los campos, ninguno debe quedar vacio o nulo"
             })
             
         }
@@ -109,9 +103,9 @@ app.post('/postProduct', async (req, res) => {
         }) //siginifca que la peticion del cliente fue exisdtosa y resulto en el creacion de un nuevo recurso en el servidor//
         
     }catch(err){
+        console.error(err)
         res.status(500).json({
-            message:"Error al intento de insertar el producto a la base de datos",
-            error:err
+            message:"Error al intento de insertar el producto a la base de datos"
         });
     }
 })
@@ -122,7 +116,7 @@ app.delete('/deleteProduct/:id', async (req, res) => {
         const {id} = req.params
         if(isNaN(id)){ // TODO => chequear esto de isNaN()
             return res.status(400).json({
-                error: "Debe ingresar un ID valido"
+                message: "Debe ingresar un ID valido"
             }) 
         }
         
@@ -131,7 +125,7 @@ app.delete('/deleteProduct/:id', async (req, res) => {
         
         if(result.affectedRows === 0){
             return res.status(404).json({
-                error: `Error. No se encontro el producto con ID: ${id} para darlo de baja de la base de datos`
+                message: `Error. No se encontro el producto con ID: ${id} para darlo de baja de la base de datos`
             })
         }
 
@@ -148,9 +142,9 @@ app.delete('/deleteProduct/:id', async (req, res) => {
         
         
     } catch (err){
+        console.error(err)
         res.status(500).json({
-            message: "Error interno del servidor al dar de baja logica en la base de datos",
-            error: err
+            message: "Error interno del servidor al dar de baja logica en la base de datos"
         })
     }
 })
@@ -161,14 +155,14 @@ app.put('/modifyProduct/:id', async (req, res) => {
         const id = Number(req.params.id)
         if(isNaN(id) || id <= 0){
             return res.status(400).json({
-                error: "Debe ingresar un ID valido"
+                message: "Debe ingresar un ID valido"
             })
         }
     
         const {nombre, categoria, precio, url_imagen} = req.body
         if(!nombre || !categoria || !precio || !url_imagen){
             return res.status(400).json({
-                error: "Debe ingresar los campos correctamente"
+                message: "Debe ingresar los campos correctamente"
             })
         }
     
@@ -177,7 +171,7 @@ app.put('/modifyProduct/:id', async (req, res) => {
 
         if(result.affectedRows === 0){
             return res.status(404).json({
-                error: `Error. No se encontro el producto con ID: ${id} para actualizarlo en la base de datos`
+                message: `Error. No se encontro el producto con ID: ${id} para actualizarlo en la base de datos`
             })
         }
 
@@ -193,9 +187,9 @@ app.put('/modifyProduct/:id', async (req, res) => {
         })
 
     } catch (err){
+        console.error(err)
         res.status(500).json({
-            message: "Error interno del servidor al actualizar un producto",
-            error: err
+            message: "Error interno del servidor al actualizar un producto"
         })
     }
   
@@ -206,9 +200,9 @@ app.put('/modifyProduct/:id', async (req, res) => {
 app.put('/activateProduct/:id', async (req, res) => {
     try{
         let id = Number(req.params.id); 
-        if(isNaN(id) || id<=0){ 
+        if(isNaN(id) || id <= 0){ 
             return res.status(400).json({
-                error: "Debe ingresar un ID valido"
+                message: "Debe ingresar un ID valido"
             }) 
         }
         
@@ -217,7 +211,7 @@ app.put('/activateProduct/:id', async (req, res) => {
         
         if(result.affectedRows === 0){
             return res.status(404).json({
-                error: `Error. No se encontro el producto con ID: ${id} para activarlo en la base de datos`
+                message: `Error. No se encontro el producto con ID: ${id} para activarlo en la base de datos`
             })
         }
 
@@ -233,9 +227,9 @@ app.put('/activateProduct/:id', async (req, res) => {
         })
 
     } catch (err){
+        console.error(err)
         res.status(500).json({
-            message: "Error interno del servidor al activar un producto en la base de datos",
-            error: err
+            message: "Error interno del servidor al activar un producto en la base de datos"
         })
     }
 })
@@ -268,7 +262,7 @@ app.post('/finalizePurchase', async (req, res) => {
 
         if(!nombreUsuario || !total || isNaN(total) || !Array.isArray(carrito) || carrito.length === 0){
             return res.status(400).json({
-                error: "Error. Debe ingresar los campos correctamente"
+                message: "Error. Debe ingresar los campos correctamente"
             })
         }
         
@@ -286,7 +280,7 @@ app.post('/finalizePurchase', async (req, res) => {
             if(!id_producto || !cantidad || cantidad === 0){
                 await conn.rollback() 
                 return res.status(400).json({
-                    error: "El producto debe tener el id y la cantidad validos obligatoriamente"
+                    message: "El producto debe tener el id y la cantidad validos obligatoriamente"
                 })
             }
             
@@ -301,9 +295,9 @@ app.post('/finalizePurchase', async (req, res) => {
         
     } catch (err){
         await conn.rollback() // Si hay algo que no revierte todas las operaciones en caso de error 
+        console.error(err)
         res.status(500).json({
-            message: "Error interno del servidor al guardar venta en la base de datos",
-            error: err
+            message: "Error interno del servidor al guardar venta en la base de datos"
         })
     } finally {
         conn.release(); // libero la conexion obtenida del pool para no saturar al mismo
@@ -324,9 +318,9 @@ app.get("/getAllActiveProducts", async(req,res)=>{
         })
 
     }catch(err){
+        console.error(err)
         res.status(500).json({
-            message: "Error interno desde el servidor al obtener todos los productos activos de la base de datos",
-            error: err
+            message: "Error interno desde el servidor al obtener todos los productos activos de la base de datos"
         })
     }
 })
