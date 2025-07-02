@@ -43,9 +43,9 @@ main{
 }
 
 
-
-#contenedor-Principal i{
+#volverDashboard{
     font-size: 2rem;
+    cursor: pointer;
 }
 
 
