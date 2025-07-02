@@ -1,9 +1,8 @@
-import productRoutes from "./productsRoutes";
+import productRoutes from "./productsRoutes.js";
+import salesRoutes from "./salesRoutes.js";
 
-import salesRoutes from "./salesRoutes";
 
-
-export{
-    salesRoutes,
-    productRoutes
+export {
+    productRoutes,
+    salesRoutes
 }

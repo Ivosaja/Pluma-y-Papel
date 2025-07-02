@@ -235,7 +235,7 @@ app.put('/api/products', async (req, res) => {
 // Endpoints para el cliente //
 
 // Endpoint para que el usuario realice una compra y se registre en la base de datos 
-app.post('/api/sales/finalizePurchase', async (req, res) => {
+app.post('/api/sales', async (req, res) => {
     
     // Obtengo una conexion de la pool de conexiones para poder hacer una transaccion sobre una conexion y no sobre el pool
     const conn = await connection.getConnection()
