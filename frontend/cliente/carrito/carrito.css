@@ -431,6 +431,9 @@ body.transicionBienvenida {
     background-color: var(--color-fondo);
 }
 
+.retorno-mensaje{
+    font-size: 0.8rem;
+}
 
 /*media queries*/
 @media (max-width: 850px){

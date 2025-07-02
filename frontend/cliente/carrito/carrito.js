@@ -7,8 +7,8 @@ let botonVaciarCarrito = document.getElementById("vaciar-carrito");
 let contenedorTotal= document.getElementById("contenedor-Total-Comprar");
 let modalVaciarCarrito = document.getElementById('modal-vaciar-carrito');
 let modalConfirmarCompra = document.getElementById('modal-confirmar-compra');
-//////////////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////
 function volverAProductos(){
 
     contenedorVolverProductos.addEventListener("click", function(){
@@ -17,6 +17,7 @@ function volverAProductos(){
     })
 
 }
+
 //////////////////////////////////////////////////////////////////////////
 function obtenerNombreUsuarioSesionStorage(){
     let nombre = sessionStorage.getItem("nombreUsuario");
@@ -26,8 +27,8 @@ function obtenerNombreUsuarioSesionStorage(){
 
     contenedorUsuario.innerHTML = nuevo;
 }
-//////////////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////
 function mostrarCarrito(lista){
     let productoCarrito = "";
     let precioTotal = 0;
@@ -72,7 +73,7 @@ function mostrarCarrito(lista){
 
 }
 
-
+//////////////////////////////////////////////////////////////////////////
 function mostrarTotal(precioTotal){
     let textoTotal = "";
 
@@ -127,7 +128,6 @@ function restarProducto(id){
 }
 
 //////////////////////////////////////////////////////////////////////////
-
 function eliminar(indice){
 
     listaCarrito.splice(indice,1);
@@ -153,7 +153,6 @@ function vaciarCarrito(){
 }
 
 //////////////////////////////////////////////////////////////////////////
-
 function aplicarModalVaciarCarrito(modalTipo){
     let contenido = "";
 
@@ -197,7 +196,6 @@ function aplicarModalVaciarCarrito(modalTipo){
 }
 
 //////////////////////////////////////////////////////////////////////////
-
 function esconderModal(modal){
 
     modal.style.display = "none";
@@ -209,7 +207,6 @@ function esconderModal(modal){
 }
 
 //////////////////////////////////////////////////////////////////////////
-
 function mostrarModal(modal){
     modal.style.display = "flex";
 
@@ -221,7 +218,6 @@ function mostrarModal(modal){
 }
 
 //////////////////////////////////////////////////////////////////////////
-
 function modalBtnSi(){
 
     let btnSi = document.getElementById("btn-Si");    
@@ -240,7 +236,6 @@ function modalBtnSi(){
 }
 
 //////////////////////////////////////////////////////////////////////////
-
 function modalBtnNo(){
     let btnNo = document.getElementById("btn-No");
     btnNo.addEventListener("click", function(){
@@ -250,10 +245,7 @@ function modalBtnNo(){
     })
 }
 
-
 //////////////////////////////////////////////////////////////////////////
-
-
 function clickearBotonComprar(){
 
     let btnComprar = document.getElementById("boton-comprar");
@@ -261,7 +253,6 @@ function clickearBotonComprar(){
     if(btnComprar){
         btnComprar.addEventListener("click", function(){
     
-            console.log("dfsdhfsdfh");
     
             aplicarModalComprar()
     
@@ -269,6 +260,7 @@ function clickearBotonComprar(){
     }
 
 }
+
 //////////////////////////////////////////////////////////////////////////
 function aplicarModalComprar(){
 
@@ -290,10 +282,7 @@ function aplicarModalComprar(){
     rechazar();
 }
 
-
 //////////////////////////////////////////////////////////////////////////
-
-
 function confirmar(){
     let btnConfirmar = document.getElementById("confirmar");
 
@@ -309,7 +298,7 @@ function confirmar(){
             `
                 <i class="bi bi-check-circle-fill" id="icono-Excelente"></i>
                 <p>Su compra se ha confirmado correctamente</p>
-                <p>${retorno.mensaje}</p>
+                <p class="retorno-mensaje">${retorno.mensaje}</p>
             `
         }
         else{
@@ -317,7 +306,7 @@ function confirmar(){
             `
                 <i class="fas fa-times" id="icono-Fallo"></i>
                 <p>No se efectuo la compra</p>
-                <p>${retorno.mensaje}</p>
+                <p class="retorno-mensaje">${retorno.mensaje}</p>
             `
             
         
@@ -326,8 +315,8 @@ function confirmar(){
         modalConfirmarCompra.innerHTML = contenido;
         
         mostrarModal(modalConfirmarCompra);
-
-        setTimeout(volverInicio, 2500);
+        
+        setTimeout(volverInicio, 5000);
 
     })
 }
@@ -364,12 +353,11 @@ function volverInicio(){
 
 
     document.body.classList.add("transicionBienvenida");
-
-    
+    sessionStorage.clear();
     setTimeout(() => {
-        sessionStorage.clear();
         window.location.href = "../bienvenida/index.html";
-    }, 800); 
+    }, 1000); // debe estar igual que en css opara que le de tiempo a mostrar a su vez el CSS
+    
 
 }
 
@@ -384,7 +372,7 @@ async function subirVenta(){
             body: JSON.stringify({
                 carrito: JSON.parse(sessionStorage.getItem("carrito")),
                 total: parseInt(sessionStorage.getItem("totalCarrito")),
-                nombreUsuario: JSON.parse(sessionStorage.getItem("nombreUsuario"))
+                nombreUsuario: sessionStorage.getItem("nombreUsuario")
             })
         })
 
