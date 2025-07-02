@@ -28,10 +28,10 @@ main{
 #contenedor-Principal{
     width: 100%;
     max-width: 65%;
-    height: 90vh;
+    height: 85vh;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 2.5rem;
     overflow-y: scroll;
     
     background-color: #FFFFFF;
