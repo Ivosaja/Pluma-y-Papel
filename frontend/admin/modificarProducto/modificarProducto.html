@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Producto - Pluma & Papel</title>
+    <link rel="shortcut icon" href="../../../assets/img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="modificarProducto.css">
+    <script defer src="modificarProducto.js"></script>
+</head>
+<body>
+    <main>
+        <div id="contenedor-principal">
+            <h1>Modificar Producto</h1>
+            <div id="contenedor-form">
+                <form id="form-modificarProducto">
+                    <label for="idProducto">ID</label>
+                    <input type="number" name="idProducto" id="idProducto" readonly value="6">
+    
+                    <label for="nombreProducto">Nombre</label>
+                    <input type="text" name="nombreProducto" id="nombreProducto" required>
+    
+                    <label for="imagenProducto">Imagen</label>
+                    <input type="text" name="imagenProducto" id="imagenProducto" required>
+    
+                    <label for="precioProducto">Precio</label>
+                    <input type="number" name="precioProducto" id="precioProducto">
+    
+                    <label for="categoriaProducto">Categoria</label>
+                    <select name="categoriaProducto" id="categoriaProducto">
+                        <option value="Libros">Libros</option>
+                        <option value="Utiles">Utiles</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        © Pluma & Papel - Ivo Lionel Saja & Lucas Agustin Schurkens
+    </footer>
+</body>
+</html>
