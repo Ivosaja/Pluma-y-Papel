@@ -91,12 +91,9 @@ app.post('/postProduct', async (req, res) => {
         //el conexion ya es LA CONEXION
         //.query ejecuta una consulta
         //si o si el await para que se resulva la promesa primero 
-        
-        // TODO => Pensar si es necesario validar si affectedRows === 0
 
         res.status(201).json({
-            message: `Se inserto correctamente el producto denominado ${nombre} a la base de datos`,
-            insertId: result.insertId,
+            message: `Se inserto correctamente el producto con ID: ${result.insertId} denominado ${nombre} a la base de datos`,
             payload: result
         
             
@@ -177,7 +174,7 @@ app.put('/modifyProduct/:id', async (req, res) => {
 
         if(result.changedRows === 0){
             return res.status(200).json({
-                message: "El producto se encontro, pero ya se encontraba activado" 
+                message: "El producto se encontro, pero no se hicieron cambios (ya tenia los mismos datos)" 
             })
         }
 
