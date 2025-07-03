@@ -36,7 +36,7 @@ function enviarFormualrio(){
             if(resultado.estado){
 
                 alert("✅ Producto creado con éxito")
-
+                alert(resultado.mensaje)
                 setTimeout(()=>{
 
                     window.location.href = "../dashboard/dashboard.html";
@@ -45,6 +45,7 @@ function enviarFormualrio(){
             else{
 
                 alert("❌" +  resultado.mensaje)
+                alert(resultado.mensaje)
             }
             
         }
