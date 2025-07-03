@@ -75,6 +75,18 @@ function agregarProducto(){
 }
 
 
+function volverProductos(){
+    let flechiteVolver = document.getElementById("volverProductos");
+
+    flechiteVolver.addEventListener("click", function(){
+
+        window.location.href = "../../cliente/productos/productos.html";
+
+    })
+
+}
+
+
 async function init(){
     listaProductos.innerHTML = `<p>Cargando productos...</p>`
 
@@ -82,6 +94,8 @@ async function init(){
     mostrarProductos(productos)
 
     agregarProducto()
+
+    volverProductos();
 }
 
 init()

@@ -69,6 +69,12 @@ button{
     justify-content: space-between;
     align-items: center;
 }
+/*Agregue eso*/
+#contenedorTitulo{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+} 
 
 .contenedor-registrarse{
     display: flex;
