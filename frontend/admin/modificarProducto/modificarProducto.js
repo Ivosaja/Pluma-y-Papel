@@ -42,7 +42,7 @@ async function modificarProducto(id, data){
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(xd)
+            body: JSON.stringify(data)
         })
         let info = await result.json()
         return info.message 
