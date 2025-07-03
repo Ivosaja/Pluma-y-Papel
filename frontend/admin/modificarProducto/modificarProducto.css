@@ -115,6 +115,15 @@ footer{
 
 @media (max-width:550px){
     #contenedor-principal{
-        max-width: 100%;
+        max-width: 80%;
+    }
+    footer{
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width:700px){
+    #contenedor-principal h1{
+        font-size: 1.5rem;
     }
 }
