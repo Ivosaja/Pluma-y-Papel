@@ -316,7 +316,7 @@ function confirmar(){
         
         mostrarModal(modalConfirmarCompra);
         
-        setTimeout(volverInicio, 5000);
+        setTimeout(volverInicioPostCompra, 5000);
 
     })
 }
@@ -349,7 +349,7 @@ function opacidad(accion){
     }
 }
 //////////////////////////////////////////////////////////////////////////
-function volverInicio(){
+function volverInicioPostCompra(){
 
 
     document.body.classList.add("transicionBienvenida");
@@ -358,6 +358,19 @@ function volverInicio(){
         window.location.href = "../bienvenida/index.html";
     }, 1000); // debe estar igual que en css opara que le de tiempo a mostrar a su vez el CSS
     
+
+}
+
+//////////////////////////////////////////////////////////////////////////
+function volverInicio(){
+    const nombreGuardado  = sessionStorage.getItem("nombreUsuario");
+
+    if(!nombreGuardado){
+
+        window.location.href = "../bienvenida/index.html";
+
+    }
+
 
 }
 
@@ -409,7 +422,7 @@ function init(){
 
     obtenerNombreUsuarioSesionStorage();
 
-
+    volverInicio();
 
 
 }

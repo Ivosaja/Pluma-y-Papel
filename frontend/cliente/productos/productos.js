@@ -209,7 +209,12 @@ function volverInicio() {
 
     })
 
-    
+    const nombreGuardado = sessionStorage.getItem("nombreUsuario");
+
+    if (!nombreGuardado) {
+        window.location.href = "../bienvenida/index.html";
+    }
+
 }
 
 function redireccionarPanelAdmin(){
@@ -220,6 +225,8 @@ function redireccionarPanelAdmin(){
     })
 
 }
+
+
 
 
 ///////////////////////////////////////////////////////////////////
@@ -252,6 +259,7 @@ async function init() {
     redireccionarPanelAdmin();
 
     redireccionarCarrito();
+
 
 }
 
