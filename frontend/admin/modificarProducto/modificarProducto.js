@@ -35,6 +35,28 @@ async function rellenarFormulario(id){
     }
 }
 
+async function modificarProducto(id){
+    try{
+        let result = await fetch(`http://localhost:1001/api/products/modifyProduct/${id}`, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nombre: nombreProducto.value,
+                url_imagen: imagenProducto.value,
+                precio: precioProducto.value,
+                categoria: categoriaProducto.value
+            })
+        })
+        let data = await result.json()
+        return data.message 
+
+    } catch (err){
+        console.error(err)
+        return []
+    }
+}
 
 
 async function init(){
@@ -44,6 +66,8 @@ async function init(){
     } else{
         alert("No se selecciono ningun producto para modificar")
     }
+
+    await modificarProducto()
 
 }
 
