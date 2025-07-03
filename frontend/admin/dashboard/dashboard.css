@@ -234,8 +234,15 @@ button{
     .contenedor-registrarse{
         order:1
     }
-    .contenedor-headerPanel h1{
+    #contenedorTitulo{
         order: 2;
+    }
+
+    #volverProductos{
+        text-align: center;
+    }
+
+    h1{
         font-size: 2.5rem;
     }
 
