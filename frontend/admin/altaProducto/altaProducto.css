@@ -116,4 +116,25 @@ footer{
 
 /* Responsive */
 
+@media (max-width:600px){
+
+    h1{
+        font-size: 1.5rem;
+    }
+
+
+}
+
+@media (max-width:540px){
+
+    #contenedor-Principal{
+
+        max-width: 75%;
+    }
+
+    footer{
+        font-size: 0.8rem;
+    }
+}
+
 
