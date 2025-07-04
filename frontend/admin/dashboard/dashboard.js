@@ -1,5 +1,6 @@
 let listaProductos = document.querySelector('.listaProductos')
 
+
 async function obtenerTodosLosProductos(){
     try{
         let resultado = await fetch('http://localhost:1001/api/products/getAllProducts')
@@ -66,8 +67,27 @@ function eliminarProducto(idProducto){
     
 }
 
-function activarProducto(idProducto){
+async function activarProducto(idProducto, lista){
+    console.log(idProducto)
+    let respuesta = await activar(idProducto)
+    alert(respuesta)
     
+    let productos = await obtenerTodosLosProductos()
+    mostrarProductos(productos)
+}
+
+async function activar(id){
+    try{
+        let respuesta = await fetch(`http://localhost:1001/api/products/activateProduct/${id}`, {
+            method: 'PUT'
+        })
+        let data = await respuesta.json()
+        return data.message
+
+    } catch(err){
+        console.error(err)
+        alert("Error al hacer la peticion")
+    }
 }
 
 function agregarProducto(){
