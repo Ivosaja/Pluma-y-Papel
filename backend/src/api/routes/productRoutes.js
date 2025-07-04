@@ -24,7 +24,7 @@ router.post("/postProduct", postProduct);
 
 // Endpoint para realizar una baja logica de un producto de la base de datos
 
-router.delete("/deleteProduct/:id", validateId, removeProduct);
+router.put("/deleteProduct/:id", validateId, removeProduct); //colocamos un put debido a que en realidad no se elimina, sino que se da de baja logica
 
 // Endpoint para actualizar/modificar producto de la base de datos (nombre, categoria, precio, imagen)
 
