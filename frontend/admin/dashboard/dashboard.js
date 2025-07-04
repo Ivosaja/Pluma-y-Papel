@@ -56,19 +56,39 @@ function mostrarProductos(arrayProductos){
     listaProductos.innerHTML = productos;
 }
 
-// no sabia si hacerlas o no
 function modificarProducto(idProducto){
-    //console.log(idProducto)
     window.location.href = '../modificarProducto/modificarProducto.html'
     sessionStorage.setItem("idProducto", idProducto)
 }
 
-function eliminarProducto(idProducto){
+async function eliminarProducto(idProducto){
+
+    let respuesta = await eliminar(idProducto)
+    alert(respuesta)
+    
+    let productos = await obtenerTodosLosProductos()
+    mostrarProductos(productos)
     
 }
 
-async function activarProducto(idProducto, lista){
-    console.log(idProducto)
+async function eliminar(id){
+
+    try{
+        let respuesta = await fetch(`http://localhost:1001/api/products/deleteProduct/${id}`,{
+            method: `PUT`})
+
+
+        let data = await respuesta.json()
+
+        return data.message;
+    }catch(err){
+        console.error(err);
+        alert("Error al hacer la peticion")
+    }
+
+}
+
+async function activarProducto(idProducto){
     let respuesta = await activar(idProducto)
     alert(respuesta)
     

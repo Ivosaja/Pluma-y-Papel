@@ -72,13 +72,6 @@ export const postProduct = async (req, res) => {
 export const removeProduct = async (req, res) => {
     try{
         const {id} = req.params
-        // if(isNaN(id) || id<=0){ 
-        //     return res.status(400).json({
-        //         message: "Debe ingresar un ID valido"
-        //     }) 
-        // }
-        
-        
         const [result] = await deleteProduct(id) 
         
         if(result.affectedRows === 0){
@@ -111,11 +104,6 @@ export const removeProduct = async (req, res) => {
 export const modifyProduct = async (req, res) => {
     try{
         const {id} = req.params
-        // if(isNaN(id) || id <= 0){
-        //     return res.status(400).json({
-        //         message: "Debe ingresar un ID valido"
-        //     })
-        // }
     
         const {nombre, categoria, precio, url_imagen} = req.body
         if(!nombre || !categoria || !precio || !url_imagen){
@@ -155,13 +143,6 @@ export const modifyProduct = async (req, res) => {
 export const activateProduct = async (req, res) => {
     try{
         let {id} = req.params 
-        // if(isNaN(id) || id <= 0){ 
-        //     return res.status(400).json({
-        //         message: "Debe ingresar un ID valido"
-        //     }) 
-        // }
-        
-        
         const [result] = await updateProductActivo(id) 
         
         if(result.affectedRows === 0){

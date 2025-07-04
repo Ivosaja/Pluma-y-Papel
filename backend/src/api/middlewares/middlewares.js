@@ -8,8 +8,8 @@ const loggerUrl = (req, res, next) => {
 
 const validateId = (req,res,next) => {
     let {id} = req.params
-
-    if(!id || isNaN(id)){
+    
+    if(!id || isNaN(id) || parseInt(id) <= 0){
         return res.status(400).json({
             message: "Debe ingresar un ID valido (numero)"
         })
