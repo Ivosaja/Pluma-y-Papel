@@ -31,7 +31,10 @@ function mostrarProductos(arrayProductos){
                     <p><strong>Nombre: </strong>${producto.nombre}</p>
                     <p><strong>Precio: </strong>$${producto.precio}</p>
                     <p><strong>Categoria: </strong>${producto.categoria}</p>
-                    <p><strong>Activo: </strong>${producto.activo === 1 ? true : false}</p>
+                    <p>
+                        <strong>Activo: </strong>
+                        <span class="${producto.activo === 1 ? 'activo' : 'inactivo'}">${producto.activo === 1 ? true : false}</span>
+                    </p>
                 </div>
                 <div class="acciones">
                     <button type="button" onclick="modificarProducto(${producto.id_producto})" id="btn-modificarProducto">
