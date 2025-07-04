@@ -75,6 +75,15 @@ function subirCambios(idProducto){
     })
 }
 
+function volverDashboard(){
+    let bntVovlerDashboard = document.getElementById("volverDashboard");
+
+    bntVovlerDashboard.addEventListener("click", function(){
+        window.location.href  = "../dashboard/dashboard.html";
+    })
+    
+}
+
 
 async function init(){
     const idProducto = sessionStorage.getItem("idProducto")
@@ -85,6 +94,8 @@ async function init(){
     }
 
     subirCambios(idProducto)
+
+    volverDashboard();
 }
 
 init()
