@@ -63,7 +63,7 @@ function subirCambios(idProducto){
         const data = Object.fromEntries(formData.entries())
         const precio = parseInt(data.precio)
 
-        if(!data.nombre || !data.url_imagen || isNaN(precio) || precio < 0 || precio > 500000||!data.categoria){
+        if(!data.nombre || !data.url_imagen || precio < 0 || precio > 500000||!data.categoria){
             alert("Error, todos los campos deben ser validos")
             return;
         }
