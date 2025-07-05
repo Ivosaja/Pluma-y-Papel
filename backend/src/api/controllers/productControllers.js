@@ -108,7 +108,7 @@ export const modifyProduct = async (req, res) => {
         const {nombre, categoria, precio, url_imagen} = req.body
         if(!nombre || !categoria || !precio || !url_imagen){
             return res.status(400).json({
-                message: "Debe ingresar los campos correctamente"
+                message: "Debe ingresar todos los campos correctamente"
             })
         }
     

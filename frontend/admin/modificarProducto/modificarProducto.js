@@ -4,6 +4,10 @@ const imagenProducto = document.getElementById('imagenProducto')
 const precioProducto = document.getElementById('precioProducto')
 const categoriaProducto = document.getElementById('categoriaProducto')
 
+const modal = document.getElementById("modal")
+const modalIcono = document.querySelector('.modal-content-icon')
+const modalTexto = document.querySelector('.modal-content-text')
+
 
 async function obtenerProductoClickeadoPorId(id){
     try{
@@ -98,10 +102,6 @@ function volverDashboardBoton(){
 }
 
 function mostrarModal(tipoModal, mensaje){
-    const modal = document.getElementById("modal")
-    const modalIcono = document.querySelector('.modal-content-icon')
-    const modalTexto = document.querySelector('.modal-content-text')
-    
     if(tipoModal === 'modificado'){
         modalIcono.innerHTML = `<i class="bi bi-check-circle-fill"></i>`
         modalIcono.style.color = 'green'
@@ -112,10 +112,6 @@ function mostrarModal(tipoModal, mensaje){
 
     modal.style.display = 'flex'
     modalTexto.textContent = mensaje
-
-    setTimeout(() => {
-        modal.style.display = 'none'
-    }, 3000)
 }
 
 
