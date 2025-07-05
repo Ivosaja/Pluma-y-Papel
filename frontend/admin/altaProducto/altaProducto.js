@@ -25,11 +25,11 @@ function enviarFormualrio(){
 
             alert("Todos los campos son obligatorios")
         }
-        else if(Number(data.precio)<0){ //al llegar desde el form, este llega como string, no como Number
+        else if(parseInt(data.precio)<0 ||  parseInt(data.precio)>500000){ //al llegar desde el form, este llega como string, no como Number
+            console.log(data.precio);
 
-            alert("Los precios no pueden ser negativos")
+            alert("Los precios no pueden ser negativos ni pueden superar los $10.000.000")
         }
-
         else{
             let resultado = await subirProducto(data);
 
