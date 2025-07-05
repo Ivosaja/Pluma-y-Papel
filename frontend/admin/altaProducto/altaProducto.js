@@ -25,7 +25,7 @@ function enviarFormualrio(){
 
         if(!data.nombre || !data.url_imagen || !data.precio || !data.categoria){
 
-            usarModal("incorrecto", "Todos los campos deben estar comp")
+            usarModal("incorrecto", "Todos los campos deben estar completos")
             mostrarModal();
             setTimeout(esconderModal, 2500);
         }
