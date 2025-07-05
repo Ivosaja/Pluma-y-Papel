@@ -45,11 +45,16 @@ async function modificarProducto(id, data){
             body: JSON.stringify(data)
         })
         let info = await result.json()
-        return info.message 
+
+        if(result.ok){
+            return {estado: true, mensaje: info.message}
+        } else {
+            return {estado: false, mensaje: info.message}
+        }
 
     } catch (err){
         console.error(err)
-        return "Error al hacer la peticion"
+        return {estado: false, mensaje: "Error al hacer la peticion"}
     }
 }
 
@@ -69,9 +74,13 @@ function subirCambios(idProducto){
         }
 
         let respuestaProductoModificado = await modificarProducto(idProducto, data)
-        alert(respuestaProductoModificado)
 
-        window.location.href = "../dashboard/dashboard.html"
+        if(respuestaProductoModificado.estado){
+            mostrarModal("modificado", respuestaProductoModificado.mensaje)
+        } else{
+            mostrarModal("noModificado", respuestaProductoModificado.mensaje)
+        }
+
     })
 }
 
@@ -82,6 +91,28 @@ function volverDashboard(){
         window.location.href  = "../dashboard/dashboard.html";
     })
     
+}
+
+function mostrarModal(tipoModal, mensaje){
+    const modal = document.getElementById("modal")
+    const modalIcono = document.querySelector('.modal-content-icon')
+    const modalTexto = document.querySelector('.modal-content-text')
+    
+    if(tipoModal === 'modificado'){
+        modalIcono.innerHTML = `<i class="bi bi-check-circle-fill"></i>`
+        modalIcono.style.color = 'green'
+    } else if(tipoModal === 'noModificado'){
+        modalIcono.innerHTML = '<i class="bi bi-trash-fill"></i>'
+        modalIcono.style.color = 'red'
+    }
+
+    modal.style.display = 'flex'
+    modalTexto.textContent = mensaje
+
+    setTimeout(() => {
+        modal.style.display = 'none'
+        window.location.href  = "../dashboard/dashboard.html";
+    }, 3000)
 }
 
 

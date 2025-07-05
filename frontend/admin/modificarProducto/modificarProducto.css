@@ -113,6 +113,30 @@ main{
 }
 
 
+#modal{
+    display: none;
+    position: fixed;
+    top: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: #e9e8e8;
+    border-radius: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 2rem;
+    gap: 1rem;
+    z-index: 1000;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+#modal-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+
 footer{
     text-align: center;
     color: #aca6a6;
