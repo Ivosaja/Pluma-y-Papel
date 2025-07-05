@@ -61,9 +61,9 @@ function subirCambios(idProducto){
         const formData = new FormData(event.target) // Transformo en una clase que me permite obtener todos los datos de un formulario pasandole por parametro el elemento que disparo el evento (el Formulario)
 
         const data = Object.fromEntries(formData.entries())
-        console.log(data)
+        const precio = parseInt(data.precio)
 
-        if(!data.nombre || !data.url_imagen || !data.precio || !data.categoria){
+        if(!data.nombre || !data.url_imagen || isNaN(precio) || precio < 0 || precio > 500000||!data.categoria){
             alert("Error, todos los campos deben ser validos")
             return;
         }
