@@ -315,10 +315,50 @@ function confirmar(){
         modalConfirmarCompra.innerHTML = contenido;
         
         mostrarModal(modalConfirmarCompra);
+        generarTicket();
         
         setTimeout(volverInicioPostCompra, 5000);
 
+
     })
+}
+
+
+function generarTicket(){
+
+    const {jsPDF} = window.jspdf;
+
+    const doc = new jsPDF();
+
+
+    let y = 10; 
+
+    doc.setFontSize(20);
+
+    doc.text("Ticket de compra", 10 , y);
+
+    y+=5
+    doc.setFontSize(14);
+    doc.text(`------------------------------------------------`, 10, y)
+    y+= 10 ;
+    for(let i = 0; i<listaCarrito.length;i++){
+
+        doc.text(`${listaCarrito[i].nombre} - $${listaCarrito[i].precio}`, 10 , y);
+
+        y+=10;
+    }
+
+    y += 7;
+
+    const total = listaCarrito.reduce((sum, prod) => sum + prod.precio, 0);
+
+    y += 8;
+
+    doc.text(`------------------------------------------------`, 10, y)
+    y+=5
+    doc.text(`TOTAL: $${total.toFixed(2)}`, 10, y);
+
+    doc.save("🖋️  Pluma & Papel - Ticket");
 }
 
 //////////////////////////////////////////////////////////////////////////
