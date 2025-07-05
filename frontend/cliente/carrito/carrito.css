@@ -363,6 +363,7 @@ footer{
     border: 1px solid grey;
     cursor: pointer;
     border:none;
+    padding: 0.5rem;
 }
 
 
@@ -402,6 +403,7 @@ footer{
     transform: translateX(-50%); 
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     font-size: 1.8rem;
+    text-align: center;
 }
 
 #icono-Excelente {
@@ -415,6 +417,7 @@ footer{
 
 
 #contenedor-confirmar-rechazar button{
+    padding: 0.5rem;
     font-size: 1.2rem;
     border: none;
     cursor: pointer;
@@ -554,7 +557,6 @@ body.transicionBienvenida {
 }
 
 
-
 @media (max-width:350px){
 
     #contenedor-logo-Titulo img {
@@ -566,9 +568,15 @@ body.transicionBienvenida {
         font-size: 1.5rem;
     }
     #confirmar-compra button{
-
         padding: 0.6rem;
         font-size: 0.6rem;
+    }
+    #modal-confirmar-compra{
+        font-size: 1rem;
+    }
+
+    #contenedor-confirmar-rechazar button{
+        font-size: 1rem;
     }
 
 }
