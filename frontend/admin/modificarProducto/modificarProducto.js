@@ -69,7 +69,7 @@ function subirCambios(idProducto){
         const precio = parseInt(data.precio)
 
         if(!data.nombre || !data.url_imagen || precio < 0 || precio > 500000||!data.categoria){
-            alert("Error, todos los campos deben ser validos")
+            mostrarModal("noModificado", "Error, todos los campos deben ser validos")
             return;
         }
 
@@ -80,11 +80,15 @@ function subirCambios(idProducto){
         } else{
             mostrarModal("noModificado", respuestaProductoModificado.mensaje)
         }
+        
+        setTimeout(() => {
+            window.location.href = '../dashboard/dashboard.html'
+        }, 3000)
 
     })
 }
 
-function volverDashboard(){
+function volverDashboardBoton(){
     let bntVovlerDashboard = document.getElementById("volverDashboard");
 
     bntVovlerDashboard.addEventListener("click", function(){
@@ -102,7 +106,7 @@ function mostrarModal(tipoModal, mensaje){
         modalIcono.innerHTML = `<i class="bi bi-check-circle-fill"></i>`
         modalIcono.style.color = 'green'
     } else if(tipoModal === 'noModificado'){
-        modalIcono.innerHTML = '<i class="bi bi-trash-fill"></i>'
+        modalIcono.innerHTML = '<i class="fas fa-times"></i>'
         modalIcono.style.color = 'red'
     }
 
@@ -111,7 +115,6 @@ function mostrarModal(tipoModal, mensaje){
 
     setTimeout(() => {
         modal.style.display = 'none'
-        window.location.href  = "../dashboard/dashboard.html";
     }, 3000)
 }
 
@@ -126,7 +129,7 @@ async function init(){
 
     subirCambios(idProducto)
 
-    volverDashboard();
+    volverDashboardBoton();
 }
 
 init()
