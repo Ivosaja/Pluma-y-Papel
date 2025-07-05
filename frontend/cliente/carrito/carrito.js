@@ -444,7 +444,6 @@ async function subirVenta(){
 }
 
 
-
 ////FUNCION INICIADORA //////
 
 function init(){
