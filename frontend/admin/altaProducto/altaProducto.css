@@ -113,6 +113,34 @@ footer{
     color: #aca6a6;
 }
 
+#contenedorModalAltaProducto{
+    display: none;
+    flex-direction: column;
+    padding: 2rem;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid #5a724e;
+    border-radius: 12px;
+    z-index: 1000; /* superopne lo de la pantalla*/
+    background-color: #2E2E2E;
+    color: white;
+}
+
+#cruz{
+    background-color: red;
+    color: white;
+    padding: 0.2rem;
+    
+}
+
+#tilde{
+    padding: 0.2rem;
+    color: green;
+}
+
+
 
 /* Responsive */
 

@@ -2,6 +2,8 @@ let btnVolver = document.getElementById("volverDashboard");
 
 let formData = document.getElementById("altaProductoForm");
 
+let contenedorModalAlta =document.getElementById("contenedorModalAltaProducto")
+
 
 function volverDashboard(){
 
@@ -23,20 +25,26 @@ function enviarFormualrio(){
 
         if(!data.nombre || !data.url_imagen || !data.precio || !data.categoria){
 
-            alert("Todos los campos son obligatorios")
+            usarModal("incorrecto", "Todos los campos deben estar comp")
+            mostrarModal();
+            setTimeout(esconderModal, 2500);
         }
         else if(parseInt(data.precio)<0 ||  parseInt(data.precio)>500000){ //al llegar desde el form, este llega como string, no como Number
             console.log(data.precio);
 
-            alert("Los precios no pueden ser negativos ni pueden superar los $10.000.000")
+            usarModal("incorrecto", "Los precios no pueden ser negativos ni pueden superar los $10.000.000")
+            mostrarModal();
+
+            setTimeout(esconderModal, 2500);
         }
         else{
             let resultado = await subirProducto(data);
 
             if(resultado.estado){
 
-                alert("✅ Producto creado con éxito")
-                alert(resultado.mensaje)
+                usarModal("correcto", resultado.mensaje)
+                mostrarModal();
+
                 setTimeout(()=>{
 
                     window.location.href = "../dashboard/dashboard.html";
@@ -44,8 +52,10 @@ function enviarFormualrio(){
             }
             else{
 
-                alert("❌" +  resultado.mensaje)
-                alert(resultado.mensaje)
+                usarModal("incorrecto", resultado.mensaje)
+                mostrarModal();
+
+                setTimeout(esconderModal, 2500);
             }
             
         }
@@ -79,6 +89,31 @@ async function subirProducto(data){
         console.error(err);
         return {estado: false, mensaje: "Error al hacer la peticion"};
     }
+}
+
+
+function usarModal(estado,mensaje1){
+    let contenido= "";
+
+    if(estado === "correcto"){
+        contenido =
+        `<p><i class="bi bi-check-circle-fill" id="tilde"></i> ${mensaje1}</p>`
+
+
+    }else if(estado==="incorrecto"){
+        contenido =
+        `<p><i class="fas fa-times" id="cruz"></i> ${mensaje1}</p>`
+
+    }
+    contenedorModalAlta.innerHTML = contenido;
+
+}
+
+function mostrarModal(){
+    contenedorModalAlta.style.display = "flex";
+}
+function esconderModal(){
+    contenedorModalAlta.style.display = "none";
 }
 
 
