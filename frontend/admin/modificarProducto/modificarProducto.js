@@ -72,22 +72,32 @@ function subirCambios(idProducto){
         const data = Object.fromEntries(formData.entries())
         const precio = parseInt(data.precio)
 
-        if(!data.nombre || !data.url_imagen || precio < 0 || precio > 500000||!data.categoria){
+        if(!data.nombre || !data.url_imagen || isNaN(precio) || precio < 0 || precio > 500000||!data.categoria){
             mostrarModal("noModificado", "Error, todos los campos deben ser validos")
-            return;
+            
+            setTimeout(() => {
+                modal.style.display = 'none'
+            }, 3000)
+            return
         }
 
         let respuestaProductoModificado = await modificarProducto(idProducto, data)
 
         if(respuestaProductoModificado.estado){
             mostrarModal("modificado", respuestaProductoModificado.mensaje)
+
+            setTimeout(() => {
+                modal.style.display = 'none'
+                window.location.href = '../dashboard/dashboard.html'
+            }, 3000)
+
         } else{
             mostrarModal("noModificado", respuestaProductoModificado.mensaje)
+
+            setTimeout(() => {
+                modal.style.display = 'none'
+            }, 3000)
         }
-        
-        setTimeout(() => {
-            window.location.href = '../dashboard/dashboard.html'
-        }, 3000)
 
     })
 }
