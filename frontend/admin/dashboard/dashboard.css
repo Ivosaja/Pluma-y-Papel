@@ -219,8 +219,6 @@ button{
     cursor: pointer;
 }
 
-
-
 @media (max-width: 1100px){
     .contenedor-principal h1{
         text-align: center;
