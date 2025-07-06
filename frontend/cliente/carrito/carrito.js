@@ -331,7 +331,7 @@ function generarTicket(){
     const doc = new jsPDF();
 
 
-    let y = 10; 
+    let y = 20; 
 
     doc.setFontSize(20);
 
@@ -343,7 +343,7 @@ function generarTicket(){
     y+= 10 ;
     for(let i = 0; i<listaCarrito.length;i++){
 
-        doc.text(`Nombre: ${listaCarrito[i].nombre} - Precio$${listaCarrito[i].precio} - Cantidad: ${listaCarrito[i].cantidad} `, 10 , y);
+        doc.text(`Nombre: ${listaCarrito[i].nombre} - Precio: $${listaCarrito[i].precio} - Cantidad: ${listaCarrito[i].cantidad} `, 10 , y);
 
         y+=10;
     }
