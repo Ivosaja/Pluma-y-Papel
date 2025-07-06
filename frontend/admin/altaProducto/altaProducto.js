@@ -46,7 +46,7 @@ function enviarFormualrio(){
 
                 setTimeout(()=>{
 
-                    //window.location.href = "../dashboard/dashboard.html";
+                    window.location.href = "../dashboard/dashboard.html";
                 }, 3000)
             }
             else{
@@ -110,13 +110,12 @@ function usarModal(estado,mensaje1){
 
 function mostrarModal(){
     contenedorModalAlta.style.display = "flex";
+    document.getElementById('contenedor-Principal').classList.add('bloquear-interacciones');
 }
 function esconderModal(){
     contenedorModalAlta.style.display = "none";
+    document.getElementById('contenedor-Principal').classList.remove('bloquear-interacciones');
 }
-
-
-
 
 function init(){
     volverDashboard();

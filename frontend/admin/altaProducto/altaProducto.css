@@ -141,6 +141,12 @@ footer{
 }
 
 
+.bloquear-interacciones{
+    pointer-events: none;
+    user-select: none;
+}
+
+
 
 /* Responsive */
 

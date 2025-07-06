@@ -76,6 +76,7 @@ function subirCambios(idProducto){
             
             setTimeout(() => {
                 modal.style.display = 'none'
+                document.getElementById('contenedor-principal').classList.remove('bloquear-interacciones');
             }, 3000)
             return
         }
@@ -84,17 +85,21 @@ function subirCambios(idProducto){
 
         if(respuestaProductoModificado.estado){
             mostrarModal("modificado", respuestaProductoModificado.mensaje)
-
+            
+            
             setTimeout(() => {
                 modal.style.display = 'none'
                 window.location.href = '../dashboard/dashboard.html'
+                document.getElementById('contenedor-principal').classList.remove('bloquear-interacciones');
             }, 3000)
 
         } else{
             mostrarModal("noModificado", respuestaProductoModificado.mensaje)
 
+            
             setTimeout(() => {
                 modal.style.display = 'none'
+                document.getElementById('contenedor-principal').classList.remove('bloquear-interacciones');
             }, 3000)
         }
 
@@ -118,7 +123,7 @@ function mostrarModal(tipoModal, mensaje){
         modalIcono.innerHTML = '<i class="fas fa-times"></i>'
         modalIcono.style.color = 'red'
     }
-
+    document.getElementById('contenedor-principal').classList.add('bloquear-interacciones');
     modal.style.display = 'flex'
     modalTexto.textContent = mensaje
 }
