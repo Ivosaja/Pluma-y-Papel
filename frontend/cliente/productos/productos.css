@@ -2,7 +2,7 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    font-family:'Nunito';
+    font-family:'Nunito', sans-serif;
 }
 
 :root {
@@ -132,7 +132,6 @@ html{
 }
 
 body{
-    font-family: 'Segoe UI', sans-serif;
     background-color: var(--color-fondo); 
 }
 
@@ -285,7 +284,6 @@ aside{
 .tarjeta-producto p {
     font-size: 1.1rem;
     color: #333;
-    font-family: 'Nunito', monospace;
 }
 
 
