@@ -234,6 +234,7 @@ aside{
     padding: 2rem;
     border-radius: 3rem;
     background-color: #fef5da;
+    flex-grow: 1;
 }
 
 /* le coloco una altura y ancho fijo ya que sino se provoca un desfasamiento respecto a las otras tarjeta producto*/
@@ -243,7 +244,11 @@ aside{
 }
 
 .contenedor-productos-texto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1.5rem;
+    text-align: center;
 }
 
 .tarjeta-producto{
@@ -367,10 +372,6 @@ footer{
     aside{
         width: 100%;
         position: static;
-    }
-
-    #contenedor-productos{
-        flex-grow: 1;
     }
 
     #contenedor-seleccion-categoria, #contenedor-panel-admin{
