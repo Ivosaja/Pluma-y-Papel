@@ -30,7 +30,6 @@ function enviarFormualrio(){
             setTimeout(esconderModal, 2500);
         }
         else if(parseInt(data.precio)<0 ||  parseInt(data.precio)>500000){ //al llegar desde el form, este llega como string, no como Number
-            console.log(data.precio);
 
             usarModal("incorrecto", "Los precios no pueden ser negativos ni pueden superar los $10.000.000")
             mostrarModal();
@@ -47,7 +46,7 @@ function enviarFormualrio(){
 
                 setTimeout(()=>{
 
-                    window.location.href = "../dashboard/dashboard.html";
+                    //window.location.href = "../dashboard/dashboard.html";
                 }, 3000)
             }
             else{

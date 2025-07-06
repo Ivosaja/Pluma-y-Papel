@@ -1,5 +1,4 @@
 import { deleteProduct, insertProduct, selectAllActiveProducts, selectAllProducts, selectProductById, updateProduct, updateProductActivo } from "../models/productModel.js";
-//TODO=> chequear codigo documentado
 
 export const getAllProducts = async(req,res)=>{
     try{
@@ -106,7 +105,7 @@ export const modifyProduct = async (req, res) => {
         const {id} = req.params
     
         const {nombre, categoria, precio, url_imagen} = req.body
-        if(!nombre || !categoria || precio === null || precio === undefined || !url_imagen){
+        if(!nombre || !categoria || !precio || !url_imagen){
             return res.status(400).json({
                 message: "Debe ingresar todos los campos correctamente y que sean validos"
             })

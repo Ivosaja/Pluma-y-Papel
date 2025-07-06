@@ -70,10 +70,9 @@ function subirCambios(idProducto){
         const formData = new FormData(event.target) // Transformo en una clase que me permite obtener todos los datos de un formulario pasandole por parametro el elemento que disparo el evento (el Formulario)
 
         const data = Object.fromEntries(formData.entries())
-        data.precio = parseInt(data.precio)
 
-        if(!data.nombre || !data.url_imagen || isNaN(data.precio) ||data.precio < 0 || data.precio > 500000||!data.categoria){
-            mostrarModal("noModificado", "Error, todos los campos deben ser validos")
+        if(!data.nombre || !data.url_imagen || !data.precio || parseInt(data.precio) < 0 || parseInt(data.precio) > 500000||!data.categoria){
+            mostrarModal("noModificado", "Error, todos los campos deben ser validos y el precio no puede ser negativo ni mayor a $500.000")
             
             setTimeout(() => {
                 modal.style.display = 'none'
@@ -88,7 +87,7 @@ function subirCambios(idProducto){
 
             setTimeout(() => {
                 modal.style.display = 'none'
-                //window.location.href = '../dashboard/dashboard.html'
+                window.location.href = '../dashboard/dashboard.html'
             }, 3000)
 
         } else{
