@@ -55,7 +55,6 @@ button{
     border: 2px solid #D1D5DB;
     border-radius: 1rem;
     padding: 34px 39px;
-    background-color: #FFFFFF;
     color: #2E2E2E;
 }
 
@@ -125,9 +124,7 @@ button{
 }
 
 .contenedor-listaProductos{
-    display: flex;
     width: 100%;
-    flex-grow: 1;
 }
 
 .listaProductos{
@@ -286,8 +283,7 @@ button{
     }
 
     .contenedor-listaProductos{
-        justify-content: center;
-        align-items: center;
+        text-align: center;
     }
 
 }
