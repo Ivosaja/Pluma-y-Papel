@@ -290,13 +290,13 @@ body{
 #total{
     display: flex;
     gap: 2rem;
-}
-
-
-#TextoTotal, #precioTotal{
     font-size: 2rem;
 }
 
+#TextoTotal, #precioTotal{
+    font-size: 2rem;
+    text-align: center;
+}
 
 #boton-comprar{
 
