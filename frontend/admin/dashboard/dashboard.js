@@ -90,7 +90,8 @@ async function eliminar(id){
 }
 
 async function activarProducto(idProducto){
-    mostrarModal(idProducto, 'confirmacion', `Desea activar el producto con ID: ${idProducto}?`)
+    let resultado = await activar(idProducto)
+    alert(resultado.mensaje)
 
     let productos = await obtenerTodosLosProductos()
     mostrarProductos(productos)
@@ -134,34 +135,6 @@ function volverProductos(){
 
 }
 
-function mostrarModal(tipoModal, mensaje){
-    if(tipoModal === 'confirmacion'){
-        modalContent.innerHTML = `
-        <p>${mensaje}</p>
-        <div id="buttons-confirmar-rechazar-activacion">
-            <button id="btnSiActivar">Si</button>
-            <button id="btnNoActivar">No</button>
-        </div>
-        `
-        const btnSiActivar = document.getElementById('btnSiActivar')
-        const btnNoActivar = document.getElementById('btnNoActivar')
-
-        btnSiActivar.addEventListener(() => {
-
-        })
-
-        btnNoActivar.addEventListener(() => {
-            
-        })
-
-    } else if(tipoModal === 'informativo'){
-        modalContent.innerHTML = `
-        <p>${mensaje}</p>
-        `
-    }
-    
-    modal.style.display = 'flex'
-}
 
 async function init(){
     listaProductos.innerHTML = `<p>Cargando productos...</p>`
