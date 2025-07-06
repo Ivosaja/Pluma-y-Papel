@@ -177,7 +177,6 @@ function mostrarModal(tipoModal, mensaje){
     if(tipoModal === "agregado"){
         modalIcono.innerHTML = `<i class="bi bi-check-circle-fill"></i>`
         modalIcono.style.color = "green"
-        modalIcono.style.backgroundColor = "transparente"
     } else if(tipoModal === "eliminado"){
         modalIcono.innerHTML = `<i class="bi bi-trash-fill"></i>`
         modalIcono.style.color = "red"
