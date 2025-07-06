@@ -115,18 +115,20 @@ footer{
 
 #contenedorModalAltaProducto{
     display: none;
-    flex-direction: column;
-    padding: 2rem;
     position: fixed;
     top: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: #e9e8e8;
+    border-radius: 8px;
     left: 50%;
     transform: translateX(-50%);
-    border: 2px solid #5a724e;
-    border-radius: 12px;
-    z-index: 1000; /* superopne lo de la pantalla*/
-    background-color: #2E2E2E;
-    color: white;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    z-index: 1000; /*superposicion de capas*/
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
+
 
 #cruz{
     background-color: red;

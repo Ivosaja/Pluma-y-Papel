@@ -1,6 +1,6 @@
 let btnVolver = document.getElementById("volverDashboard");
 
-let formData = document.getElementById("altaProductoForm");
+let altaProductoForm = document.getElementById("altaProductoForm");
 
 let contenedorModalAlta =document.getElementById("contenedorModalAltaProducto")
 
@@ -16,10 +16,10 @@ function volverDashboard(){
 
 
 function enviarFormualrio(){
-    formData.addEventListener("submit", async(event)=>{
+    altaProductoForm.addEventListener("submit", async(event)=>{
         event.preventDefault();
 
-        formData = new FormData(event.target);
+        let formData = new FormData(event.target);
 
         let data = Object.fromEntries(formData.entries());
 
@@ -27,14 +27,14 @@ function enviarFormualrio(){
 
             usarModal("incorrecto", "Todos los campos deben estar completos")
             mostrarModal();
-            setTimeout(esconderModal, 2500);
+            setTimeout(esconderModal, 3000);
         }
         else if(parseInt(data.precio)<0 ||  parseInt(data.precio)>500000){ //al llegar desde el form, este llega como string, no como Number
 
             usarModal("incorrecto", "Los precios no pueden ser negativos ni pueden superar los $10.000.000")
             mostrarModal();
 
-            setTimeout(esconderModal, 2500);
+            setTimeout(esconderModal, 3000);
         }
         else{
             let resultado = await subirProducto(data);
@@ -96,12 +96,18 @@ function usarModal(estado,mensaje1){
 
     if(estado === "correcto"){
         contenido =
-        `<p><i class="bi bi-check-circle-fill" id="tilde"></i> ${mensaje1}</p>`
+        `
+        <i class="bi bi-check-circle-fill" id="tilde"></i>
+        <p>${mensaje1}</p>
+        `
 
 
     }else if(estado==="incorrecto"){
         contenido =
-        `<p><i class="fas fa-times" id="cruz"></i> ${mensaje1}</p>`
+        `
+        <i class="fas fa-times" id="cruz"></i>
+        <p>${mensaje1}</p>
+        `
 
     }
     contenedorModalAlta.innerHTML = contenido;
