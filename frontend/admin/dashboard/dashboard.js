@@ -1,5 +1,6 @@
 let listaProductos = document.querySelector('.listaProductos')
-
+const modal = document.getElementById('modal')
+const modalContent = document.getElementById('modal-content')
 
 async function obtenerTodosLosProductos(){
     try{
@@ -89,9 +90,17 @@ async function eliminar(id){
 }
 
 async function activarProducto(idProducto){
+    mostrarModal(idProducto)
+
+
     let respuesta = await activar(idProducto)
-    alert(respuesta)
-    
+    if(respuesta.estado){
+        alert(respuesta.mensaje)
+    } else{
+        alert(respuesta.mensaje)
+    }
+
+
     let productos = await obtenerTodosLosProductos()
     mostrarProductos(productos)
 }
@@ -102,11 +111,16 @@ async function activar(id){
             method: 'PUT'
         })
         let data = await respuesta.json()
-        return data.message
+
+        if(respuesta.ok){
+            return {estado: true, mensaje: data.message}
+        } else{
+            return {estado: false, mensaje: data.message}
+        }
 
     } catch(err){
         console.error(err)
-        alert("Error al hacer la peticion")
+        return {estado: false, mensaje: "Error al hacer la peticion"}
     }
 }
 
@@ -129,6 +143,16 @@ function volverProductos(){
 
 }
 
+function mostrarModal(id){
+    modalContent.innerHTML = `
+    <p>Desea activar el producto con ID: ${id}?</p>
+    <div id="buttons-confirmar-rechazar-activacion">
+        <button>Si</button>
+        <button>No</button>
+    </div>
+    `
+    modal.style.display = 'flex'
+}
 
 async function init(){
     listaProductos.innerHTML = `<p>Cargando productos...</p>`
