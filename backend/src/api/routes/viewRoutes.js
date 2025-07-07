@@ -3,7 +3,7 @@ import { Router } from "express";
 const router = Router()
 
 // Endpoint que muestra vista con todos los productos en el dashboard del admin
-router.get("/admin/dashboard", async(req,res)=>{
+router.get("/dashboard", async(req,res)=>{
     try{
         let respuesta = await selectAllProducts();
 
@@ -18,15 +18,17 @@ router.get("/admin/dashboard", async(req,res)=>{
 })
 
 // Endpoint que muestra vista de la pantalla para crear un nuevo producto
-router.get("/admin/dashboard/altaProducto", (req, res) => {
+router.get("/dashboard/altaProducto", (req, res) => {
     res.render("altaProducto", {
         title: "Alta Producto - Pluma & Papel"
     })
 })
 
 // Endpoint que muestra vista de la pantalla para modificar un producto ya existente
-router.get("/admin/dashboard/modificarProducto", (req, res) => {
+router.get("/dashboard/modificarProducto", (req, res) => {
     res.render("modificarProducto", {
         title: "Modificar Producto - Pluma & Papel"
     })
 })
+
+export default router
