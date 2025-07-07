@@ -81,18 +81,14 @@ async function eliminar(id){
         return data.message;
     }catch(err){
         console.error(err);
-        alert("Error al hacer la peticion")
+        return "Error al hacer la peticion"
     }
 
 }
 
 async function activarProducto(idProducto){
-
-    let resultado = await activar(idProducto)
-    alert(resultado.mensaje)
-
-    let productos = await obtenerTodosLosProductos()
-    mostrarProductos(productos)
+    usarModal('activar', idProducto)
+    mostrarModal()
 }
 
 async function activar(id){
@@ -105,7 +101,7 @@ async function activar(id){
         if(respuesta.ok){
             return {estado: true, mensaje: data.message}
         } else{
-            return {estado: false, mensaje: data.message}
+            return {estado: false, mensaje: data.mensaje}
         }
 
     } catch(err){
@@ -156,7 +152,7 @@ function usarModal(tipo, idProducto){
                 ocultarModal();
                 const productos = await obtenerTodosLosProductos();
                 mostrarProductos(productos);
-            }, 2000);
+            }, 3000);
         })
 
         btnNo.addEventListener("click", function(){
@@ -172,7 +168,36 @@ function usarModal(tipo, idProducto){
             <button id="btnSi">Si</button>
             <button id="btnNo">No</button>
         </div>
-        ` 
+        `
+
+        let btnSi = document.getElementById('btnSi')
+        let btnNo = document.getElementById('btnNo')
+
+        btnSi.addEventListener('click', async() => {
+            let resultado = await activar(idProducto)
+
+            if(resultado.estado){
+                modal.innerHTML = `
+                <i class="bi bi-check-circle-fill"></i>
+                <p>${resultado.mensaje}</p>
+                `
+            } else{
+                modal.innerHTML = `
+                <i class="fas fa-times"></i>
+                <p>${resultado.mensaje}</p>
+                `
+            }
+
+            setTimeout(async() => {
+                ocultarModal()
+                const productos = await obtenerTodosLosProductos()
+                mostrarProductos(productos)
+            }, 3000)
+        })
+
+        btnNo.addEventListener('click', () => {
+            ocultarModal()
+        })
     }
 }
 
@@ -181,12 +206,13 @@ function usarModal(tipo, idProducto){
 function mostrarModal(){
 
     modal.style.display = "flex"
+    document.querySelector('.contenedor-principal').classList.add('bloquear-interacciones')
 }
 
 
 function ocultarModal(){
-
     modal.style.display = "none"
+    document.querySelector('.contenedor-principal').classList.remove('bloquear-interacciones')
 }
 
 
