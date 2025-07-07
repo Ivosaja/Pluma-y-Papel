@@ -60,6 +60,12 @@ app.get("/admin/dashboard/altaProducto", (req, res) => {
     })
 })
 
+app.get("/admin/dashboard/modificarProducto", (req, res) => {
+    res.render("modificarProducto", {
+        title: "Modificar Producto - Pluma & Papel"
+    })
+})
+
 
 app.listen(PORT,() => {
     console.log(`Servidor corriendo en el puerto: http://localhost:${PORT}`);

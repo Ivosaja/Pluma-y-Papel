@@ -1,0 +1,45 @@
+<%- include('partials/head') %>
+    <link rel="stylesheet" href="/css/modificarProducto.css">
+    <script defer src="/js/modificarProducto.js"></script>
+</head>
+<body>
+    <main>
+        <div id="contenedor-principal">
+            <i class="bi bi-arrow-left" id="volverDashboard"></i>
+            <h1>Modificar Producto</h1>
+            <div id="contenedor-form">
+                <form id="form-modificarProducto">
+                    <div id="contenedor-form-labels">
+                        <label for="idProducto">ID</label>
+                        <input type="number" id="idProducto" readonly value="">
+        
+                        <label for="nombreProducto">Nombre</label>
+                        <input type="text" name="nombre" id="nombreProducto" value="">
+        
+                        <label for="imagenProducto">Imagen</label>
+                        <input type="text" name="url_imagen" id="imagenProducto" value="">
+        
+                        <label for="precioProducto">Precio</label>
+                        <input type="number" name="precio" id="precioProducto" value="">
+        
+                        <label for="categoriaProducto">Categoria</label>
+                        <select name="categoria" id="categoriaProducto">
+                            <option value="Libros">Libros</option>
+                            <option value="Utiles">Utiles</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="btnModificarProducto">Modificar producto</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <div id="modal">
+        <div id="modal-content">
+            <span class="modal-content-icon"></span>
+            <p class="modal-content-text"></p>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
