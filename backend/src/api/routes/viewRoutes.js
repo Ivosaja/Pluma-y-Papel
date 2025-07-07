@@ -1,34 +1,15 @@
 import { Router } from "express";
+import { vistaCrearProducto, vistaModificarProducto, vistaProductos } from "../controllers/viewControllers.js";
 
 const router = Router()
 
 // Endpoint que muestra vista con todos los productos en el dashboard del admin
-router.get("/dashboard", async(req,res)=>{
-    try{
-        let respuesta = await selectAllProducts();
-
-        res.render("dashboard",{
-            title:"Dashboard Admin - Pluma & Papel",
-            productos: respuesta[0]
-        })
-    }catch(err){
-        console.error(err);
-
-    }
-})
+router.get("/dashboard", vistaProductos)
 
 // Endpoint que muestra vista de la pantalla para crear un nuevo producto
-router.get("/dashboard/altaProducto", (req, res) => {
-    res.render("altaProducto", {
-        title: "Alta Producto - Pluma & Papel"
-    })
-})
+router.get("/dashboard/altaProducto", vistaCrearProducto)
 
 // Endpoint que muestra vista de la pantalla para modificar un producto ya existente
-router.get("/dashboard/modificarProducto", (req, res) => {
-    res.render("modificarProducto", {
-        title: "Modificar Producto - Pluma & Papel"
-    })
-})
+router.get("/dashboard/modificarProducto", vistaModificarProducto)
 
 export default router
