@@ -56,7 +56,7 @@ function mostrarProductos(arrayProductos){
     listaProductos.innerHTML = productos;
 }
 
-function modificarProducto(){
+function modificarProducto(idProducto){
     window.location.href = '../modificarProducto/modificarProducto.html'
     sessionStorage.setItem("idProducto", idProducto)
 }
