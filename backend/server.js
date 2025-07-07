@@ -54,6 +54,11 @@ app.get("/admin/dashboard", async(req,res)=>{
     }
 })
 
+app.get("/admin/dashboard/altaProducto", (req, res) => {
+    res.render("altaProducto", {
+        title: "Alta Producto - Pluma & Papel"
+    })
+})
 
 
 app.listen(PORT,() => {

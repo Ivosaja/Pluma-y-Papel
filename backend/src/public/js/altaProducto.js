@@ -9,7 +9,7 @@ function volverDashboard(){
 
     btnVolver.addEventListener("click", function(){
 
-        window.location.href = "../dashboard/dashboard.html";
+        window.location.href = "http://localhost:1001/admin/dashboard";
     })
 }
 
