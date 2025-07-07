@@ -1,0 +1,34 @@
+<%- include ("partials/head.ejs") %>
+    <link rel="stylesheet" href="dashboard.css">
+    <script defer src="dashboard.js"></script>
+</head>
+<body>
+    <main>
+        <div class="contenedor-principal">
+            <div class="contenedor-headerPanel">
+                <div class="contenedor-registrarse">
+                    <button type="button" id="btn-agregarAdmin">
+                        <i class="bi bi-person-fill-add"></i>
+                        <a id="vinculo" href="../registro/registro.html">Agregar admin</a>
+                    </button>
+                </div>
+                <div id="contenedorTitulo"> <!--Agregue este contenedor y lo cambie de lado, ya que antes estaba el h1 estaba arrriba del agregar admin-->
+                    <i class="bi bi-arrow-left" id="volverProductos"></i>
+                    <h1>Panel Admin</h1>
+                </div>
+            </div>
+            <div class="contenedor-tituloPanel">
+                <h2>Productos</h2>
+                <button type="button" id="btn-agregarProducto">Agregar producto</button>
+            </div>
+            <div class="contenedor-listaProductos">
+                <ul class="listaProductos">
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <div id="modal">
+    </div>
+
+    <%- include ('partials/footer') %>
