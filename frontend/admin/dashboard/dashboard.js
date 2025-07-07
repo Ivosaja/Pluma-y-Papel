@@ -64,10 +64,6 @@ function modificarProducto(idProducto){
 function eliminarProducto(idProducto){
     usarModal("eliminar",idProducto);
     mostrarModal();
-
-
-    // let productos = await obtenerTodosLosProductos();
-    // mostrarProductos(productos);
 }
 
 async function eliminar(id){
@@ -78,10 +74,14 @@ async function eliminar(id){
 
         let data = await respuesta.json()
 
-        return data.message;
+        if(respuesta.ok){
+            return {estado: true, mensaje: data.message}
+        } else {
+            return {estado: false, mensaje: data.message}
+        }
     }catch(err){
         console.error(err);
-        return "Error al hacer la peticion"
+        return {estado: false, mensaje: "Error al hacer la peticion"}
     }
 
 }
@@ -130,6 +130,7 @@ function volverProductos(){
 }
 
 function usarModal(tipo, idProducto){
+    modal.style.flexDirection = 'column'
 
     if(tipo==="eliminar"){
         modal.innerHTML = `
@@ -138,7 +139,7 @@ function usarModal(tipo, idProducto){
             <button id="btnSi">Si</button>
             <button id="btnNo">No</button>
         </div>
-        ` 
+        `
         let btnSi = document.getElementById("btnSi");
         let btnNo = document.getElementById("btnNo");
 
@@ -146,7 +147,21 @@ function usarModal(tipo, idProducto){
 
             let resultado = await eliminar(idProducto)
 
-            modal.innerHTML = `<p>${resultado}</p>`;
+            if(resultado.estado){
+                modal.innerHTML = `
+                <i class="bi bi-check-circle-fill exito"></i>
+                <p>${resultado.mensaje}</p>
+                `
+                modal.querySelector('.exito').style.color = 'green'
+        
+            } else {
+                modal.innerHTML = `
+                <i class="fas fa-times error"></i>
+                <p>${resultado.mensaje}</p>
+                `
+                modal.querySelector('.error').style.color = 'red'
+            }
+            modal.style.flexDirection = 'row'
 
             setTimeout(async () => {
                 ocultarModal();
@@ -156,12 +171,11 @@ function usarModal(tipo, idProducto){
         })
 
         btnNo.addEventListener("click", function(){
-
             ocultarModal();
         })
         
 
-    }else if(tipo==="activar"){
+    } else if(tipo==="activar"){
         modal.innerHTML = `
         <p>Desea activar este producto?</p>
         <div id="contenedorBotones">
@@ -178,15 +192,18 @@ function usarModal(tipo, idProducto){
 
             if(resultado.estado){
                 modal.innerHTML = `
-                <i class="bi bi-check-circle-fill"></i>
+                <i class="bi bi-check-circle-fill exito"></i>
                 <p>${resultado.mensaje}</p>
                 `
+                modal.querySelector('.exito').style.color = 'green'
             } else{
                 modal.innerHTML = `
-                <i class="fas fa-times"></i>
+                <i class="fas fa-times error"></i>
                 <p>${resultado.mensaje}</p>
                 `
+                modal.querySelector('.error').style.color = 'red'
             }
+            modal.style.flexDirection = 'row'
 
             setTimeout(async() => {
                 ocultarModal()

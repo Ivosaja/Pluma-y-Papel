@@ -221,7 +221,6 @@ button{
 #modal{
     display: none;
     position: fixed;
-    flex-direction: column;
     top: 20px;
     justify-content: center;
     align-items: center;
