@@ -221,6 +221,7 @@ button{
 #modal{
     display: none;
     position: fixed;
+    flex-direction: column;
     top: 20px;
     justify-content: center;
     align-items: center;
@@ -229,18 +230,41 @@ button{
     left: 50%;
     transform: translateX(-50%);
     padding: 1rem 2rem;
-    gap: 1rem;
+    gap: 1.3rem;
     z-index: 1000;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
-#modal-content{
+#contenedorBotones{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+    gap: 2rem;
 }
+
+#contenedorBotones button{
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: 1px solid grey;
+    cursor: pointer;
+    border:none;
+    color: black;
+}
+
+#btnSi:hover{
+    background-color: #58a03c;
+    box-shadow: 0 0 6px rgba(106, 176, 76, 0.5);
+    color:white;
+}
+
+
+#btnNo:hover{
+    background-color: #c0392b;
+    box-shadow: 0 0 6px rgba(235, 77, 75, 0.5);
+    color:white;
+}
+
+
+
+
 
 
 @media (max-width: 1100px){

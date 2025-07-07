@@ -1,6 +1,5 @@
 let listaProductos = document.querySelector('.listaProductos')
 const modal = document.getElementById('modal')
-const modalContent = document.getElementById('modal-content')
 
 async function obtenerTodosLosProductos(){
     try{
@@ -62,14 +61,13 @@ function modificarProducto(idProducto){
     sessionStorage.setItem("idProducto", idProducto)
 }
 
-async function eliminarProducto(idProducto){
+function eliminarProducto(idProducto){
+    usarModal("eliminar",idProducto);
+    mostrarModal();
 
-    let respuesta = await eliminar(idProducto)
-    alert(respuesta)
-    
-    let productos = await obtenerTodosLosProductos()
-    mostrarProductos(productos)
-    
+
+    // let productos = await obtenerTodosLosProductos();
+    // mostrarProductos(productos);
 }
 
 async function eliminar(id){
@@ -77,7 +75,6 @@ async function eliminar(id){
     try{
         let respuesta = await fetch(`http://localhost:1001/api/products/deleteProduct/${id}`,{
             method: `PUT`})
-
 
         let data = await respuesta.json()
 
@@ -90,6 +87,7 @@ async function eliminar(id){
 }
 
 async function activarProducto(idProducto){
+
     let resultado = await activar(idProducto)
     alert(resultado.mensaje)
 
@@ -133,6 +131,62 @@ function volverProductos(){
 
     })
 
+}
+
+function usarModal(tipo, idProducto){
+
+    if(tipo==="eliminar"){
+        modal.innerHTML = `
+        <p>Desea dar de baja este producto?</p>
+        <div id="contenedorBotones">
+            <button id="btnSi">Si</button>
+            <button id="btnNo">No</button>
+        </div>
+        ` 
+        let btnSi = document.getElementById("btnSi");
+        let btnNo = document.getElementById("btnNo");
+
+        btnSi.addEventListener("click", async function(){
+
+            let resultado = await eliminar(idProducto)
+
+            modal.innerHTML = `<p>${resultado}</p>`;
+
+            setTimeout(async () => {
+                ocultarModal();
+                const productos = await obtenerTodosLosProductos();
+                mostrarProductos(productos);
+            }, 2000);
+        })
+
+        btnNo.addEventListener("click", function(){
+
+            ocultarModal();
+        })
+        
+
+    }else if(tipo==="activar"){
+        modal.innerHTML = `
+        <p>Desea activar este producto?</p>
+        <div id="contenedorBotones">
+            <button id="btnSi">Si</button>
+            <button id="btnNo">No</button>
+        </div>
+        ` 
+    }
+}
+
+
+
+function mostrarModal(){
+
+    modal.style.display = "flex"
+}
+
+
+function ocultarModal(){
+
+    modal.style.display = "none"
 }
 
 

@@ -358,12 +358,12 @@ footer{
 
 
 #botones-modal button{
-    padding: 0.4rem;
     font-size: 1.2rem;
     border: 1px solid grey;
     cursor: pointer;
     border:none;
     padding: 0.5rem;
+    /*modificando lo del paddin*/
 }
 
 

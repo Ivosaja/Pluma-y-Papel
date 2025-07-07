@@ -64,6 +64,7 @@ function mostrarCarrito(lista){
     
     
     mostrarTotal(precioTotal);
+    
 
     itemsCarrito.innerHTML = productoCarrito;
 
@@ -424,7 +425,7 @@ async function subirVenta(){
             },
             body: JSON.stringify({
                 carrito: JSON.parse(sessionStorage.getItem("carrito")),
-                total: parseInt(sessionStorage.getItem("totalCarrito")),
+                total: sessionStorage.getItem("totalCarrito"), //modificando lo de el parseInt del total
                 nombreUsuario: sessionStorage.getItem("nombreUsuario")
             })
         })
