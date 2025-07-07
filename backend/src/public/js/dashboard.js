@@ -1,8 +1,8 @@
 const modal = document.getElementById('modal')
 
-function modificarProducto(){
-    window.location.href = '../modificarProducto/modificarProducto.html'
+function modificarProducto(idProducto){
     sessionStorage.setItem("idProducto", idProducto)
+    window.location.href = 'http://localhost:1001/admin/dashboard/modificarProducto'
 }
 
 function eliminarProducto(idProducto){

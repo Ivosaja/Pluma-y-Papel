@@ -89,7 +89,7 @@ function subirCambios(idProducto){
             
             setTimeout(() => {
                 modal.style.display = 'none'
-                window.location.href = '../dashboard/dashboard.html'
+                window.location.href = 'http://localhost:1001/admin/dashboard'
                 document.getElementById('contenedor-principal').classList.remove('bloquear-interacciones');
             }, 3000)
 
@@ -110,7 +110,7 @@ function volverDashboardBoton(){
     let bntVovlerDashboard = document.getElementById("volverDashboard");
 
     bntVovlerDashboard.addEventListener("click", function(){
-        window.location.href  = "../dashboard/dashboard.html";
+        window.location.href  = "http://localhost:1001/admin/dashboard";
     })
     
 }

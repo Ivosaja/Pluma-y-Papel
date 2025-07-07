@@ -23,7 +23,7 @@
             </div>
             <div class="contenedor-listaProductos">
                 <ul class="listaProductos">
-                    <% productos.forEach(producto=>{ %>
+                    <% productos.forEach(producto => { %>
                         <li class="itemProducto">
                             <div class="itemProductoInfo">
                                 <p><strong>ID: </strong> <%= producto.id_producto %> </p>
@@ -37,7 +37,7 @@
                                 </p>
                             </div>
                             <div class="acciones">
-                                <button type="button" onclick="modificarProducto('<%= producto.id_producto  %>')" id="btn-modificarProducto">
+                                <button type="button" onclick="modificarProducto('<%= producto.id_producto %>')" id="btn-modificarProducto">
                                     <i class="fas fa-pen iconModificar"></i>
                                 </button>
                                 <button type="button" onclick="eliminarProducto('<%= producto.id_producto %>')">
@@ -56,5 +56,4 @@
 
     <div id="modal">
     </div>
-
     <%- include ('partials/footer') %>
