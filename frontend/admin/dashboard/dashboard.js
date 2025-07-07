@@ -22,7 +22,7 @@ function mostrarProductos(arrayProductos){
         alert("No se pudo hacer la peticion correctamente")
 
     } else{
-        alert(arrayProductos.message)
+        console.log(arrayProductos.message)
         arrayProductos.payload.forEach(producto => {
             productos += `
             <li class="itemProducto">
@@ -152,14 +152,12 @@ function usarModal(tipo, idProducto){
                 <i class="bi bi-check-circle-fill exito"></i>
                 <p>${resultado.mensaje}</p>
                 `
-                modal.querySelector('.exito').style.color = 'green'
         
             } else {
                 modal.innerHTML = `
                 <i class="fas fa-times error"></i>
                 <p>${resultado.mensaje}</p>
                 `
-                modal.querySelector('.error').style.color = 'red'
             }
             modal.style.flexDirection = 'row'
 
@@ -195,13 +193,11 @@ function usarModal(tipo, idProducto){
                 <i class="bi bi-check-circle-fill exito"></i>
                 <p>${resultado.mensaje}</p>
                 `
-                modal.querySelector('.exito').style.color = 'green'
             } else{
                 modal.innerHTML = `
                 <i class="fas fa-times error"></i>
                 <p>${resultado.mensaje}</p>
                 `
-                modal.querySelector('.error').style.color = 'red'
             }
             modal.style.flexDirection = 'row'
 

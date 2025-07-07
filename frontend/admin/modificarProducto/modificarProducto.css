@@ -135,6 +135,18 @@ main{
     align-items: center;
     gap: 1rem;
 }
+#cruz{
+    background-color: red;
+    color: white;
+    padding: 0.2rem;
+    
+}
+
+#tilde{
+    padding: 0.2rem;
+    color: green;
+}
+
 
 
 footer{
@@ -145,6 +157,7 @@ footer{
 .bloquear-interacciones{
     pointer-events: none;
     user-select: none;
+    opacity: 0.6;
 }
 
 

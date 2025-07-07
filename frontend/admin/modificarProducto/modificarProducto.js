@@ -117,11 +117,9 @@ function volverDashboardBoton(){
 
 function mostrarModal(tipoModal, mensaje){
     if(tipoModal === 'modificado'){
-        modalIcono.innerHTML = `<i class="bi bi-check-circle-fill"></i>`
-        modalIcono.style.color = 'green'
+        modalIcono.innerHTML = `<i class="bi bi-check-circle-fill" id="tilde"></i>`
     } else if(tipoModal === 'noModificado'){
-        modalIcono.innerHTML = '<i class="fas fa-times"></i>'
-        modalIcono.style.color = 'red'
+        modalIcono.innerHTML = '<i class="fas fa-times" id="cruz"></i>'
     }
     document.getElementById('contenedor-principal').classList.add('bloquear-interacciones');
     modal.style.display = 'flex'
