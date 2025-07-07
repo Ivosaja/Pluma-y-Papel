@@ -46,7 +46,7 @@ function enviarFormualrio(){
 
                 setTimeout(()=>{
 
-                    window.location.href = "../dashboard/dashboard.html";
+                    window.location.href = "http://localhost:1001/admin/dashboard";
                 }, 3000)
             }
             else{
