@@ -1,6 +1,6 @@
 <%- include ("partials/head.ejs") %>
-    <link rel="stylesheet" href="dashboard.css">
-    <script defer src="dashboard.js"></script>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script defer src="/js/dashboard.js"></script>
 </head>
 <body>
     <main>
@@ -27,31 +27,27 @@
                         <li class="itemProducto">
                             <div class="itemProductoInfo">
                                 <p><strong>ID: </strong> <%= producto.id_producto %> </p>
-                                <img src="<%= producto.url_imagen%> " alt="">
+                                <img src="<%= producto.url_imagen%>" alt="">
                                 <p><strong>Nombre: </strong> <%=producto.nombre%> </p>
                                 <p><strong>Precio: </strong>$<%=producto.precio%> </p>
                                 <p><strong>Categoria: </strong> <%=producto.categoria%> </p>
                                 <p>
                                     <strong>Activo: </strong>
-                                    <span class=" <%=producto.activo === 1 ? 'activo' : 'inactivo'%> "> <%=producto.activo === 1 ? true : false%> </span>
+                                    <span class=" <%=producto.activo === 1 ? 'activo' : 'inactivo'%> "> <%=producto.activo === 1 ? true : false%></span>
                                 </p>
                             </div>
                             <div class="acciones">
-                                <button type="button" onclick="modificarProducto(${producto.id_producto})" id="btn-modificarProducto">
+                                <button type="button" onclick="modificarProducto('<%= producto.id_producto  %>')" id="btn-modificarProducto">
                                     <i class="fas fa-pen iconModificar"></i>
                                 </button>
-                                <button type="button" onclick="eliminarProducto(${producto.id_producto})">
+                                <button type="button" onclick="eliminarProducto('<%= producto.id_producto %>')">
                                     <i class="fas fa-trash iconEliminar"></i>
                                 </button>
-                                <button type="button" onclick="activarProducto(${producto.id_producto})">
+                                <button type="button" onclick="activarProducto('<%= producto.id_producto %>')">
                                     <i class="fas fa-check iconActivar"></i>
                                 </button>
                             </div>
                         </li>
-                        
-
-
-
                     <% }) %>
                 </ul>
             </div>
