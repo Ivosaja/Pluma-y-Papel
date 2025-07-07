@@ -220,7 +220,7 @@ function redireccionarPanelAdmin(){
 
     btnPanelAdmin.addEventListener("click", function(){
 
-        window.location.href = "../../admin/dashboard/dashboard.html";
+        window.location.href = "http://localhost:1001/admin/dashboard";
     })
 
 }
