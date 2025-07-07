@@ -57,11 +57,11 @@ async function activar(id){
 function agregarProducto(){
     const btnAgregarProducto = document.getElementById('btn-agregarProducto')
     btnAgregarProducto.addEventListener('click', () => {
-        window.location.href = '../altaProducto/altaProducto.html'
+        window.location.href = 'http://localhost:1001/admin/dashboard/altaProducto'
     })
 }
 
-
+// TODO => ver como hacer para volver para atras desde el servidor (va a estar imposible ya que el servidor no puede conocer )
 function volverProductos(){
     let flechiteVolver = document.getElementById("volverProductos");
 
