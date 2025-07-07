@@ -6,6 +6,7 @@ import environments from "./src/api/config/environments.js";
 import { productRoutes, salesRoutes } from "./src/api/routes/indexRoutes.js";
 import { loggerUrl } from "./src/api/middlewares/middlewares.js";
 import { __dirname, join } from "./src/api/utils/utils.js";
+import { selectAllProducts } from "./src/api/models/productModel.js";
 
 const app = express(); // Creacion de app en express.js
 const PORT = environments.port; // Se usa el port establecido a la izquierda de la condicion, si se encuentra ocupado, usa el de la derecha
@@ -35,6 +36,24 @@ app.use("/api/products", productRoutes)
 // Endpoints para el cliente //
 
 app.use("/api/sales", salesRoutes)
+
+//////////////////////////
+// Endpoints para Views //
+
+app.get("/admin/dashboard", async(req,res)=>{
+    try{
+        let respuesta = await selectAllProducts();
+
+        res.render("dashboard",{
+            title:"Dashboard Admin - Pluma & Papel",
+            productos: respuesta[0]
+        })
+    }catch(err){
+        console.error(err);
+
+    }
+})
+
 
 
 app.listen(PORT,() => {
