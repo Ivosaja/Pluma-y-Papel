@@ -102,13 +102,13 @@ function obtenerNombreUsuarioSesionStorage(){
 
 ///////////////////////////////////////////////////////////////////
 function aplicarTemaOscuro(){
-    document.body.classList.add("darkmode")
+    document.documentElement.classList.add("darkmode")
     
 }
 
 ///////////////////////////////////////////////////////////////////
 function removerTemaOscuro(){
-    document.body.classList.remove("darkmode")
+    document.documentElement.classList.remove("darkmode")
 }
 
 

@@ -7,8 +7,13 @@
     <link rel="shortcut icon" href="../../../assets/img/favicon/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="bienvenida.js" defer></script>
+    <script>
+        if (sessionStorage.getItem("tema") === "oscuro") {
+            document.documentElement.classList.add("darkmode");
+        }
+    </script>
     <link rel="stylesheet" href="bienvenida.css">
+    <script src="bienvenida.js" defer></script>
     <link rel="shortcut icon" href="../../../assets/img/favicon/favicon.png" type="image/png">
 
 </head>

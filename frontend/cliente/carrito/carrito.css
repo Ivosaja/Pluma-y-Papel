@@ -449,7 +449,7 @@ body.transicionBienvenida {
 
 /* Dark Mode */
 
-.darkmode {
+.darkmode body{
     --color-fondo: #1c1c1c;
 }
 

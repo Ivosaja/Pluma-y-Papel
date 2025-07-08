@@ -365,7 +365,7 @@ footer{
     gap: 1rem;
 }
 
-.darkmode {
+.darkmode body {
     --color-fondo: #1c1c1c;
 }
 

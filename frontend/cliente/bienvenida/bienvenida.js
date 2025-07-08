@@ -28,14 +28,14 @@ function aplicarDarkMode(){
             
             if(sessionStorage.getItem("tema")==="oscuro"){
     
-                document.body.classList.remove("dark-mode");
+                document.documentElement.classList.remove("darkmode");
                 
                 sessionStorage.setItem("tema", "claro");
                 icon.classList.remove("fa-moon");
                 icon.classList.add("fa-sun");
             }
             else{
-                document.body.classList.add("dark-mode");
+                document.documentElement.classList.add("darkmode");
                 sessionStorage.setItem("tema", "oscuro");
                 icon.classList.remove("fa-sun");
                 icon.classList.add("fa-moon");

@@ -149,20 +149,20 @@ footer{
 
 }
 
-.dark-mode #btnDarkMode {
+.darkmode #btnDarkMode {
     background: white;
 }
 
-.dark-mode{
+.darkmode body{
     background-color: #2b2b27;
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-.dark-mode h1{
+.darkmode h1{
     color: #ffffff;
 }
 
-.dark-mode footer{
+.darkmode footer{
     color: #ffffff;
 }
 
