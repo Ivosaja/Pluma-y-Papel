@@ -240,15 +240,22 @@ function redireccionarPanelAdmin(){
 
 function cambiarTema(){
     const iconoTema = document.getElementById('icono-tema')
-    iconoTema.addEventListener('click', () => {
-        if(sessionStorage.getItem("tema") === "oscuro"){
-            sessionStorage.setItem("tema", "claro")
-            document.body.classList.remove('darkmode')
-        } else {
-            sessionStorage.setItem("tema", "oscuro")
-            document.body.classList.add('darkmode')
-        }
-    })
+    if(iconoTema){
+        iconoTema.addEventListener('click', () => {
+            if(sessionStorage.getItem("tema") === "oscuro"){
+                sessionStorage.setItem("tema", "claro")
+                document.body.classList.remove('darkmode')
+                iconoTema.classList.remove("fa-moon")
+                iconoTema.classList.add("fa-sun")
+                
+            } else {
+                sessionStorage.setItem("tema", "oscuro")
+                document.body.classList.add('darkmode')
+                iconoTema.classList.remove("fa-sun")
+                iconoTema.classList.add("fa-moon")
+            }
+        })
+    }
 }
 
 
