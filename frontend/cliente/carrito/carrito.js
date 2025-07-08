@@ -18,18 +18,6 @@ function volverAProductos(){
 
 }
 
-//////////////////////////////////////////////////////////////////////////
-// function obtenerNombreUsuarioSesionStorage(){
-//     let nombre = sessionStorage.getItem("nombreUsuario");
-//     let nuevo = `
-//     <i class="bi bi-person-circle"></i>
-//     <p>${nombre}</p>`;
-
-//     contenedorUsuario.innerHTML = nuevo;
-// }
-
-///////////////////////////////////////////////////////////////////
-
 function obtenerNombreUsuarioSesionStorage(){
     let tarjetaUsuario = ''
     let nombre = sessionStorage.getItem("nombreUsuario");
@@ -368,12 +356,18 @@ function generarTicket(){
 
     const doc = new jsPDF();
 
+    const nombreUsuario = sessionStorage.getItem("nombreUsuario")
 
     let y = 20; 
 
     doc.setFontSize(20);
 
     doc.text("Ticket de compra", 10 , y);
+
+    y+= 10
+    
+    doc.setFontSize(15)
+    doc.text(`Gracias por su compra, ${nombreUsuario}!`, 10, y)
 
     y+=5
     doc.setFontSize(14);
