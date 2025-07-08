@@ -77,11 +77,11 @@ function redireccionarCarrito(){
 ///////////////////////////////////////////////////////////////////
 
 function obtenerNombreUsuarioSesionStorage(){
-    let nuevo = ''
+    let tarjetaUsuario = ''
     let nombre = sessionStorage.getItem("nombreUsuario");
     if(sessionStorage.getItem("tema") === "oscuro"){
-        document.body.classList.add("darkmode")
-        nuevo = `
+        aplicarTemaOscuro()
+        tarjetaUsuario = `
         <i class="bi bi-person-circle" id="icono-usuario"></i>
         <p>${nombre}</p>
         <i class="fa-solid fa-moon" id="icono-tema"></i>
@@ -89,16 +89,28 @@ function obtenerNombreUsuarioSesionStorage(){
 
 
     } else {
-        document.body.classList.remove("darkmode")
-        nuevo = `
+        removerTemaOscuro()
+        tarjetaUsuario = `
         <i class="bi bi-person-circle" id="icono-usuario"></i>
         <p>${nombre}</p>
         <i class="fa-solid fa-sun" id="icono-tema"></i>
         `;
     }
 
-    contenedorUsuario.innerHTML = nuevo;
+    contenedorUsuario.innerHTML = tarjetaUsuario;
 }
+
+///////////////////////////////////////////////////////////////////
+function aplicarTemaOscuro(){
+    document.body.classList.add("darkmode")
+    
+}
+
+///////////////////////////////////////////////////////////////////
+function removerTemaOscuro(){
+    document.body.classList.remove("darkmode")
+}
+
 
 ///////////////////////////////////////////////////////////////////
 
@@ -244,13 +256,13 @@ function cambiarTema(){
         iconoTema.addEventListener('click', () => {
             if(sessionStorage.getItem("tema") === "oscuro"){
                 sessionStorage.setItem("tema", "claro")
-                document.body.classList.remove('darkmode')
+                removerTemaOscuro()
                 iconoTema.classList.remove("fa-moon")
                 iconoTema.classList.add("fa-sun")
                 
             } else {
                 sessionStorage.setItem("tema", "oscuro")
-                document.body.classList.add('darkmode')
+                aplicarTemaOscuro()
                 iconoTema.classList.remove("fa-sun")
                 iconoTema.classList.add("fa-moon")
             }
