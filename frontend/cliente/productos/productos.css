@@ -214,7 +214,7 @@ aside{
     text-align: center;
     cursor: pointer;
     background-color: #333;
-    color: var(--color-fondo);
+    color:  rgb(255,249,230);
     transition: background-color 0.3s ease;
 }
 
@@ -365,9 +365,10 @@ footer{
     gap: 1rem;
 }
 
-.darkmode{
-    background-color: #1c1c1c;
+.darkmode {
+    --color-fondo: #1c1c1c;
 }
+
 
 
 .darkmode #encabezado{

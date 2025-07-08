@@ -449,8 +449,8 @@ body.transicionBienvenida {
 
 /* Dark Mode */
 
-.darkmode{
-    background-color: #1c1c1c;
+.darkmode {
+    --color-fondo: #1c1c1c;
 }
 
 .darkmode #encabezado{
