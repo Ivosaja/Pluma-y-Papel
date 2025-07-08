@@ -21,25 +21,31 @@ function validarNombreUsuario(){
 }
 
 function aplicarDarkMode(){
-    let btnDArkMode = document.getElementById("btnDarkMode");
-    if(btnDArkMode){
-        btnDArkMode.addEventListener("click", function(){
+    let btnDarkMode = document.getElementById("btnDarkMode");
+    let icon = btnDarkMode.querySelector("i");
+    if(btnDarkMode){
+        btnDarkMode.addEventListener("click", function(){
             
             if(sessionStorage.getItem("tema")==="oscuro"){
     
                 document.body.classList.remove("dark-mode");
                 
                 sessionStorage.setItem("tema", "claro");
-    
+                icon.classList.remove("fa-moon");
+                icon.classList.add("fa-sun");
             }
             else{
                 document.body.classList.add("dark-mode");
                 sessionStorage.setItem("tema", "oscuro");
+                icon.classList.remove("fa-sun");
+                icon.classList.add("fa-moon");
             }
+            console.log(sessionStorage.getItem("tema"));
         })
     }
 }
 function init(){
+    sessionStorage.removeItem("tema"); 
     guardarNombreUsuario()
     aplicarDarkMode();
 }

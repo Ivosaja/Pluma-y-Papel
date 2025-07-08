@@ -132,7 +132,18 @@ footer{
     width: 2rem;
     height: 2rem;
     cursor: pointer;
+    border-radius: 9px;
+    background-color: black;
 }
+#btnDarkMode i{
+    color: rgb(191, 166, 50)
+
+}
+
+.dark-mode #btnDarkMode {
+    background: white;
+}
+
 .dark-mode{
     background-color: #2b2b27;
     transition: background-color 0.4s ease, color 0.4s ease;
