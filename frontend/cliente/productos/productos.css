@@ -388,8 +388,8 @@ footer{
 }
 
 .darkmode .tarjeta-producto{
-    background-color: #2a2a2a;
-    border:2px solid #d29b6a;
+    background-color: #1d1d1d;
+    border: none;
 }
 
 .darkmode .tarjeta-producto p, .darkmode .tarjeta-producto h3{
