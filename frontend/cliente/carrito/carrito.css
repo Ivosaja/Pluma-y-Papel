@@ -40,6 +40,11 @@ body{
     border-radius: 1rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+#contenedor-tarjeta-usuario #icono-tema{
+    font-size: 1.4rem;
+
 }
 
 #contenedor-tarjeta-usuario:hover {
@@ -440,6 +445,42 @@ body.transicionBienvenida {
 .retorno-mensaje{
     font-size: 0.8rem;
 }
+
+
+/* Dark Mode */
+
+.darkmode{
+    background-color: #1c1c1c;
+}
+
+.darkmode #encabezado{
+    background-color: #1c1c1c;
+    border-bottom: 5px double #969696;;
+}
+.darkmode h1,
+.darkmode #contenedor-tarjeta-usuario p, 
+.darkmode #contenedor-tarjeta-usuario i,
+.darkmode #contenedor-boton-volver i{
+    color:#eae6d9 ;
+} 
+
+.darkmode #contenedor-productos{
+    background-color:  #191919;
+}
+
+.darkmode #contenedor-productos p{
+    color:  #eae6d9;
+}
+
+.darkmode footer{
+    color: #ffffff;
+}
+
+
+
+
+
+
 
 /*media queries*/
 @media (max-width: 850px){

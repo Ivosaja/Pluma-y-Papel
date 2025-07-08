@@ -19,13 +19,50 @@ function volverAProductos(){
 }
 
 //////////////////////////////////////////////////////////////////////////
-function obtenerNombreUsuarioSesionStorage(){
-    let nombre = sessionStorage.getItem("nombreUsuario");
-    let nuevo = `
-    <i class="bi bi-person-circle"></i>
-    <p>${nombre}</p>`;
+// function obtenerNombreUsuarioSesionStorage(){
+//     let nombre = sessionStorage.getItem("nombreUsuario");
+//     let nuevo = `
+//     <i class="bi bi-person-circle"></i>
+//     <p>${nombre}</p>`;
 
-    contenedorUsuario.innerHTML = nuevo;
+//     contenedorUsuario.innerHTML = nuevo;
+// }
+
+///////////////////////////////////////////////////////////////////
+
+function obtenerNombreUsuarioSesionStorage(){
+    let tarjetaUsuario = ''
+    let nombre = sessionStorage.getItem("nombreUsuario");
+    if(sessionStorage.getItem("tema") === "oscuro"){
+        aplicarTemaOscuro()
+        tarjetaUsuario = `
+        <i class="bi bi-person-circle" id="icono-usuario"></i>
+        <p>${nombre}</p>
+        <i class="fa-solid fa-moon" id="icono-tema"></i>
+        `;
+
+
+    } else {
+        removerTemaOscuro()
+        tarjetaUsuario = `
+        <i class="bi bi-person-circle" id="icono-usuario"></i>
+        <p>${nombre}</p>
+        <i class="fa-solid fa-sun" id="icono-tema"></i>
+        `;
+    }
+
+    contenedorUsuario.innerHTML = tarjetaUsuario;
+}
+
+///////////////////////////////////////////////////////////////////
+function aplicarTemaOscuro(){
+    document.body.classList.add("darkmode")
+    
+}
+
+///////////////////////////////////////////////////////////////////
+function removerTemaOscuro(){
+    document.body.classList.remove("darkmode")
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -444,6 +481,26 @@ async function subirVenta(){
     }
 }
 
+function cambiarTema(){
+    const iconoTema = document.getElementById('icono-tema')
+    if(iconoTema){
+        iconoTema.addEventListener('click', () => {
+            if(sessionStorage.getItem("tema") === "oscuro"){
+                sessionStorage.setItem("tema", "claro")
+                removerTemaOscuro()
+                iconoTema.classList.remove("fa-moon")
+                iconoTema.classList.add("fa-sun")
+                
+            } else {
+                sessionStorage.setItem("tema", "oscuro")
+                aplicarTemaOscuro()
+                iconoTema.classList.remove("fa-sun")
+                iconoTema.classList.add("fa-moon")
+            }
+        })
+    }
+}
+
 
 ////FUNCION INICIADORA //////
 
@@ -463,6 +520,8 @@ function init(){
     obtenerNombreUsuarioSesionStorage();
 
     volverInicio();
+
+    cambiarTema();
 
 
 }
