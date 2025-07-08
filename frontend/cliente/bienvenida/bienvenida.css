@@ -15,6 +15,7 @@ body{
     align-items: center;
     flex-direction: column;
     transition: background-color 0.4s ease, color 0.4s ease;
+    gap: 4rem;
 }
 
 
@@ -128,12 +129,22 @@ footer{
 
 
 /* Dark Mode */
+#contenedor-btnDarkMode{
+    position: absolute; 
+    top: 1.5rem;
+    right: 5rem;
+
+
+} 
+
 #btnDarkMode{
-    width: 2rem;
-    height: 2rem;
+    width: 3rem;
+    height: 2.5rem;
     cursor: pointer;
     border-radius: 9px;
-    background-color: black;
+    border: none;
+    background-color: rgb(82, 61, 49);
+    margin-right: 3rem;
 }
 #btnDarkMode i{
     color: rgb(191, 166, 50)
@@ -206,5 +217,15 @@ footer{
     }
     .contenedor-formImagen .imagen-plumaPapel{
         width: 50%;
+    }
+
+    #contenedor-btnDarkMode{
+        display: flex;
+        position: static;
+        justify-content: center;
+    }
+    #btnDarkMode{
+        width: 2.5rem;
+        height: 2rem;
     }
 }
