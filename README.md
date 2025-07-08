@@ -2,6 +2,7 @@
 
 ## 📝 Programación III – Trabajo Integrador: Autoservicio de Librería
 
+### [] Introduccion []
 Este proyecto fue desarrollado por los alumnos **Ivo Lionel Saja** y **Lucas Agustín Schurkens** con el objetivo de obtener la aprobación directa en la materia Programación III.
 
 La finalidad del proyecto es desarrollar una aplicación web de autoservicio para una librería, la cual comercializa tanto útiles escolares (mochilas, cartucheras, cuadernos, etc.) como libros (escolares y de diversas temáticas).
