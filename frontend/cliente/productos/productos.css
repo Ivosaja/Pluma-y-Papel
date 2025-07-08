@@ -370,6 +370,40 @@ footer{
 }
 
 
+.darkmode #encabezado{
+    background-color: #1c1c1c;
+    border-bottom: 5px double #969696;;
+}
+
+.darkmode h1,
+.darkmode #contenedor-tarjeta-usuario p, 
+.darkmode #contenedor-tarjeta-usuario i,
+.darkmode #contenedor-boton-carrito span,
+.darkmode #contenedor-boton-carrito i{
+    color:#eae6d9 ;
+} 
+
+.darkmode #contenedor-productos{
+    background-color:  #191919;
+}
+
+.darkmode .tarjeta-producto{
+    background-color: #2a2a2a;
+    border:2px solid #d29b6a;
+}
+
+.darkmode .tarjeta-producto p, .darkmode .tarjeta-producto h3{
+    color:#eae6d9 ;
+}
+
+.darkmode footer{
+    color: #ffffff;
+}
+
+
+
+
+
 @media (max-width: 1100px){
     main{
         flex-direction: column;

@@ -81,15 +81,15 @@ function obtenerNombreUsuarioSesionStorage(){
     let nombre = sessionStorage.getItem("nombreUsuario");
     if(sessionStorage.getItem("tema") === "oscuro"){
         document.body.classList.add("darkmode")
-        document.getElementById("encabezado").classList.add("darkmode")
         nuevo = `
         <i class="bi bi-person-circle" id="icono-usuario"></i>
         <p>${nombre}</p>
         <i class="fa-solid fa-moon" id="icono-tema"></i>
         `;
+
+
     } else {
         document.body.classList.remove("darkmode")
-        document.getElementById("encabezado").classList.remove("darkmode")
         nuevo = `
         <i class="bi bi-person-circle" id="icono-usuario"></i>
         <p>${nombre}</p>
