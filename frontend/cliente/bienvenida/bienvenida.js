@@ -40,7 +40,6 @@ function aplicarDarkMode(){
                 icon.classList.remove("fa-sun");
                 icon.classList.add("fa-moon");
             }
-            console.log(sessionStorage.getItem("tema"));
         })
     }
 }
