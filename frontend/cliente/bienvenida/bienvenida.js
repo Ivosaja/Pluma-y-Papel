@@ -3,12 +3,9 @@ const input =  document.getElementById("ingreso-nombre");
 
 function guardarNombreUsuario(){
     form.addEventListener("submit",(event) =>{
-        event.preventDefault(); //prevenimos que se envie por defecto el form
-        // TODO -> Validacion de nombre de usuario
+        event.preventDefault(); 
         if(validarNombreUsuario()){
-            window.location.href="../productos/productos.html" // cambiamos la localizacion de la ventana a otra cuando se haga click en el boton de submit
-            console.log(input.value);
-            // Guardamos en session storage el nombre del usuario ingresado por el input del formulario
+            window.location.href="../productos/productos.html" 
             sessionStorage.setItem("nombreUsuario", input.value);
         }
     })
@@ -23,6 +20,30 @@ function validarNombreUsuario(){
     return true
 }
 
-guardarNombreUsuario()
+function aplicarDarkMode(){
+    let btnDArkMode = document.getElementById("btnDarkMode");
+    if(btnDArkMode){
+        btnDArkMode.addEventListener("click", function(){
+            
+            if(sessionStorage.getItem("tema")==="oscuro"){
+    
+                document.body.classList.remove("dark-mode");
+                
+                sessionStorage.setItem("tema", "claro");
+    
+            }
+            else{
+                document.body.classList.add("dark-mode");
+                sessionStorage.setItem("tema", "oscuro");
+            }
+        })
+    }
+}
+function init(){
+    guardarNombreUsuario()
+    aplicarDarkMode();
+}
+
+init();
 
 
