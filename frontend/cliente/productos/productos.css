@@ -60,6 +60,10 @@
     max-width: 100%;
 }
 
+#contenedor-tarjeta-usuario #icono-tema{
+    font-size: 1.4rem;
+}
+
 
 #contenedor-logo-Titulo{
     width: 40%;
@@ -359,6 +363,10 @@ footer{
     justify-content: center;
     align-items: center;
     gap: 1rem;
+}
+
+.darkmode{
+    background-color: #1c1c1c;
 }
 
 

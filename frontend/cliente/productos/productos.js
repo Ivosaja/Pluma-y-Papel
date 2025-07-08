@@ -79,11 +79,10 @@ function redireccionarCarrito(){
 function obtenerNombreUsuarioSesionStorage(){
     let nombre = sessionStorage.getItem("nombreUsuario");
     let nuevo = `
-
-    
-        <i class="bi bi-person-circle"></i>
-
-    <p>${nombre}</p>`;
+    <i class="bi bi-person-circle" id="icono-usuario"></i>
+    <p>${nombre}</p>
+    <i class="fa-solid fa-sun" id="icono-tema"></i>
+    `;
 
     contenedorUsuario.innerHTML = nuevo;
 }
@@ -200,7 +199,8 @@ function mostrarModal(tipoModal, mensaje){
 
 
 function volverInicio() {
-    contenedorUsuario.addEventListener("click", function(){
+    const iconoUsuario = document.getElementById('icono-usuario')
+    iconoUsuario.addEventListener("click", function(){
 
         window.location.href= "../bienvenida/index.html";
 
@@ -225,6 +225,18 @@ function redireccionarPanelAdmin(){
 
 }
 
+function cambiarTema(){
+    const iconoTema = document.getElementById('icono-tema')
+    iconoTema.addEventListener('click', () => {
+        if(sessionStorage.getItem("tema") === "oscuro"){
+            sessionStorage.setItem("tema", "claro")
+            document.body.classList.remove('darkmode')
+        } else {
+            sessionStorage.setItem("tema", "oscuro")
+            document.body.classList.add('darkmode')
+        }
+    })
+}
 
 
 
@@ -258,6 +270,8 @@ async function init() {
     redireccionarPanelAdmin();
 
     redireccionarCarrito();
+
+    cambiarTema()
 
 
 }
