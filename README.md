@@ -162,4 +162,77 @@ También incluye una carpeta **public/** desde donde se sirven los archivos est�
 
 
 
+### ✅ Requisitos
+```bash
+- NodeJS v22.16.0
+- npm v10.9.2
+- XAMPP o cualquier motor que incluya Apache y MySQL
+- PHPMyAdmin (opcional pero recomendado)
+- Configurar archivo .env a partir de .env.example
+```
 
+
+### ⚙️ Instalación y ejecución
+
+1. Iniciar **servicios**
+Prender el servidor Apache y el servicio MySQL (usando XAMPP o el entorno que prefiera).
+
+---
+
+2. Importar **base de datos**
+Ir a `http://localhost/phpmyadmin`
+Importar el archivo **.sql** incluido en el proyecto (`ruta: backend/database/bd.sql`)
+
+---
+
+3. Clonar el **repositorio**:
+```bash
+git clone https://github.com/Ivosaja/TP_Final_Progra_III.git
+cd TP_Final_Progra_III
+```
+
+---
+
+4. Configurar **variables de entorno**
+```bash
+cd backend
+cp .env.example .env
+```
+* Editar el archivo .env con los valores correctos
+
+---
+
+5. Instalar **dependencias** del backend:
+```bash
+npm install
+```
+
+---
+
+6. Iniciar el servidor a traves del script personalizado con **nodemon**
+```bash
+npm run dev
+```
+* Esto va a levantar el backend en: `http://localhost:(puerto en .env / 1001)`
+
+---
+
+7. Acceder al **frontend**
+* Abrir el archivo index.html desde: 
+`frontend/cliente/bienvenida/index.html`
+
+
+```bash
+cd ..
+cd frontend/cliente/bienvenida
+```
+
+
+### ℹ️ Aclaraciones 
+
+**Conexión frontend-backend**
+* El frontend hace fetch al puerto **1001** por defecto.
+Si configurás otro puerto en .env, debes cambiar todos los fetch manualmente en los archivos JS correspondientes paraJ que funcione, o usar el puerto 1001 por defecto
+
+**Base de datos**
+* Para ver y gestionar las ventas y sus detalles, usar **PHPMyAdmin** en la base de datos importada.
