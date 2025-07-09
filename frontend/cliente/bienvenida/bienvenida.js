@@ -1,6 +1,10 @@
+// Variables Globales //
 const form = document.querySelector(".form-ingresar");
 const input =  document.getElementById("ingreso-nombre");
 
+
+////////////////////////////////////////////////////////////////////
+// Funcion que almacena el nombre de usuario en el sessionStorage //
 function guardarNombreUsuario(){
     form.addEventListener("submit",(event) =>{
         event.preventDefault(); 
@@ -11,6 +15,8 @@ function guardarNombreUsuario(){
     })
 }
 
+////////////////////////////////////////////////////////////////////
+// Funcion que valida el nombre ingresado por el usuario en el formulario //
 function validarNombreUsuario(){
     const inputValue = input.value.trim();
     if(inputValue.length > 10 || inputValue.length <2 || inputValue.length === 0){
@@ -20,6 +26,8 @@ function validarNombreUsuario(){
     return true
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+// Funcion que aplica o remueve el tema oscuro de la pantalla bienvenida en adelante //
 function aplicarDarkMode(){
     let btnDarkMode = document.getElementById("btnDarkMode");
     let icon = btnDarkMode.querySelector("i");
@@ -43,12 +51,14 @@ function aplicarDarkMode(){
         })
     }
 }
+
+/////////////////////////////////////////////////////////////
+// Funcion principal que ejecuta todas las demas funciones //
 function init(){
     sessionStorage.removeItem("tema"); 
     guardarNombreUsuario()
     aplicarDarkMode();
 }
-
 init();
 
 
