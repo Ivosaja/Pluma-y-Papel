@@ -240,8 +240,8 @@ Si configurás otro puerto en .env, debes cambiar todos los fetch manualmente en
 
 ### 🗄️Imagenes representativas de la Base de datos
 
-DER Logico
+**DER Logico**
 ![DER Lógico](https://i.postimg.cc/N0d6CfS2/derlogico.png)
 
-DER Relacional
+**DER Relacional**
 ![DER Relacional](https://i.postimg.cc/RhHw01Fw/derrelacional.png)
