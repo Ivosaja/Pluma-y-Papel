@@ -236,3 +236,12 @@ Si configurás otro puerto en .env, debes cambiar todos los fetch manualmente en
 
 **Base de datos**
 * Para ver y gestionar las ventas y sus detalles, usar **PHPMyAdmin** en la base de datos importada.
+
+
+### 🗄️Imagenes representativas de la Base de datos
+
+DER Logico
+![DER Lógico](https://i.postimg.cc/N0d6CfS2/derlogico.png)
+
+DER Relacional
+![DER Relacional](https://i.postimg.cc/RhHw01Fw/derrelacional.png)
