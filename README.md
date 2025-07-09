@@ -102,18 +102,18 @@ El backend de Pluma & Papel está construido con Node.js utilizando el framework
 
 Ademas nuestro **Backend** se basa en el patrón **Modelo-Vista-Controlador (MVC)**, organizado en módulos separados para mayor claridad y mantenimiento:
 
-* **config/** para configuraciones generales (como conexión a la base de datos)
+* **config/** para cargar las variables de entorno con "dotenv"
 
-* **controllers/** para manejar la lógica de negocio,
+* **controllers/** para manejar las request y las responses (logica de negocio)
 
-* **database/** para interactuar con la base de datos,
+* **database/** para configurar la conexion con la base de datos y para guardar el archiv .sql de la base de datos,
 
-* **middlewares/** para lógica intermedia como validaciones o autenticación,
+* **middlewares/** para lógica intermedia como validaciones que se ejecutan entre las requests y responses
 
-* **models/** donde se definen los esquemas de datos,
+* **models/** donde se definen los modelos y sus consultas con la base de datos
 
-* **routes/** para definir los endpoints del servidor,
+* **routes/** para definir los endpoints del servidor (products, sales, views)
 
-* **utils/** con funciones auxiliares reutilizables.
+* **utils/** con logica para trabajar con archivos y rutas de proyecto en Express.js (__filename / __dirname)
 
-También incluye una carpeta **public/** desde donde se sirven los archivos estáticos (css, img, js) y un sistema de vistas en **views/**, renderizadas desde el servidor usando **EJS** para el panel de administración. A su vez una carpeta **partials/** para reutilizar particularidades.  Esto permite tener páginas del administrador generadas directamente desde el backend.
+También incluye una carpeta **public/** desde donde se sirven los archivos estáticos (css, img, js) y un sistema de vistas en **views/**, renderizadas desde el servidor usando **EJS** para el panel de administración. A su vez una carpeta **partials/** para reutilizar partes que comparten las views. Esto permite tener páginas del administrador generadas directamente desde el backend.
