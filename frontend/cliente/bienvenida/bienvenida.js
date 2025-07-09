@@ -35,7 +35,9 @@ function aplicarDarkMode(){
         btnDarkMode.addEventListener("click", function(){
             
             if(sessionStorage.getItem("tema")==="oscuro"){
-    
+
+                // Tuvimos que aplicar document.documentElement ya que se aplica sobre el elemento raiz de la pagina ("html")
+                // Soluciona problema de glitch visual entre cambio de pantallas
                 document.documentElement.classList.remove("darkmode");
                 
                 sessionStorage.setItem("tema", "claro");
