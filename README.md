@@ -57,8 +57,9 @@ TP_Final_Progra_III/
        └──cliente/
             ├── bienvenida/             
             ├── carrito/                
-            └── productos/              
+            └── productos/    
 ```      
+> ℹ️ Nota: Los archivos `.env` y la carpeta `node_modules/` están ignorados en el repositorio mediante `.gitignore`. Sin embargo, forman parte del entorno local del proyecto.
 
 ### 🎨 Proyecto Frontend - Cliente
 El frontend del proyecto representa la interfaz de usuario de **Pluma & Papel**, un autoservicio de libros y útiles escolares. Permite a los usuarios navegar por las diferentes categorias (libros y utiles), agregarlos al carrito, visualizar detalles y realizar sus compras. 
