@@ -1,5 +1,4 @@
-
-//variable globales
+// Variable globales //
 let modalTimeoutId = null // aca guardamos el timeout actual
 let contenedorProductos = document.getElementById("contenedor-productos");
 let filtradoUtiles = document.getElementById("filtrarUtiles")
@@ -7,12 +6,11 @@ let filtradoLibros= document.getElementById("filtrarLibros")
 let listaProductos = [];
 let contenedorUsuario = document.getElementById("contenedor-tarjeta-usuario");
 const contenedorBtnCarrito = document.getElementById('contenedor-boton-carrito')
+let btnPanelAdmin = document.getElementById("panelAdmin");
 let carrito = []
 
-let btnPanelAdmin = document.getElementById("panelAdmin");
-
-////////////////////////////////////////////////////////////
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que hace un fetch a el endpoint de nuestra api para obtener todos los productos activos //
 async function obtenerProductos() {
     try{
 
@@ -26,11 +24,10 @@ async function obtenerProductos() {
     }
 }
 
-///////////////////////////////////////////////////////////////////
-
+/////////////////////////////////////////////////////////
+// Funcion que muestra en pantalla todos los productos //
 function mostrarProductos(lista){ 
     let cartaProducto = "";
-    console.log(lista)
     if(lista.length === 0){
         cartaProducto = `<p class="contenedor-productos-texto"> No se encontraron productos disponibles. Intente mas tarde</p>`
     }
@@ -54,8 +51,8 @@ function mostrarProductos(lista){
     mostrarCantidadUtiles()
 }
 
-///////////////////////////////////////////////////////////////////
-
+///////////////////////////////////////////////////////////////
+// Funcion que agrega en pantalla el carrito con su cantidad //
 function mostrarCantidadProductosCarrito(){
     contenedorBtnCarrito.innerHTML = `
         <i class="bi bi-cart2"></i>
@@ -63,19 +60,18 @@ function mostrarCantidadProductosCarrito(){
     `;
 }
 
-
+///////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que redirecciona a la pantalla de carrito tras clickear el contenedor carrito //
 function redireccionarCarrito(){
 
-
     contenedorBtnCarrito.addEventListener("click", function(){
-
         window.location.href = "../carrito/carrito.html";
 
     })
 }
 
-///////////////////////////////////////////////////////////////////
-
+//////////////////////////////////////////////////////////////////////////////////
+// Funcion que obtiene y aplica el nombre de usuario y el tema del sessionStorage //
 function obtenerNombreUsuarioSesionStorage(){
     let tarjetaUsuario = ''
     let nombre = sessionStorage.getItem("nombreUsuario");
@@ -96,25 +92,25 @@ function obtenerNombreUsuarioSesionStorage(){
         <i class="fa-solid fa-sun" id="icono-tema"></i>
         `;
     }
-
     contenedorUsuario.innerHTML = tarjetaUsuario;
 }
 
-///////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+// Funcion que le agrega la clase darkmode al elemento raiz de la pagina (html) //
 function aplicarTemaOscuro(){
     document.documentElement.classList.add("darkmode")
     
 }
 
-///////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+// Funcion que remueve la clase darkmode del elemento raiz de la pagina (html) //
 function removerTemaOscuro(){
     document.documentElement.classList.remove("darkmode")
 }
 
 
-///////////////////////////////////////////////////////////////////
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que filtra los productos cuya categoria ==== "Libros" y muestra en el boton todos sus datos (junto con la cantidad) //
 function mostrarCantidadLibros(){
     const libros = listaProductos.filter(producto => producto.categoria === "Libros");
     filtradoLibros.innerHTML = `
@@ -124,6 +120,8 @@ function mostrarCantidadLibros(){
     `
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que filtra los productos cuya categoria ==== "Utiles" y muestra en el boton todos sus datos (junto con la cantidad) //
 function mostrarCantidadUtiles(){
     const utiles = listaProductos.filter(producto => producto.categoria === "Utiles")
     filtradoUtiles.innerHTML = `
@@ -132,8 +130,8 @@ function mostrarCantidadUtiles(){
         <span id="cantUtiles">${utiles.length}</span>
     `
 }
-
-
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que filtra los productos cuya categoria === "Utiles" y los visualiza en pantalla //
 function filtrarUtiles(lista){
     filtradoUtiles.addEventListener("click",function(){
 
@@ -141,11 +139,13 @@ function filtrarUtiles(lista){
             producto.categoria==="Utiles"
         )
         mostrarProductos(filtrados)
-        window.scrollTo(0,0)
+        window.scrollTo(0,0) // Esto es un scroll hacia el inicio de la pantalla
     })
 
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que filtra los productos cuya categoria === "Libros" y los visualiza en pantalla //
 function filtrarLibros(lista){
     filtradoLibros.addEventListener("click",function(){
 
@@ -153,13 +153,13 @@ function filtrarLibros(lista){
             producto.categoria==="Libros"
         )
         mostrarProductos(filtrados)
-        window.scrollTo(0,0)
+        window.scrollTo(0,0) // Esto es un scroll hacia el inicio de la pantalla
     })
 
 }
 
-///////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que agrega un producto al carrito siempre y cuando este no encuentre, guarda el carrito en sessionStorage, informa con un modal y muestra cantidad de productos en el carrito 
 function agregarAlCarrito(idProducto){
     const productoAgregar = listaProductos.find(producto => producto.id_producto === idProducto);
     if(carrito.some(producto => producto.id_producto === idProducto)){ // aqui, el some verifica si ya hay algun producto en el carrito que coincida con el producto que se quiere agregar.
@@ -176,11 +176,11 @@ function agregarAlCarrito(idProducto){
     mostrarModal("agregado", "Se agrego correctamente el producto al carrito")
 }
 
-///////////////////////////////////////////////////////////////////
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que elimina un producto al carrito si este ya se encuentra, guarda el carrito en sessionStorage, informa con un modal y muestra cantidad de productos en el carrito 
 function eliminarDelCarrito(idProducto){
     const indiceProductoCarrito = carrito.findIndex(producto => producto.id_producto === idProducto) // Encuentro el indice del producto a eliminar del carrito
-    if(indiceProductoCarrito === -1){ // Verifico que si no encontro el indice del producto
+    if(indiceProductoCarrito === -1){ // Verifico que si no encontro el indice del producto (pq si no lo encuentra devuelve -1)
         mostrarModal("noAgregado", "Este producto no se encuentra en el carrito. Agreguelo primero")
         return
     }
@@ -191,8 +191,8 @@ function eliminarDelCarrito(idProducto){
     mostrarModal("eliminado", "Se elimino completamente el producto del carrito")
 }
 
-///////////////////////////////////////////////////////////////////
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que muestra el tipo de modal junto con su determinado mensaje y coordina la aparicion del mismo //
 function mostrarModal(tipoModal, mensaje){
     const modal = document.getElementById('modal')
     const modalMensaje = document.querySelector('.modal-contenido-texto')
@@ -222,36 +222,41 @@ function mostrarModal(tipoModal, mensaje){
     }, 3000)
 }
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que permite volver al inicio (pantalla de bienvenida) al clickear el icono de la tarjeta de usuario y limpia el sessionStorage //
 function volverInicio() {
     const iconoUsuario = document.getElementById('icono-usuario')
+
     iconoUsuario.addEventListener("click", function(){
-
         window.location.href= "../bienvenida/index.html";
-
         sessionStorage.clear();
 
     })
 }
 
+////////////////////////////////////////////////////////////////////////////
+// Funcion validadora del ingreso del nombre en la pantalla de bienvenida //
 function redireccionarSinNombre(){
-    const nombreGuardado = sessionStorage.getItem("nombreUsuario");
 
+    const nombreGuardado = sessionStorage.getItem("nombreUsuario");
     if (!nombreGuardado) {
         window.location.href = "../bienvenida/index.html";
     }
 
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que redirecciona al panel del administrador tras clickear el boton "Panel Admin" //
 function redireccionarPanelAdmin(){
 
     btnPanelAdmin.addEventListener("click", function(){
-
         window.location.href = "http://localhost:1001/admin/dashboard";
     })
 
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que cambia el tema (tanto en la pantalla, como en el sessionStorage) y el icono que hace referencia a ese tema al clickear //
 function cambiarTema(){
     const iconoTema = document.getElementById('icono-tema')
     if(iconoTema){
@@ -274,9 +279,12 @@ function cambiarTema(){
 
 
 
-///////////////////////////////////////////////////////////////////
-
+/////////////////////////////////////////////////////////////
+// Funcion principal que ejecuta todas las demas funciones //
+// Aclaracion: Es una funcion asincrona ya que espera a que se obtengan los productos 
 async function init() {
+    redireccionarSinNombre();
+
     // Pongo un mensaje en contenedor de productos para que se vea algo mientras se realiza el fetch que puede tardar unos segundos (porque usa async/await)
     contenedorProductos.innerHTML = `<p class="contenedor-productos-texto">Cargando productos...</p>`
     
@@ -305,10 +313,6 @@ async function init() {
     redireccionarCarrito();
 
     cambiarTema();
-
-    redireccionarSinNombre();
-
-
 }
 
 init();
