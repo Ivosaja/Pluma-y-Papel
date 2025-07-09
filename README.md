@@ -59,3 +59,26 @@ TP_Final_Progra_III/
             ├── carrito/                
             └── productos/              
 ```      
+
+### 🎨 Proyecto Frontend - Cliente
+El frontend del proyecto representa la interfaz de usuario de **Pluma & Papel**, un autoservicio de libros y útiles escolares. Permite a los usuarios navegar por las diferentes categorias (libros y utiles), agregarlos al carrito, visualizar detalles y realizar sus compras. 
+
+**🛠️ Funcionalidades principales** 
+* 💬 Pantalla de bienvenida (ingreso de nombre del usuario)
+* 🛍️ Visualización de productos por categorías
+* ➕ Agregado / eliminación de productos del carrito
+* 🛒 Vista del carrito editable (aumentar/disminuir cantidades y vaciar carrito)
+* 🧾 Emisión de ticket de compra en PDF descargable
+* 🌑 Modo claro / oscuro con persistencia
+* 🧑‍💼 Acceso al panel del administrador
+* 📱 Diseño adaptable a dispositivos móviles (responsive)
+* 👤 Persistencia del nombre de usuario ingresado en la pantalla de bienvenida
+
+**💻 Tecnologias utilizadas**
+* HTML5
+* CSS3
+* JavaScript (vanilla)
+* Librería jsPDF (generación de ticket a traves de PDF)
+
+
+### 🌐 Proyecto Backend - Administrador y API
