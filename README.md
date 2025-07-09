@@ -107,7 +107,7 @@ Ademas nuestro **Backend** se basa en el patrón **Modelo-Vista-Controlador (MVC
 
 * **controllers/** para manejar las request y las responses (logica de negocio)
 
-* **database/** para configurar la conexion con la base de datos y para guardar el archiv .sql de la base de datos,
+* **database/** para configurar la conexion con la base de datos y para guardar el archivo .sql de la base de datos,
 
 * **middlewares/** para lógica intermedia como validaciones que se ejecutan entre las requests y responses
 
@@ -118,3 +118,48 @@ Ademas nuestro **Backend** se basa en el patrón **Modelo-Vista-Controlador (MVC
 * **utils/** con logica para trabajar con archivos y rutas de proyecto en Express.js (__filename / __dirname)
 
 También incluye una carpeta **public/** desde donde se sirven los archivos estáticos (css, img, js) y un sistema de vistas en **views/**, renderizadas desde el servidor usando **EJS** para el panel de administración. A su vez una carpeta **partials/** para reutilizar partes que comparten las views. Esto permite tener páginas del administrador generadas directamente desde el backend.
+
+**💻 Tecnologias utilizadas**
+
+* NodeJS
+* Express JS
+* EJS (vistas renderizadas por el servidor)
+* MySQL (como Base de datos)
+
+---
+
+**📡 Endpoints de la  API**
+
+**🛍️ Products**
+
+| Método | Endpoint                                  | Descripción                                                  |
+|--------|-------------------------------------------|--------------------------------------------------------------|
+| GET    | `/api/products/getAllProducts`            | Obtiene todos los productos                                  |
+| GET    | `/api/products/getAllActiveProducts`      | Obtiene todos los productos activos                          |
+| GET    | `/api/products/getProductById/:id`        | Obtiene un producto con ID específico                        |
+| POST   | `/api/products/postProduct`               | Crea un producto nuevo                                       |
+| PUT    | `/api/products/deleteProduct/:id`         | Realiza una baja lógica de un producto con ID específico     |
+| PUT    | `/api/products/modifyProduct/:id`         | Modifica un producto con ID específico                       |
+| PUT    | `/api/products/activateProduct/:id`       | Activa un producto con ID específico                         |
+
+---
+
+**💸Sales**
+
+| Método | Endpoint                          | Descripción                                                 |
+|--------|-----------------------------------|-------------------------------------------------------------|
+| POST   | `/api/sales/finalizePurchase`     | Guarda una venta realizada en la BD y sus detalles         |
+
+---
+
+**🖥️ Views**
+
+| Método | Endpoint                                  | Descripción                                                                 |
+|--------|-------------------------------------------|-----------------------------------------------------------------------------|
+| GET    | `/admin/dashboard`                        | Muestra la view **dashboard** con el listado de productos                  |
+| GET    | `/admin/dashboard/altaProducto`           | Muestra la view **altaProducto** para agregar un nuevo producto            |
+| GET    | `/admin/dashboard/modificarProducto`      | Muestra la view **modificarProducto** para modificar un producto existente |
+
+
+
+
