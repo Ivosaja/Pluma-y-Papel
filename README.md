@@ -82,3 +82,38 @@ El frontend del proyecto representa la interfaz de usuario de **Pluma & Papel**,
 
 
 ### 🌐 Proyecto Backend - Administrador y API
+
+El backend de Pluma & Papel está construido con Node.js utilizando el framework Express.Este backend brinda 2 funcionalidades principales:
+
+1. Una API REST JSON para manejar productos y ventas.
+2. Un dashboard renderizado con EJS que permite a los administradores gestionar la librería.
+
+**🛠️ Funcionalidades principales del Dashboard**
+
+* ✏️ Alta, Baja, Modificacion y reactivacion de productos.
+* 📋 Dashboard con productos y estado (activo = 1 / activo = 0)
+* 🖼️ Carga de imagenes de producto
+
+
+**🛠️ Funcionalidades principales de la API**
+* CRUD completo de productos
+* Carga de ventas a la BD
+* Validacion por Middlewares
+
+Ademas nuestro **Backend** se basa en el patrón **Modelo-Vista-Controlador (MVC)**, organizado en módulos separados para mayor claridad y mantenimiento:
+
+* **config/** para configuraciones generales (como conexión a la base de datos)
+
+* **controllers/** para manejar la lógica de negocio,
+
+* **database/** para interactuar con la base de datos,
+
+* **middlewares/** para lógica intermedia como validaciones o autenticación,
+
+* **models/** donde se definen los esquemas de datos,
+
+* **routes/** para definir los endpoints del servidor,
+
+* **utils/** con funciones auxiliares reutilizables.
+
+También incluye una carpeta **public/** desde donde se sirven los archivos estáticos (css, img, js) y un sistema de vistas en **views/**, renderizadas desde el servidor usando **EJS** para el panel de administración. A su vez una carpeta **partials/** para reutilizar particularidades.  Esto permite tener páginas del administrador generadas directamente desde el backend.
