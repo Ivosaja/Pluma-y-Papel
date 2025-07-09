@@ -21,7 +21,7 @@
     gap:10px;
     width: 100%;
     background-color: var(--color-fondo);
-    border-bottom: 5px double var(--color-amarillo2-Personalizado);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Claro */
 }
 
 
@@ -373,7 +373,7 @@ footer{
 
 .darkmode #encabezado{
     background-color: #1c1c1c;
-    border-bottom: 5px double #969696;;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05);
 }
 
 .darkmode h1,
@@ -389,8 +389,9 @@ footer{
 }
 
 .darkmode .tarjeta-producto{
-    background-color: #1d1d1d;
+    background-color: #1f1f1f;
     border: none;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .darkmode .tarjeta-producto p, .darkmode .tarjeta-producto h3{
