@@ -54,10 +54,30 @@ function aplicarDarkMode(){
     }
 }
 
+function aplicarTemaGuardado() {
+    const temaGuardado = sessionStorage.getItem("tema");
+    let btnDarkMode = document.getElementById("btnDarkMode");
+    const icon = btnDarkMode.querySelector("i");
+
+    if (temaGuardado === "oscuro") {
+        document.documentElement.classList.add("darkmode");
+        if (icon) {
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
+        }
+    } else {
+        document.documentElement.classList.remove("darkmode");
+        if (icon) {
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+        }
+    }
+}
+
 /////////////////////////////////////////////////////////////
 // Funcion principal que ejecuta todas las demas funciones //
 function init(){
-    sessionStorage.removeItem("tema"); 
+    aplicarTemaGuardado();
     guardarNombreUsuario()
     aplicarDarkMode();
 }

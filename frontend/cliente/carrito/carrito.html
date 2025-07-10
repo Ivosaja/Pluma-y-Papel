@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!--Utilizacion de script para cargar el tema seleccionado anteriormente en el elemento raiz de la pagina (html) antes de cargar el css y el js propio-->
     <script>
         if (sessionStorage.getItem("tema") === "oscuro") {
             document.documentElement.classList.add("darkmode");
@@ -15,20 +16,19 @@
     </script>
     <link rel="stylesheet" href="carrito.css">
     <script src="carrito.js" defer></script>
+    <!--CDN para poder aplicar la libreria jsPDF para la creacion del ticket-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <header id="encabezado">
         <div id="contenedor-boton-volver">
-                <i class="bi bi-arrow-left"></i>
-            </a>
+            <i class="bi bi-arrow-left"></i>
         </div>
         <div id="contenedor-logo-Titulo">
             <img src="../../assets/img/favicon/favicon.png" alt="logo de la pagina"> 
             <h1>Carrito</h1>
         </div>
         <div id="contenedor-tarjeta-usuario">
-            <i class="bi bi-person-circle"></i>
         </div>
     </header>
     <main id="principal">

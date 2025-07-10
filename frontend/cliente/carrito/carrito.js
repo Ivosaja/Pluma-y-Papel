@@ -425,7 +425,9 @@ function volverInicioPostCompra(){
 
 
     document.body.classList.add("transicionBienvenida");
-    sessionStorage.clear();
+    sessionStorage.removeItem("carrito");
+    sessionStorage.removeItem("nombreUsuario");
+    sessionStorage.removeItem("totalCarrito");
     setTimeout(() => {
         window.location.href = "../bienvenida/index.html";
     }, 1000); // debe estar igual que en css opara que le de tiempo a mostrar a su vez el CSS
@@ -499,7 +501,8 @@ function cambiarTema(){
 ////FUNCION INICIADORA //////
 
 function init(){
-
+    volverInicio();
+    
     if(sessionStorage.getItem('carrito')){
 
         listaCarrito = JSON.parse(sessionStorage.getItem("carrito"));
@@ -513,9 +516,8 @@ function init(){
 
     obtenerNombreUsuarioSesionStorage();
 
-    volverInicio();
-
     cambiarTema();
+
 
 
 }

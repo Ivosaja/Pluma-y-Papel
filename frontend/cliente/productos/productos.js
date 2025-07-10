@@ -229,8 +229,11 @@ function volverInicio() {
 
     iconoUsuario.addEventListener("click", function(){
         window.location.href= "../bienvenida/index.html";
-        sessionStorage.clear();
-
+        sessionStorage.removeItem("carrito")
+        sessionStorage.removeItem("nombreUsuario")
+        if(sessionStorage.getItem("totalCarrito")){
+            sessionStorage.removeItem("totalCarrito");
+        }
     })
 }
 
@@ -284,7 +287,7 @@ function cambiarTema(){
 // Aclaracion: Es una funcion asincrona ya que espera a que se obtengan los productos 
 async function init() {
     redireccionarSinNombre();
-
+    
     // Pongo un mensaje en contenedor de productos para que se vea algo mientras se realiza el fetch que puede tardar unos segundos (porque usa async/await)
     contenedorProductos.innerHTML = `<p class="contenedor-productos-texto">Cargando productos...</p>`
     
@@ -298,21 +301,25 @@ async function init() {
     obtenerNombreUsuarioSesionStorage();
     mostrarCantidadProductosCarrito()
     
+    
     // Espero a que se obtengan los productos y los retorne la funcion
     listaProductos = await obtenerProductos();
     // Muestro los productos
     mostrarProductos(listaProductos);
-
+    
     filtrarUtiles(listaProductos);
     filtrarLibros(listaProductos);
-
+    
     volverInicio();
-
+    
     redireccionarPanelAdmin();
-
+    
     redireccionarCarrito();
 
+    
     cambiarTema();
+    
+    
 }
 
 init();
