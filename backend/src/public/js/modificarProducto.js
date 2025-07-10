@@ -1,3 +1,5 @@
+
+// Variables globales //
 const idInput = document.getElementById('idProducto')
 const nombreProducto = document.getElementById('nombreProducto')
 const imagenProducto = document.getElementById('imagenProducto')
@@ -8,7 +10,8 @@ const modal = document.getElementById("modal")
 const modalIcono = document.querySelector('.modal-content-icon')
 const modalTexto = document.querySelector('.modal-content-text')
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion asincrona que hace una peticion GET a un endpoint de la API para obtener el producto que clickeo en la pantalla dashboard //
 async function obtenerProductoClickeadoPorId(id){
     try{
         let result = await fetch(`http://localhost:1001/api/products/getProductById/${id}`)
@@ -20,12 +23,12 @@ async function obtenerProductoClickeadoPorId(id){
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion asincrona que precarga los inputs del formulario con la informacion del producto que clickeo anteriormente en la pantalla dashboard //
 async function rellenarFormulario(id){
     try{
         const result = await obtenerProductoClickeadoPorId(id)
         const [producto] = result.payload
-        
-        // Mejorar validacion si payload da undefined o 0
 
         idInput.value = producto.id_producto
         nombreProducto.value = producto.nombre
@@ -39,6 +42,8 @@ async function rellenarFormulario(id){
     }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion asincrona que realiza una peticion PUT a un endpoint de la API para modificar el producto clickeado en la pantalla dashboard //
 async function modificarProducto(id, data){
     try{
         let result = await fetch(`http://localhost:1001/api/products/modifyProduct/${id}`, {
@@ -62,6 +67,8 @@ async function modificarProducto(id, data){
     }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion asincrona que obtiene los datos del formulario, los valida y sube o no los cambios hechos dependiendo la respuesta obtenida por el fetch y muestra por modal //
 function subirCambios(idProducto){
     const formModificarProducto = document.getElementById('form-modificarProducto')
     formModificarProducto.addEventListener('submit', async (event) => {
@@ -86,7 +93,6 @@ function subirCambios(idProducto){
         if(respuestaProductoModificado.estado){
             mostrarModal("modificado", respuestaProductoModificado.mensaje)
             
-            
             setTimeout(() => {
                 modal.style.display = 'none'
                 window.location.href = 'http://localhost:1001/admin/dashboard'
@@ -96,7 +102,6 @@ function subirCambios(idProducto){
         } else{
             mostrarModal("noModificado", respuestaProductoModificado.mensaje)
 
-            
             setTimeout(() => {
                 modal.style.display = 'none'
                 document.getElementById('contenedor-principal').classList.remove('bloquear-interacciones');
@@ -106,6 +111,8 @@ function subirCambios(idProducto){
     })
 }
 
+//////////////////////////////////////////////////////
+// Funcion que redirecciona al usuario al dashboard //
 function volverDashboardBoton(){
     let bntVovlerDashboard = document.getElementById("volverDashboard");
 
@@ -115,6 +122,8 @@ function volverDashboardBoton(){
     
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que muestra el modal dependiendo el tipo junto con su mensaje, ademas de bloquear las interacciones //
 function mostrarModal(tipoModal, mensaje){
     if(tipoModal === 'modificado'){
         modalIcono.innerHTML = `<i class="bi bi-check-circle-fill" id="tilde"></i>`
@@ -126,7 +135,9 @@ function mostrarModal(tipoModal, mensaje){
     modalTexto.textContent = mensaje
 }
 
-
+///////////////////////
+// FUNCION INCIADORA //
+// Aclaracion: Es una funcion asincrona ya que verifica que haya un idProducto en el sessionStorage y si hay espera a que se rellene el formulario
 async function init(){
     const idProducto = sessionStorage.getItem("idProducto")
     if(idProducto){
