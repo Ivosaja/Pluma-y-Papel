@@ -282,8 +282,8 @@ function cambiarTema(){
 
 
 
-/////////////////////////////////////////////////////////////
-// Funcion principal que ejecuta todas las demas funciones //
+////////////////////////
+// FUNCION INCIADORA //
 // Aclaracion: Es una funcion asincrona ya que espera a que se obtengan los productos 
 async function init() {
     redireccionarSinNombre();
@@ -316,8 +316,6 @@ async function init() {
     redireccionarPanelAdmin();
     
     redireccionarCarrito();
-
-     
 }
 
 init();

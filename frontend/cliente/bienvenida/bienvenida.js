@@ -54,6 +54,8 @@ function aplicarDarkMode(){
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que mantiene el tema con su respectivo icono guardado en sessionStorage tras recargar la pagina //
 function aplicarTemaGuardado() {
     const temaGuardado = sessionStorage.getItem("tema");
     let btnDarkMode = document.getElementById("btnDarkMode");
@@ -74,8 +76,8 @@ function aplicarTemaGuardado() {
     }
 }
 
-/////////////////////////////////////////////////////////////
-// Funcion principal que ejecuta todas las demas funciones //
+////////////////////////
+// FUNCION INCIADORA //
 function init(){
     aplicarTemaGuardado();
     guardarNombreUsuario()

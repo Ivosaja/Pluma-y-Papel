@@ -1,14 +1,16 @@
-///VARIABLES GLOBLES///
+// Variable globales //
+
 let contenedorUsuario = document.getElementById("contenedor-tarjeta-usuario");
 let contenedorVolverProductos = document.getElementById("contenedor-boton-volver");
-let listaCarrito = [];
 let itemsCarrito = document.getElementById("items-carrito");
 let botonVaciarCarrito = document.getElementById("vaciar-carrito");
 let contenedorTotal= document.getElementById("contenedor-Total-Comprar");
 let modalVaciarCarrito = document.getElementById('modal-vaciar-carrito');
 let modalConfirmarCompra = document.getElementById('modal-confirmar-compra');
+let listaCarrito = [];
 
-//////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+// Funcion que redirecciona al usuario a la pantalla de productos //
 function volverAProductos(){
 
     contenedorVolverProductos.addEventListener("click", function(){
@@ -18,6 +20,8 @@ function volverAProductos(){
 
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que obtiene el nombre del usuario del sessionStorage y genera la tarjeta del usuario con su respectivo icono //
 function obtenerNombreUsuarioSesionStorage(){
     let tarjetaUsuario = ''
     let nombre = sessionStorage.getItem("nombreUsuario");
@@ -42,18 +46,21 @@ function obtenerNombreUsuarioSesionStorage(){
     contenedorUsuario.innerHTML = tarjetaUsuario;
 }
 
-///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+// Funcion que agrega la clase darkmode al elemento raiz de la pagina (html) //
 function aplicarTemaOscuro(){
     document.documentElement.classList.add("darkmode")
     
 }
 
-///////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// Funcion que remueve la clase darkmode del elemento raiz de la pagina (html) //
 function removerTemaOscuro(){
     document.documentElement.classList.remove("darkmode")
 }
 
-//////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que muestra el carrito, junto con el total y setea en sessionStorage el total del carrito //
 function mostrarCarrito(lista){
     let productoCarrito = "";
     let precioTotal = 0;
@@ -99,7 +106,8 @@ function mostrarCarrito(lista){
 
 }
 
-//////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////
+// Funcion que unicamente muestra el total //
 function mostrarTotal(precioTotal){
     let textoTotal = "";
 
@@ -123,7 +131,8 @@ function mostrarTotal(precioTotal){
     contenedorTotal.innerHTML = textoTotal;
 }
 
-//////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que incrementa la cantidad de un producto y setea el carrito en sessionStorage //
 function sumarProducto(id){
 
     let productoAgregar = listaCarrito.find(producto=> producto.id_producto === id);
@@ -134,7 +143,8 @@ function sumarProducto(id){
 
 }
 
-//////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que decrementa la cantidad de un producto y setea el carrito en sessionStorage //
 function restarProducto(id){
 
     let productoRestar = listaCarrito.find(producto => producto.id_producto === id);
@@ -153,7 +163,8 @@ function restarProducto(id){
     sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
 }
 
-//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+// Funcion que elimina completamente un item del carrito //
 function eliminar(indice){
 
     listaCarrito.splice(indice,1);
@@ -164,7 +175,8 @@ function eliminar(indice){
 
 }
 
-//////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+// Funcion que pregunta al usuario si desea vaciar el carrrito //
 function vaciarCarrito(){
 
     botonVaciarCarrito.addEventListener("click",function(){
@@ -178,7 +190,8 @@ function vaciarCarrito(){
     })
 }
 
-//////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que segun el tipo pasado por parametro aplica y rellenar el contenedor del modal vaciar carrito //
 function aplicarModalVaciarCarrito(modalTipo){
     let contenido = "";
 
@@ -196,7 +209,6 @@ function aplicarModalVaciarCarrito(modalTipo){
         modalVaciarCarrito.innerHTML = contenido;
 
         mostrarModal(modalVaciarCarrito);
-        opacidad("realizar");
         modalBtnNo();
         modalBtnSi();
 
@@ -218,32 +230,31 @@ function aplicarModalVaciarCarrito(modalTipo){
             esconderModal(modalVaciarCarrito);
         }, 3000);
     }
-
 }
 
-//////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que esconde el modal y remueve la clase para que el usuario puede interaccionar //
 function esconderModal(modal){
-
     modal.style.display = "none";
-    //aca removes la clase aplciada que no permite selecionar otra cosa que no sea el modal
-
     document.getElementById('encabezado').classList.remove('bloquear-interacciones');
     document.getElementById('principal').classList.remove('bloquear-interacciones');
-
 }
 
-//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que muestra el modal y agrega la clase para que el usuario no pueda interaccionar //
 function mostrarModal(modal){
     modal.style.display = "flex";
 
-    /*basciametne es necesario esto ya que sino el usaurio Clietne poddria interacionar con todas las cosas de la pagina
-            sin confirmar su eleccion */
+    /*basicamente es necesario esto ya que sino el usaurio Clietne podria interacionar con 
+    todas las cosas de la pagina sin confirmar su eleccion */
+
     document.getElementById('encabezado').classList.add('bloquear-interacciones');
     document.getElementById('principal').classList.add('bloquear-interacciones');
 
 }
 
-//////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+// Funcion que vacia el carrito y setea el mismo en sessionStorage//
 function modalBtnSi(){
 
     let btnSi = document.getElementById("btn-Si");    
@@ -251,27 +262,25 @@ function modalBtnSi(){
     btnSi.addEventListener("click", function(){
 
         listaCarrito = []
-        console.log(listaCarrito)
         mostrarCarrito(listaCarrito);
-
         esconderModal(modalVaciarCarrito);
-        opacidad("ocultar");
         sessionStorage.setItem("carrito", JSON.stringify(listaCarrito));
     })
 
 }
 
-//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+// Funcion que esconde el modal ya que el usuario no quiso vaciar el carrito //
 function modalBtnNo(){
     let btnNo = document.getElementById("btn-No");
     btnNo.addEventListener("click", function(){
 
         esconderModal(modalVaciarCarrito);
-        opacidad("ocultar");
     })
 }
 
-//////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+// Funcion que espera el evento del comprar para luego aplicar el modalComprar //
 function clickearBotonComprar(){
 
     let btnComprar = document.getElementById("boton-comprar");
@@ -287,7 +296,8 @@ function clickearBotonComprar(){
 
 }
 
-//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+// Funcion que aplica y rellena el contenedor del modal Comprar //
 function aplicarModalComprar(){
 
     let contenido = 
@@ -302,13 +312,13 @@ function aplicarModalComprar(){
     modalConfirmarCompra.innerHTML = contenido;
 
     mostrarModal(modalConfirmarCompra);
-    opacidad("realizar");
 
     confirmar();
     rechazar();
 }
 
-//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que tras confirmar la venta, espera el resultado y le agrega al contenedor la respuesta acorde al estado //
 function confirmar(){
     let btnConfirmar = document.getElementById("confirmar");
 
@@ -344,12 +354,22 @@ function confirmar(){
         generarTicket();
         
         setTimeout(volverInicioPostCompra, 5000);
-
-
     })
 }
 
+///////////////////////////////////////////////////////////////////////////
+// Funcion que tras el rechazo de una compra esconde el modal de Comprar //
+function rechazar(){
+    let btnRechazar = document.getElementById("rechazar");
 
+    btnRechazar.addEventListener("click", function(){
+
+        esconderModal(modalConfirmarCompra);
+    })
+}
+
+//////////////////////////////////////////////////////////////////////////
+// Funcion que genera el ticket de compra con sus respectivos detalles //
 function generarTicket(){
 
     const {jsPDF} = window.jspdf;
@@ -393,36 +413,9 @@ function generarTicket(){
     doc.save("🖋️  Pluma & Papel - Ticket");
 }
 
-//////////////////////////////////////////////////////////////////////////
-
-
-function rechazar(){
-    let btnRechazar = document.getElementById("rechazar");
-
-    btnRechazar.addEventListener("click", function(){
-
-        esconderModal(modalConfirmarCompra);
-        opacidad("ocultar");
-
-    })
-
-}
-//////////////////////////////////////////////////////////////////////////
-function opacidad(accion){
-    if(accion === "realizar")
-    {
-        document.getElementById('encabezado').classList.add('opacidad');
-        document.getElementById('principal').classList.add('opacidad');
-        
-    }
-    else{
-        document.getElementById('encabezado').classList.remove('opacidad');
-        document.getElementById('principal').classList.remove('opacidad');
-    }
-}
-//////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+// Funcion que te redirecciona a la pantalla de bienvenida tras realizar una compra //
 function volverInicioPostCompra(){
-
 
     document.body.classList.add("transicionBienvenida");
     sessionStorage.removeItem("carrito");
@@ -430,25 +423,22 @@ function volverInicioPostCompra(){
     sessionStorage.removeItem("totalCarrito");
     setTimeout(() => {
         window.location.href = "../bienvenida/index.html";
-    }, 1000); // debe estar igual que en css opara que le de tiempo a mostrar a su vez el CSS
-    
+    }, 1000);
 
 }
 
-//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que te redirecciona a la pantalla de inicio si el usuario quiere acceder sin poner su nombre //
 function volverInicio(){
     const nombreGuardado  = sessionStorage.getItem("nombreUsuario");
 
     if(!nombreGuardado){
-
         window.location.href = "../bienvenida/index.html";
-
     }
-
-
 }
 
-//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion asincronica que realiza una peticion post a un endpoint para guardar la venta en la bd junto con sus detalles //
 async function subirVenta(){
     try{
         let response = await fetch("http://localhost:1001/api/sales/finalizePurchase", {
@@ -458,7 +448,7 @@ async function subirVenta(){
             },
             body: JSON.stringify({
                 carrito: JSON.parse(sessionStorage.getItem("carrito")),
-                total: sessionStorage.getItem("totalCarrito"), //modificando lo de el parseInt del total
+                total: sessionStorage.getItem("totalCarrito"),
                 nombreUsuario: sessionStorage.getItem("nombreUsuario")
             })
         })
@@ -477,6 +467,8 @@ async function subirVenta(){
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////////
+// Funcion que cambia el tema con su respectivo icono al hacer click en el mismo //
 function cambiarTema(){
     const iconoTema = document.getElementById('icono-tema')
     if(iconoTema){
@@ -498,7 +490,8 @@ function cambiarTema(){
 }
 
 
-////FUNCION INICIADORA //////
+////////////////////////
+// FUNCION INCIADORA //
 
 function init(){
     volverInicio();
@@ -506,7 +499,6 @@ function init(){
     if(sessionStorage.getItem('carrito')){
 
         listaCarrito = JSON.parse(sessionStorage.getItem("carrito"));
-        console.log(listaCarrito);
     }
 
     volverAProductos();

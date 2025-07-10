@@ -1,9 +1,14 @@
+
+/* Estilos Globales */
+
 *{
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
     font-family:'Nunito';
 }
+
+/* Variables de colores */
 
 :root {
     --color-fondo: rgb(255,249,230);
@@ -12,6 +17,8 @@
     --color-amarillo2-Personalizado: rgb(230, 189, 129);
     --marronPersonalizado:rgb(60,47,26);
 }
+
+/* Estilado */
 
 body{
     background-color: var(--color-fondo);
@@ -25,7 +32,7 @@ body{
     gap:10px;
     width: 100%;
     background-color: var(--color-fondo);
-    border-bottom: 5px double var(--color-amarillo2-Personalizado);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -42,9 +49,9 @@ body{
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
 }
+
 #contenedor-tarjeta-usuario #icono-tema{
     font-size: 1.4rem;
-
 }
 
 #contenedor-tarjeta-usuario:hover {
@@ -62,6 +69,7 @@ body{
     font-weight: 500;
     color: var(--marronPersonalizado);
     text-align: center;
+    /* Aplicado para que no sobresalgan nombre largos del contenedor */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -75,10 +83,9 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap:1.2rem;
+    gap:0.5rem;
     height: 100%;
 }
-
 
 #contenedor-logo-Titulo img {
     height: 4rem;           
@@ -86,12 +93,11 @@ body{
     border-radius: 100%; 
     border: 2px solid black;         
 }
+
 #contenedor-logo-Titulo h1 {
     font-size: 3.2rem;
     font-weight: 400;
 }
-
-
 
 #contenedor-boton-volver{
     width: 5rem;
@@ -107,17 +113,14 @@ body{
     cursor: pointer;
 }
 
-
 #contenedor-boton-volver i {
     font-size: 2rem;
     color:var(--color-amarillo-Personalizado);
 }
 
-
 #contenedor-boton-volver:hover{
     transform: translateY(-3px);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-
 }
 
 #contenedor-boton-volver:hover i,
@@ -125,9 +128,7 @@ body{
     transform: scale(1.1);
 }
 
-
-/*MAIN*/
-
+/* Contenido */
 
 #principal{
     display: flex;
@@ -138,7 +139,6 @@ body{
 }
 
 #contenedor-vaciar{
-    min-height: 3em;
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -153,14 +153,13 @@ body{
     cursor: pointer;
     font-size: 1.1rem;
     border: none;
-    color: #fffce2; 
+    color: #ffffff; 
 }
 
 #vaciar-carrito:hover{
     background-color: #6b7a49; 
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
-
 
 #contenedor-productos{
     background-color: #fef5da;
@@ -170,11 +169,8 @@ body{
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin: 0 auto;
-    max-width: 100%;
-    
+    margin: 0 auto;    
 }
-
 
 #items-carrito{
     list-style: none;
@@ -182,8 +178,6 @@ body{
     flex-direction: column;
     gap: 2rem;
 }
-
-
 
 .item-carrito{
     display: flex;
@@ -199,7 +193,6 @@ body{
     align-items: center;
     gap: 3rem;
     flex: 1;
-    min-width: 0;
 }
 
 .informacion img{
@@ -214,19 +207,14 @@ body{
     font-size: 14px;
 }
 
-
-
-
 .informacion button{
     background-color: #C25B5B;
     border: none;
     padding: 6px 10px;
     border-radius: 6px;
     cursor: pointer;
-    color: white;
+    color: #ffffff;
 }
-
-
 
 .acciones{
     display: flex;
@@ -234,7 +222,6 @@ body{
     padding: 1rem;
     gap:1rem;
 }
-
 
 .acciones p{
     min-width: 40px; 
@@ -251,10 +238,7 @@ body{
     font-size: 1rem;
     font-weight: bold;
     border: none;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: #ffffff;
 }
 
 #sumarProducto {
@@ -278,19 +262,14 @@ body{
     transform: scale(1.3);
 }
 
-
-
 #contenedor-Total-Comprar{
     display: flex;
     padding: 1rem;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     width: 100%;
     border-radius: 2rem;  
-    
-    gap: 6rem;
 }
-
 
 #total{
     display: flex;
@@ -304,21 +283,19 @@ body{
 }
 
 #boton-comprar{
-
     cursor: pointer;
     padding: 1rem;
     background-color: var(--color-boton);
     border-radius: 12px;
     font-size: 1.2rem;
     border: none;
-    color: #fffce2; 
+    color: #ffffff; 
 }
 
 #boton-comprar:hover {
     background-color: #6b7a49; 
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
-
 
 footer{
     text-align: center;
@@ -327,12 +304,9 @@ footer{
     padding: 1rem;
 }
 
-
-
 /*Modal Vaciar Carrito */
 
 #modal-vaciar-carrito{
-
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -341,11 +315,11 @@ footer{
     position: fixed;
     top: 20px;
     left: 50%; 
+    transform: translateX(-50%); 
     background-color: #f0f0f0;
     padding: 1rem 2rem;
     gap: 1rem;
     z-index: 1000;
-    transform: translateX(-50%); 
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
@@ -354,43 +328,42 @@ footer{
     gap: 2rem;
 }
 
-
 #modal-vaciar-carrito i{
     background-color: #c0392b;
-    color: white;
+    color: #ffffff;
     padding: 0.2rem;
 }
 
-
 #botones-modal button{
     font-size: 1.2rem;
-    border: 1px solid grey;
     cursor: pointer;
     border:none;
     padding: 0.5rem;
-    /*modificando lo del paddin*/
 }
-
 
 #btn-Si:hover, #confirmar:hover{
     background-color: #58a03c;
     box-shadow: 0 0 6px rgba(106, 176, 76, 0.5);
-    color:white;
+    color:#ffffff;
 }
-
 
 #btn-No:hover, #rechazar:hover {
     background-color: #c0392b;
     box-shadow: 0 0 6px rgba(235, 77, 75, 0.5);
-    color:white;
+    color:#ffffff;
 }
-
 
 .bloquear-interacciones{
+    /* Desactiva los eventos con el puntero */
     pointer-events: none;
+
+    /* El usuario no puede seleccionar ni resaltar texto dentro de un elemento */
     user-select: none;
+
+    opacity: 0.5;
 }
 
+/* Modal Confirmar Compra */
 
 #modal-confirmar-compra{
     display: none;
@@ -401,11 +374,11 @@ footer{
     position: fixed;
     top: 20px;
     left: 50%; 
+    transform: translateX(-50%); 
     background-color: #f0f0f0;
     padding: 1rem 2rem;
     gap: 1rem;
     z-index: 1000;
-    transform: translateX(-50%); 
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     font-size: 1.8rem;
     text-align: center;
@@ -415,11 +388,14 @@ footer{
     color: #58a03c;
 }
 
+#icono-Fallo{
+    color: red;
+}
+
 #contenedor-confirmar-rechazar{
     display: flex;
     gap: 2rem;
 }
-
 
 #contenedor-confirmar-rechazar button{
     padding: 0.5rem;
@@ -428,24 +404,15 @@ footer{
     cursor: pointer;
 }
 
-.opacidad{
-    opacity: 0.5;
-}
-
-#icono-Fallo{
-    color: red;
-}
-
-body.transicionBienvenida {
+.transicionBienvenida {
     opacity: 0.2;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out; /* transicion de opacidad lento-rapido-lento de 1s*/
     background-color: var(--color-fondo);
 }
 
 .retorno-mensaje{
     font-size: 0.8rem;
 }
-
 
 /* Dark Mode */
 
@@ -455,7 +422,7 @@ body.transicionBienvenida {
 
 .darkmode #encabezado{
     background-color: #1c1c1c;
-    border-bottom: 5px double #969696;;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05);
 }
 .darkmode h1,
 .darkmode #contenedor-tarjeta-usuario p, 
@@ -476,15 +443,9 @@ body.transicionBienvenida {
     color: #ffffff;
 }
 
+/* Media Queries */
 
-
-
-
-
-
-/*media queries*/
 @media (max-width: 850px){
-
 
     .acciones{
         display: flex;
@@ -494,75 +455,48 @@ body.transicionBienvenida {
     #contenedor-Total-Comprar{
         display: flex;
         flex-direction: column;
-
         gap: 2rem;
     }
     
-
-
     #contenedor-logo-Titulo h1 {
         font-size: 2rem;
         line-height: 1.2;
     }
 
-
     #contenedor-boton-volver{
         width: 4.5rem;
     }
-
 
     #contenedor-boton-volver i{
         font-size: 1rem;
     }
 
-
     #contenedor-tarjeta-usuario{
         width: 4rem;
-
     }
 
     #contenedor-tarjeta-usuario i{
         font-size: 1.5rem;
-
     }
+
     #contenedor-tarjeta-usuario p{
         font-size: 1rem;
-
     }
 }
 
 
 @media (max-width: 720px){
 
-
     #contenedor-productos{
         width: 100%;
-        
     }
     #contenedor-vaciar{
-
         align-items: center;
     }
 }
 
 
-
 @media (max-width:500px) {
-
-    .item-carrito{
-        display: flex;
-        flex-direction: column;
-    }
-
-    .acciones{
-        display: flex;
-        flex-direction: row;
-    }
-    .informacion{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
 
     .items-carrito{
         display: flex;
@@ -571,13 +505,25 @@ body.transicionBienvenida {
     }
 
     .item-carrito{
+        display: flex;
+        flex-direction: column;
         border-bottom: 2px solid #e0e0e0;
     }
 
+    .acciones{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .informacion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
     #contenedor-logo-Titulo h1 {
         font-size: 1.5rem;
     }
-
 
     #contenedor-boton-volver{
         width: 3rem;
@@ -588,13 +534,9 @@ body.transicionBienvenida {
         font-size: 2rem;
     }
     #confirmar-compra button{
-
         padding: 0.8rem;
         font-size: 0.8rem;
     }
-    
-
-    
 }
 
 
@@ -608,10 +550,12 @@ body.transicionBienvenida {
     #total p{
         font-size: 1.5rem;
     }
+    
     #confirmar-compra button{
         padding: 0.6rem;
         font-size: 0.6rem;
     }
+
     #modal-confirmar-compra{
         font-size: 1rem;
     }

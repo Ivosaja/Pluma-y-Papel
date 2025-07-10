@@ -11,8 +11,7 @@
 :root{
     --color-fondo: rgb(255, 244, 221);
     --color-titulo: rgb(82, 61, 49);
-    --color-boton: #5a724e;
-    
+    --color-boton: rgb(105,117,74);
 }
 
 /* Estilado */
