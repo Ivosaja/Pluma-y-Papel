@@ -199,6 +199,8 @@ cd backend
 cp .env.example .env
 ```
 * Editar el archivo .env con los valores correctos
+* Poner en el campo `DB_NAME=` el nombre que tiene el archivo db.sql
+
 
 ---
 

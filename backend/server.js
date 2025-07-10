@@ -27,22 +27,22 @@ app.use(express.json()) // => Es un middleware que le especifica (al servirdor) 
 app.use(loggerUrl)
 
 /////////////////////////////
-// Endpoints para el admin //
+// Endpoints de productos //
 
 app.use("/api/products", productRoutes)
 
-
 ///////////////////////////////
-// Endpoints para el cliente //
+// Endpoints de ventas //
 
 app.use("/api/sales", salesRoutes)
 
 //////////////////////////
-// Endpoints para Views //
+// Endpoints de Views //
 
 app.use("/admin", viewRoutes)
 
-
+/////////////////////////////////////////////////////////////////////
+// El servidor esta escuchando en el puerto establecido en el .env //
 app.listen(PORT,() => {
     console.log(`Servidor corriendo en el puerto: http://localhost:${PORT}`);
 })

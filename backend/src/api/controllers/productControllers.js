@@ -1,5 +1,10 @@
+////////////////////////
+// Product controller //
+
 import { deleteProduct, insertProduct, selectAllActiveProducts, selectAllProducts, selectProductById, updateProduct, updateProductActivo } from "../models/productModel.js";
 
+///////////////////////////////////////////////////////
+// Funcion asincrona que obtiene todos los productos //
 export const getAllProducts = async(req,res)=>{
     try{
         const [rows] =  await selectAllProducts(); 
@@ -16,6 +21,8 @@ export const getAllProducts = async(req,res)=>{
     }
 }
 
+/////////////////////////////////////////////////////////
+// Funcion asincrona que obtiene un producto por su ID //
 export const getProductById = async(req, res) => {
     try{
         const {id} = req.params
@@ -40,6 +47,8 @@ export const getProductById = async(req, res) => {
     }
 }
 
+//////////////////////////////////////////////////
+// Funcion asincrona que sube un producto nuevo //
 export const postProduct = async (req, res) => {
     try{
         const {nombre, categoria, precio, url_imagen} = req.body
@@ -66,8 +75,8 @@ export const postProduct = async (req, res) => {
     }
 }
 
-
-
+///////////////////////////////////////////////////////////////////
+// Funcion asincrona que da de baja logica un producto por su ID //
 export const removeProduct = async (req, res) => {
     try{
         const {id} = req.params
@@ -99,7 +108,8 @@ export const removeProduct = async (req, res) => {
     }
 }
 
-
+//////////////////////////////////////////////////////////
+// Funcion asincrona que modifica un producto por su ID //
 export const modifyProduct = async (req, res) => {
     try{
         const {id} = req.params
@@ -138,7 +148,8 @@ export const modifyProduct = async (req, res) => {
     }
 }
 
-
+///////////////////////////////////////////////////////////////////////
+// Funcion asincrona que activa un producto (modificacion) por su ID //
 export const activateProduct = async (req, res) => {
     try{
         let {id} = req.params 
@@ -169,7 +180,8 @@ export const activateProduct = async (req, res) => {
     }
 }
 
-///Exclusivo para el cliente//
+///////////////////////////////////////////////////////////////
+// Funcion asincrona que obtiene todos los productos activos //
 export const getAllActiveProducts = async(req,res)=>{
 
     try{

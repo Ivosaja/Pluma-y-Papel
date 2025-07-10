@@ -1,7 +1,12 @@
+//////////////////////
+// Sale controllers //
+
 import connection from "../database/db.js";
 import { insertSale, insertSaleDetail } from "../models/saleModel.js";
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion asincrona que guarda una venta en la tabla ventas y sus detalles en la tabla detalle_venta de la BD //
 export const finalizePurchase = async (req, res) => {
     
     // Obtengo una conexion de la pool de conexiones para poder hacer una transaccion sobre una conexion y no sobre el pool
