@@ -300,6 +300,7 @@ async function init() {
     // Muestro el nombre de usuario que ingreso el cliente en la pagina de bienvenida y muestro el carrito con la cantidad de productos que tiene
     obtenerNombreUsuarioSesionStorage();
     mostrarCantidadProductosCarrito()
+    cambiarTema();
     
     
     // Espero a que se obtengan los productos y los retorne la funcion
@@ -316,10 +317,7 @@ async function init() {
     
     redireccionarCarrito();
 
-    
-    cambiarTema();
-    
-    
+     
 }
 
 init();

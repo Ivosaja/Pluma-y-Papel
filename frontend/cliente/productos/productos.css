@@ -397,6 +397,10 @@ footer{
     color: #ffffff;
 }
 
+.darkmode .contenedor-productos-texto{
+    color: #FFFFFF;
+}
+
 
 /* Media queries */
 
