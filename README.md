@@ -181,7 +181,7 @@ Prender el servidor Apache y el servicio MySQL (usando XAMPP o el entorno que pr
 
 2. Importar **base de datos**
 Ir a `http://localhost/phpmyadmin`
-Importar el archivo **.sql** incluido en el proyecto (`ruta: backend/database/bd.sql`)
+Importar el archivo **.sql** incluido en el proyecto (`ruta: backend/src/api/database/db.sql`)
 
 ---
 
@@ -232,7 +232,7 @@ cd frontend/cliente/bienvenida
 
 **Conexión frontend-backend**
 * El frontend hace fetch al puerto **1001** por defecto.
-Si configurás otro puerto en .env, debes cambiar todos los fetch manualmente en los archivos JS correspondientes paraJ que funcione, o usar el puerto 1001 por defecto
+Si configurás otro puerto en .env, debes cambiar todos los fetch manualmente en los archivos JS correspondientes para que funcione, o usar el puerto 1001 por defecto
 
 **Base de datos**
 * Para ver y gestionar las ventas y sus detalles, usar **PHPMyAdmin** en la base de datos importada.
