@@ -490,7 +490,7 @@ function cambiarTema(){
 }
 
 
-////////////////////////
+///////////////////////
 // FUNCION INCIADORA //
 
 function init(){

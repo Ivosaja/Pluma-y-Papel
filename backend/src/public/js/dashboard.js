@@ -1,15 +1,24 @@
+// Variables globales //
 const modal = document.getElementById('modal')
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* Funcion que obtiene el idProducto del item que clickeo para modificar, guarda ese idProducto en sessionStorage y lo redirecciona a la pantalla
+modificarProducto
+*/ 
 function modificarProducto(idProducto){
     sessionStorage.setItem("idProducto", idProducto)
     window.location.href = 'http://localhost:1001/admin/dashboard/modificarProducto'
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que obtiene el idProducto del item que clickeo para eliminar y muestra el modal de confirmacion/informativo dependiendo el caso //
 function eliminarProducto(idProducto){
     usarModal("eliminar",idProducto);
     mostrarModal();
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion asincrona que hace una peticion put a un endpoint de la API para dar de baja logica un producto clickeado //
 async function eliminar(id){
 
     try{
@@ -29,12 +38,15 @@ async function eliminar(id){
     }
 
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion asincrona que obtiene el idProducto del item que clickeo para activar y mostrar el modal de confirmacion/informativo dependiendo el caso //
 async function activarProducto(idProducto){
     usarModal('activar', idProducto)
     mostrarModal()
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion asincrona que hace una peticion put a un endpoint de la API para activar un producto clickeado //
 async function activar(id){
     try{
         let respuesta = await fetch(`http://localhost:1001/api/products/activateProduct/${id}`, {
@@ -54,6 +66,8 @@ async function activar(id){
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que redirecciona al usuario a la pantalla de agregarProducto para dar de alta uno nuevo //
 function agregarProducto(){
     const btnAgregarProducto = document.getElementById('btn-agregarProducto')
     btnAgregarProducto.addEventListener('click', () => {
@@ -61,6 +75,8 @@ function agregarProducto(){
     })
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion para volver a la pantalla estatica del proyecto frontend que muestra el catalago de productos activos //
 // TODO => ver como hacer para volver para atras desde el servidor (va a estar imposible ya que el servidor no puede conocer )
 function volverProductos(){
     let flechiteVolver = document.getElementById("volverProductos");
@@ -70,9 +86,10 @@ function volverProductos(){
         window.location.href = "../../cliente/productos/productos.html";
 
     })
-
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que rellena el modal dependiendo del tipo que se le pase por parametro y aplica la logica correspondiente en base a la decision del usuario //
 function usarModal(tipo, idProducto){
     modal.style.flexDirection = 'column'
 
@@ -105,7 +122,7 @@ function usarModal(tipo, idProducto){
             }
             modal.style.flexDirection = 'row'
 
-            setTimeout(async () => {
+            setTimeout(() => {
                 ocultarModal();
                 window.location.reload() // Reload recargar la pagina para que el HTML renderizado por el servidor vuelva a cargar con los cambios hechos
             }, 3000);
@@ -144,7 +161,7 @@ function usarModal(tipo, idProducto){
             }
             modal.style.flexDirection = 'row'
 
-            setTimeout(async() => {
+            setTimeout(() => {
                 ocultarModal()
                 window.location.reload() // Reload recargar la pagina para que el HTML renderizado por el servidor vuelva a cargar con los cambios hechos
             }, 3000)
@@ -156,24 +173,24 @@ function usarModal(tipo, idProducto){
     }
 }
 
-
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que muestra el modal y le agrega la clase .bloquear-interacciones al contenedor principal para que el usuario no pueda interaccionar //
 function mostrarModal(){
-
     modal.style.display = "flex"
     document.querySelector('.contenedor-principal').classList.add('bloquear-interacciones')
 }
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que oculta el modal y le quita la clase .bloquear-interacciones al contenedor principal para que el usuario pueda interaccionar //
 function ocultarModal(){
     modal.style.display = "none"
     document.querySelector('.contenedor-principal').classList.remove('bloquear-interacciones')
 }
 
-
+///////////////////////
+// FUNCION INCIADORA //
 async function init(){
     agregarProducto()
-
     volverProductos();
 }
 

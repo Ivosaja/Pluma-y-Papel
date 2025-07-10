@@ -1,3 +1,5 @@
+/* Estilos globales */
+
 *{
     margin: 0;
     padding: 0;
@@ -5,10 +7,18 @@
     font-family: sans-serif;
 }
 
+/* Estilado a elementos generales */
+
 body{
     background: linear-gradient(135deg, #133c4a, #0f2b31, #111e20, #2d3c3f, #343333, #4a4a4a);/*135deg, significa que va en diagonal (izquierda-superior a derecha-inferior)*/
-    background-size: 400% 400%;
+    background-size: 400% 400%; /*El ancho y alto es 4 veces mas que el contenedor */
     animation: animacionPersonalizada  5s ease-in-out infinite; 
+}
+
+@keyframes animacionPersonalizada {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 main{
@@ -16,11 +26,9 @@ main{
     justify-content: center;
     align-items: center;
     min-height: 95vh;
-    
 }  
 
 footer{
-    background-color: transparent;
     text-align: center;
     color: #aca6a6; 
 }
@@ -36,11 +44,8 @@ button{
     transition: background-color 0.3s ease
 }
 
-@keyframes animacionPersonalizada {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+
+/* Contenido */
 
 .contenedor-principal{
     width: 100%;
@@ -68,7 +73,7 @@ button{
     justify-content: space-between;
     align-items: center;
 }
-/*Agregue eso*/
+
 #contenedorTitulo{
     display: flex;
     gap: 1rem;
@@ -107,7 +112,6 @@ button{
 
 .contenedor-tituloPanel{
     display: flex;
-    align-items: center;
     gap: 1.5rem;
 }
 
@@ -121,10 +125,6 @@ button{
 }
 .contenedor-tituloPanel #btn-agregarProducto:hover{
     background-color: #4d583f;
-}
-
-.contenedor-listaProductos{
-    width: 100%;
 }
 
 .listaProductos{
@@ -242,7 +242,6 @@ button{
 #contenedorBotones button{
     padding: 0.5rem;
     font-size: 1.2rem;
-    border: 1px solid grey;
     cursor: pointer;
     border:none;
     color: black;
@@ -251,14 +250,14 @@ button{
 #btnSi:hover{
     background-color: #58a03c;
     box-shadow: 0 0 6px rgba(106, 176, 76, 0.5);
-    color:white;
+    color:#FFFFFF;
 }
 
 
 #btnNo:hover{
     background-color: #c0392b;
     box-shadow: 0 0 6px rgba(235, 77, 75, 0.5);
-    color:white;
+    color:#FFFFFF;
 }
 
 .bloquear-interacciones{
@@ -279,12 +278,11 @@ button{
 
 }
 
-
-
-
+/* Media queries */
 
 @media (max-width: 1100px){
     .contenedor-principal h1{
+        font-size: 2.5rem;
         text-align: center;
     }
     .contenedor-tituloPanel{
@@ -316,10 +314,6 @@ button{
 
     #volverProductos{
         text-align: center;
-    }
-
-    h1{
-        font-size: 2.5rem;
     }
 
     .contenedor-listaProductos{
