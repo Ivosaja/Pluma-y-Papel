@@ -1,3 +1,5 @@
+/* Estilos globales */
+
 *{
     margin: 0;
     padding: 0;
@@ -5,18 +7,12 @@
     font-family: sans-serif;
 }
 
-
+/* Estilado a elementos generales */
 body{
     background: linear-gradient(135deg, #133c4a, #0f2b31, #111e20, #2d3c3f, #343333, #4a4a4a);
     background-size: 400% 400%;
     animation: animacionPersonalizada  5s ease-in-out infinite; 
 }
-main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 95vh;
-}  
 
 @keyframes animacionPersonalizada {
     0%   { background-position: 0% 50%; }
@@ -24,6 +20,12 @@ main{
     100% { background-position: 0% 50%; }
 }
 
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 95vh;
+}  
 
 #contenedor-Principal{
     width: 100%;
@@ -41,16 +43,13 @@ main{
     justify-content: center;
 }
 
-
 #volverDashboard{
     font-size: 1.4rem;
     cursor: pointer;
     position: sticky;
-    top: -20px;
+    top: 0;
     left: 0; 
 }
-
-
 
 #altaProductoForm{
     display: flex;
@@ -96,17 +95,14 @@ h1{
     background-color: #fff;
 }
 
-
 #contenedorLabels{
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 1rem;
-
     width: 75%;
     margin: 0 auto;
 }
-
 
 footer{
     text-align: center;
@@ -125,16 +121,14 @@ footer{
     transform: translateX(-50%);
     padding: 1rem 2rem;
     gap: 1rem;
-    z-index: 1000; /*superposicion de capas*/
+    z-index: 1000;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
-
 #cruz{
     background-color: red;
-    color: white;
+    color: #FFFFFF;
     padding: 0.2rem;
-    
 }
 
 #tilde{
@@ -142,30 +136,24 @@ footer{
     color: green;
 }
 
-
 .bloquear-interacciones{
     pointer-events: none;
     user-select: none;
     opacity: 0.6;
 }
 
-
-
-/* Responsive */
+/* Media Queries*/
 
 @media (max-width:600px){
-
     h1{
         font-size: 1.5rem;
     }
-
 
 }
 
 @media (max-width:550px){
 
     #contenedor-Principal{
-
         max-width: 80%;
     }
 

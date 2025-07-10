@@ -1,10 +1,11 @@
+
+// Variables Globales //
 let btnVolver = document.getElementById("volverDashboard");
-
 let altaProductoForm = document.getElementById("altaProductoForm");
-
 let contenedorModalAlta =document.getElementById("contenedorModalAltaProducto")
 
-
+/////////////////////////////////////////////////////////
+// Funcion que redirecciona a la pantalla de dashboard //
 function volverDashboard(){
 
     btnVolver.addEventListener("click", function(){
@@ -13,8 +14,8 @@ function volverDashboard(){
     })
 }
 
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que enviar los datos del formulario, los valida e informa lo sucedido a traves de un modal // 
 function enviarFormualrio(){
     altaProductoForm.addEventListener("submit", async(event)=>{
         event.preventDefault();
@@ -29,7 +30,7 @@ function enviarFormualrio(){
             mostrarModal();
             setTimeout(esconderModal, 3000);
         }
-        else if(parseInt(data.precio)<0 ||  parseInt(data.precio)>500000){ //al llegar desde el form, este llega como string, no como Number
+        else if(parseInt(data.precio)<0 ||  parseInt(data.precio)>500000){ //al llegar desde el form, este llega como string, no como int
 
             usarModal("incorrecto", "Los precios no pueden ser negativos ni pueden superar los $10.000.000")
             mostrarModal();
@@ -50,21 +51,16 @@ function enviarFormualrio(){
                 }, 3000)
             }
             else{
-
                 usarModal("incorrecto", resultado.mensaje)
                 mostrarModal();
-
                 setTimeout(esconderModal, 2500);
             }
-            
         }
     })
-
-
-
 }
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que realiza una peticion post a un endpoint de la api para agregar un nuevo producto con sus caracteristicas a la BD //
 async function subirProducto(data){
     try{
         let response = await fetch("http://localhost:1001/api/products/postProduct", {
@@ -74,7 +70,6 @@ async function subirProducto(data){
             },
             body: JSON.stringify(data)
         })
-
 
         if(response.ok){
             let result = await response.json()
@@ -90,7 +85,8 @@ async function subirProducto(data){
     }
 }
 
-
+///////////////////////////////////////////////////////////////////////////////////////
+// Funcion que rellena y utiliza el modal dependiendo su estado mostrando su mensaje //
 function usarModal(estado,mensaje1){
     let contenido= "";
 
@@ -114,19 +110,25 @@ function usarModal(estado,mensaje1){
 
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que muestra el modal y le agrega la clase al contenedor principal, para que el usuario no puede interaccionar //
 function mostrarModal(){
     contenedorModalAlta.style.display = "flex";
     document.getElementById('contenedor-Principal').classList.add('bloquear-interacciones');
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Funcion que esconde el modal y le remueve la clase al contenedor principal, para que el usuario pueda interaccionar //
 function esconderModal(){
     contenedorModalAlta.style.display = "none";
     document.getElementById('contenedor-Principal').classList.remove('bloquear-interacciones');
 }
 
+///////////////////////
+// FUNCION INCIADORA //
 function init(){
     volverDashboard();
     enviarFormualrio();
-
 }
 
 init();
