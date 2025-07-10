@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { vistaCrearProducto, vistaModificarProducto, vistaProductos } from "../controllers/viewControllers.js";
 
+
+// Inicializamos una instacion de Router() para manejar las rutas //
 const router = Router()
 
 // Endpoint que muestra vista con todos los productos en el dashboard del admin

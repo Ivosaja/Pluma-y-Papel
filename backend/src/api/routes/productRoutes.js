@@ -3,7 +3,7 @@ import { validateId } from "../middlewares/middlewares.js";
 import { activateProduct, getAllActiveProducts, getAllProducts, getProductById, modifyProduct, postProduct, removeProduct } from "../controllers/productControllers.js";
 
 
-
+// Inicializamos una instacion de Router() para manejar las rutas //
 const router = Router();
 
 
@@ -12,6 +12,7 @@ const router = Router();
 router.get("/getAllProducts", getAllProducts);
 
 //Endpoint para obtener todos los productos activos para el cliente
+
 router.get("/getAllActiveProducts", getAllActiveProducts);
 
 // Endpoint para obtener un producto por ID de la base de datos
@@ -24,7 +25,7 @@ router.post("/postProduct", postProduct);
 
 // Endpoint para realizar una baja logica de un producto de la base de datos
 
-router.put("/deleteProduct/:id", validateId, removeProduct); //colocamos un put debido a que en realidad no se elimina, sino que se da de baja logica
+router.put("/deleteProduct/:id", validateId, removeProduct); 
 
 // Endpoint para actualizar/modificar producto de la base de datos (nombre, categoria, precio, imagen)
 
@@ -33,8 +34,6 @@ router.put("/modifyProduct/:id", validateId, modifyProduct);
 //Endpoint para activar producto de la base de datos
 
 router.put("/activateProduct/:id", validateId, activateProduct)
-
-
 
 
 

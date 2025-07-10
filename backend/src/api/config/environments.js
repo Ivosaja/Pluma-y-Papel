@@ -1,10 +1,8 @@
-/*El objetivo de este archivo "enviroments" es poder cargar (a traves de la dependencia "dotenv") y  acceder a las variables de entorno, 
+/*El objetivo de este archivo "environments" es poder cargar (a traves de la dependencia "dotenv") y  acceder a las variables de entorno, 
 las cuales no son accesibles, a traves del metodo process.env brindado por NODE JS*/
 
 import { config } from 'dotenv';
 config(); 
-
-
 
 export default {
 

@@ -5,11 +5,11 @@ import { dirname, join } from "path"; //dirname: para extraer el directorio padr
 
 const __filename = fileURLToPath(import.meta.url); //contiene la url de un archivo
 
-const __dirname = join(dirname(__filename), "../../../");
+const __dirname = join(dirname(__filename), "../../../"); // te posiciona en /backend
 
+// Exportamos la variable __dirnama y el metodo join //
 
 export{
-
     __dirname,
     join
 }
