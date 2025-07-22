@@ -187,8 +187,8 @@ Importar el archivo **.sql** incluido en el proyecto (`ruta: backend/src/api/dat
 
 3. Clonar el **repositorio**:
 ```bash
-git clone https://github.com/Ivosaja/TP_Final_Progra_III.git
-cd TP_Final_Progra_III
+git clone https://github.com/Ivosaja/Pluma-y-Papel.git
+cd Pluma-y-Papel/
 ```
 
 ---
